@@ -7,6 +7,63 @@
         <title> Erasmus UoP</title>
     </head>
     <body>
-
+        <form>
+            Όνομα: 
+            <input type="text" name="fname"> <br>
+            Επίθετο:
+            <input type="text" name="lname"> <br>
+            Αριθμός μητρώου:
+            <input type="number" name="AM"> <br><br>
+            Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
+            <input type="number" name="passed_perc" min="0" max="100" value="50"><br>
+            Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
+            <input type="number" name="average" min="0" max="10" value="5" step="0.01"><br><br>
+            Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
+            <input type="radio" name="english-lang-cert" value="A1" checked>A1
+            <input type="radio" name="english-lang-cert" value="A2">A2
+            <input type="radio" name="english-lang-cert" value="B1">B1
+            <input type="radio" name="english-lang-cert" value="B2">B2
+            <input type="radio" name="english-lang-cert" value="C1">C1
+            <input type="radio" name="english-lang-cert" value="C2">C2 <br>
+            Γνώση επιπλέον ξένων γλωσσών:<br>
+            <input type="radio" name="extra-lang" value="yes">ΝΑΙ
+            <input type="radio" name="extra-lang" value="no" checked>ΟΧΙ
+            <br><br> Πανεπιστήμιο - 1η επιλογή:&nbsp;
+            <select name="first-choice">
+                <option value="Michigan">University of Michigan</option>
+                <option value="Harvard">University of Harvard</option>
+                <option value="MIT">Massachusetts Institute of Technology</option>
+                <option value="Oxford">Oxford University</option>
+                <option value="Cambridge">Cambridge University</option>
+                <option value="Stanford">Stanford University</option>
+            </select>
+            <br> Πανεπιστήμιο - 2η επιλογή:&nbsp;
+            <select name="first-choice">
+                <option value="Michigan">University of Michigan</option>
+                <option value="Harvard">University of Harvard</option>
+                <option value="MIT">Massachusetts Institute of Technology</option>
+                <option value="Oxford">Oxford University</option>
+                <option value="Cambridge">Cambridge University</option>
+                <option value="Stanford">Stanford University</option>
+            </select>
+            <br> Πανεπιστήμιο - 3η επιλογή:&nbsp;
+            <select name="first-choice">
+                <option value="Michigan">University of Michigan</option>
+                <option value="Harvard">University of Harvard</option>
+                <option value="MIT">Massachusetts Institute of Technology</option>
+                <option value="Oxford">Oxford University</option>
+                <option value="Cambridge">Cambridge University</option>
+                <option value="Stanford">Stanford University</option>
+            </select>
+            <br> <br>Αναλυτική βαθμολογία: <input type="file" name="marks"><br>
+            <input type="submit" value="Υποβολή αρχείου"> 
+            <br>Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert"><br>
+            <input type="submit" value="Υποβολή αρχείου"> 
+            <br>Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" multiple><br>
+            <input type="submit" value="Υποβολή αρχείου"> 
+            <br> <br>
+            Αποδοχή των όρων:
+            <input type="checkbox" name="accept-terms">
+        </form>
     </body>
 </html>
