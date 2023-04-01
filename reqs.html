@@ -1,50 +1,81 @@
 <!DOCTYPE html>
 
-<html>
+<html style="background-color: rgb(173, 173, 173);">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
     </head>
     <body>
-        <a href="index.html" style="text-decoration: none;">Πίσω στην Αρχική...</a> <BR>
-            <img src="media/images/logo-ec--en.svg" alt="European Union Logo" width="320" height="180">
-            <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
-            <p>
-                Ενημερωτικό φυλλάδιο προγράμματος Erasmus 2023 <a href="https://www.iky.gr/el/iky-rss/item/download/6919_43e80877fd9f6744d134b790f4e3f4b4">εδώ</a>
-            </p>
-            <table border="3" cellpadding="4">
-                <tr><th>Ελάχιστες απαιτήσεις συμμετοχής</th></tr>
-                <tr><td>Τρέχον έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 2ου έτους)</td></tr>
-                <tr><td>Ποσοστό «περασμένων» μαθημάτων έως το προηγούμενο έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 70% του συνόλου των μαθημάτων)</td></tr>
-                <tr><td>Μέσος όρος των «περασμένων» μαθημάτων έως το προηγούμενο έτος σπουδών (απαίτηση: μεγαλύτερος ή ίσος του 6.50) </td></tr>
-                <tr><td>Πιστοποιητικό γνώσης της αγγλικής γλώσσας (απαίτηση: κατ’ ελάχιστον «καλή γνώση της αγγλικής γλώσσας», που αντιστοιχεί σε επίπεδο B2 ή ανώτερο)</td></tr>
-            </table>
-            <br><br><br>
-            Φόρμα αυτόματου ελέγχου πληρότητας των ελάχιστων απαιτήσεων <br>
-            <br>
-            <form>
-                Έτος σπουδών:&nbsp;
-                <select name="year">
-                    <option selected value="1o">1o</option>
-                    <option value="2o">2o</option>
-                    <option value="3o">3o</option>
-                    <option value="4o">4o</option>
-                    <option value="older">μεγαλύτερο</option>
-                </select> <br>
-                Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-                <input type="number" name="passed_perc" min="0" max="100" value="50"><br>
-                Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-                <input type="number" name="average" min="0" max="10" value="5" step="0.01"><br>
-                Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
-                <input type="radio" name="english-lang-cert" value="A1" checked>A1
-                <input type="radio" name="english-lang-cert" value="A2">A2
-                <input type="radio" name="english-lang-cert" value="B1">B1
-                <input type="radio" name="english-lang-cert" value="B2">B2
-                <input type="radio" name="english-lang-cert" value="C1">C1
-                <input type="radio" name="english-lang-cert" value="C2">C2 <br>
-                <input type="button" name="r-submit" value="Υποβολή"><br>
-                <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
-            </form>
+        <div class="container">
+            <div class="header row">
+                <div class="col-s-6 col-m-7 col-l-10">
+                    <h1>Πρόγραμμα Erasmus Πανεπιστήμιο Πελλοπονήσου</h1>       
+                    <h2>Εγγραφή χρήστη</h2>  
+                </div>
+                <div class="col-s-6 col-m-5 col-l-2 image">
+                    <div class="image">
+                        <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-s-12 col-m-12 col-l-12 row">
+                <a href="index.html" style="text-decoration: none;">Πίσω στην Αρχική...</a>
+            </div>
+            <div class="row content">
+                <div class="col-s-12 col-m-12 col-l-9"></div>
+                    <p>
+                        Ενημερωτικό φυλλάδιο προγράμματος Erasmus 2023 <br><a href="https://www.iky.gr/el/iky-rss/item/download/6919_43e80877fd9f6744d134b790f4e3f4b4">εδώ</a>
+                    </p>
+                </div>
+                <div class="image col-l-3">
+                    <img src="media/images/EU-logo.png" alt="European Union Logo" width="294" height="82" style="border-radius: 10px;">
+                </div>
+               
+                <div class="col-s-12 col-m-12 col-l-12">
+                    <table border="3" cellpadding="4">
+                        <tr><th>Ελάχιστες απαιτήσεις συμμετοχής</th></tr>
+                        <tr><td>Τρέχον έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 2ου έτους)</td></tr>
+                        <tr><td>Ποσοστό «περασμένων» μαθημάτων έως το προηγούμενο έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 70% του συνόλου των μαθημάτων)</td></tr>
+                        <tr><td>Μέσος όρος των «περασμένων» μαθημάτων έως το προηγούμενο έτος σπουδών (απαίτηση: μεγαλύτερος ή ίσος του 6.50) </td></tr>
+                        <tr><td>Πιστοποιητικό γνώσης της αγγλικής γλώσσας (απαίτηση: κατ’ ελάχιστον «καλή γνώση της αγγλικής γλώσσας», που αντιστοιχεί σε επίπεδο B2 ή ανώτερο)</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row content">
+                <form>
+                    <div class="col-s-12 col-m-12 col-l-12">
+                        <h2>Φόρμα αυτόματου ελέγχου πληρότητας των ελάχιστων απαιτήσεων</h2> 
+                    </div>
+                    <div>
+                        Έτος σπουδών:&nbsp;
+                        <select name="year">
+                            <option selected value="1o">1o</option>
+                            <option value="2o">2o</option>
+                            <option value="3o">3o</option>
+                            <option value="4o">4o</option>
+                            <option value="older">μεγαλύτερο</option>
+                        </select> <br>
+                        Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
+                        <input type="number" name="passed_perc" min="0" max="100" value="50">%<br>
+                        Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
+                        <input type="number" name="average" min="0" max="10" value="5" step="0.01"><br>
+                        Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
+                        <input type="radio" name="english-lang-cert" value="A1" checked>A1
+                        <input type="radio" name="english-lang-cert" value="A2">A2
+                        <input type="radio" name="english-lang-cert" value="B1">B1
+                        <input type="radio" name="english-lang-cert" value="B2">B2
+                        <input type="radio" name="english-lang-cert" value="C1">C1
+                        <input type="radio" name="english-lang-cert" value="C2">C2 <br>
+                        <input type="button" name="r-submit" value="Υποβολή">
+                        <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
+                    </div>
+                </form>
+            </div>
+                <div class="col-l-12 image row">
+                    <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
+                </div>
+            </div>
     </body>
 </html>
