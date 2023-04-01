@@ -13,7 +13,7 @@
 .container{
     max-width: 100%;
 }
-.header{
+.header, h1{
     background-color: blue;
     font-family: Arial, Helvetica, sans-serif;
     color:white;
@@ -67,7 +67,10 @@ form input[type="text"],input[type="password"], input[type="number"], input[type
     text-decoration: none;
     font-size: 16px;
 }
-
+h1{
+    padding:5px 5px 5px 5px;
+    margin:auto;
+}
 
 @media screen and (max-width: 768px){/*don't show the footer on tablets and mobile phones*/
     div.image{
