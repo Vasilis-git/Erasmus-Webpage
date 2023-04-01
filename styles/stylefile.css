@@ -21,12 +21,35 @@
 .col-9{width: 75%;}
 .col-10{width: 83.33%;}
 .col-11{width: 91.66%;}
-.col-12{width: 100;}
+.col-12{width: 100%;}
 
 
 .container{
     max-width: 100%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 20% 50% 30%;
+}
+.header{
+    background-color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    border-radius: 10px;
+}
+.menu a{
+    background-color: rgb(36, 36, 255);
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration:none;
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    text-align: center;
+}
+.menu a:hover{
+    background-color: rgb(83, 83, 253);
+}
+.content{
+    background-color: rgb(196, 196, 196);
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
 }
