@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 
-<html>
+<html style="background-color: rgb(173, 173, 173);>
     <head>
         <meta charset="UTF-8">
-        <!-- <link rel="stylesheet" href="styles/stylefile.css"/> -->
+        <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
     </head>
     <body>
-        <a href="index.html" style="text-decoration: none;">Πίσω στην Αρχική...</a> <BR>
-        <form >
-            Όνομα χρήστη:<br>
-            <input type="text" name ="l-username"><br>
-            Κωδικός πρόσβασης:<br>
-            <input type="password" name ="l-password"><br>
-            <input type="button" name="l-submit" value="Υποβολή"> 
-            <a href="sign-up.html" style="text-decoration: none;">Νέος χρήστης;</a>
-            <br>
-                <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
-        </form>
+        <div class="container">
+
+            <div class="menu row">
+                <a href="index.html" style="text-decoration: none;">Πίσω στην Αρχική...</a>
+                <a href="sign-up.html" style="text-decoration: none;">Νέος χρήστης;</a>
+            </div>
+            <div class="row">
+                <div class="content">
+                    <form>
+                        <input type="text" name ="l-username" maxlength="10" placeholder="Όνομα χρήστη"><br>
+                        <input type="password" name ="l-password" maxlength="15" placeholder="Κωδικός πρόσβασης"><br>
+                        <input type="button" name="l-submit" value="Υποβολή"> 
+                        <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
