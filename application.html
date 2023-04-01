@@ -1,69 +1,90 @@
 <!DOCTYPE html>
 
-<html>
+<html style="background-color: rgb(173, 173, 173);>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
     </head>
     <body>
-        <form>
-            Όνομα: 
-            <input type="text" name="fname"> <br>
-            Επίθετο:
-            <input type="text" name="lname"> <br>
-            Αριθμός μητρώου:
-            <input type="number" name="AM"> <br><br>
-            Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-            <input type="number" name="passed_perc" min="0" max="100" value="50"><br>
-            Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-            <input type="number" name="average" min="0" max="10" value="5" step="0.01"><br><br>
-            Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
-            <input type="radio" name="english-lang-cert" value="A1" checked>A1
-            <input type="radio" name="english-lang-cert" value="A2">A2
-            <input type="radio" name="english-lang-cert" value="B1">B1
-            <input type="radio" name="english-lang-cert" value="B2">B2
-            <input type="radio" name="english-lang-cert" value="C1">C1
-            <input type="radio" name="english-lang-cert" value="C2">C2 <br>
-            Γνώση επιπλέον ξένων γλωσσών:<br>
-            <input type="radio" name="extra-lang" value="yes">ΝΑΙ
-            <input type="radio" name="extra-lang" value="no" checked>ΟΧΙ
-            <br><br> Πανεπιστήμιο - 1η επιλογή:&nbsp;
-            <select name="first-choice">
-                <option value="Michigan">University of Michigan</option>
-                <option value="Harvard">University of Harvard</option>
-                <option value="MIT">Massachusetts Institute of Technology</option>
-                <option value="Oxford">Oxford University</option>
-                <option value="Cambridge">Cambridge University</option>
-                <option value="Stanford">Stanford University</option>
-            </select>
-            <br> Πανεπιστήμιο - 2η επιλογή:&nbsp;
-            <select name="first-choice">
-                <option value="Michigan">University of Michigan</option>
-                <option value="Harvard">University of Harvard</option>
-                <option value="MIT">Massachusetts Institute of Technology</option>
-                <option value="Oxford">Oxford University</option>
-                <option value="Cambridge">Cambridge University</option>
-                <option value="Stanford">Stanford University</option>
-            </select>
-            <br> Πανεπιστήμιο - 3η επιλογή:&nbsp;
-            <select name="first-choice">
-                <option value="Michigan">University of Michigan</option>
-                <option value="Harvard">University of Harvard</option>
-                <option value="MIT">Massachusetts Institute of Technology</option>
-                <option value="Oxford">Oxford University</option>
-                <option value="Cambridge">Cambridge University</option>
-                <option value="Stanford">Stanford University</option>
-            </select>
-            <br> <br>Αναλυτική βαθμολογία: <input type="file" name="marks"><br>
-            <input type="submit" value="Υποβολή αρχείου"> 
-            <br>Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert"><br>
-            <input type="submit" value="Υποβολή αρχείου"> 
-            <br>Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" multiple><br>
-            <input type="submit" value="Υποβολή αρχείου"> 
-            <br> <br>
-            Αποδοχή των όρων:
-            <input type="checkbox" name="accept-terms">
-        </form>
+        <div class="container">
+            <div class="header row">
+                <div class="col-s-6 col-m-7 col-l-10">
+                    <h1>Πρόγραμμα Erasmus Πανεπιστήμιο Πελλοπονήσου</h1>       
+                    <h2>Αίτηση συμμετοχής στο πρόγραμμα Erasmus</h2>  
+                </div>
+                <div class="col-s-6 col-m-5 col-l-2 image">
+                    <div class="image">
+                        <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-s-12 col-m-12 col-l-12 row">
+                <a href="index.html" style="text-decoration: none;">Πίσω στην Αρχική...</a>
+            </div>
+            <div class="row col-s-12 col-m-12 col-l-12">
+                <form>
+                    <div>
+                        <input type="text" name="fname" placeholder="Όνομα"> <br>
+                        <input type="text" name="lname" placeholder="Επίθετο"> <br>
+                        <input type="number" name="AM" placeholder="AM"> <br>
+                        Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
+                        <input type="number" name="passed_perc" min="0" max="100" value="50"><br>
+                        Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
+                        <input type="number" name="average" min="0" max="10" value="5" step="0.01"><br><br>
+                        Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
+                        <input type="radio" name="english-lang-cert" value="A1" checked>A1
+                        <input type="radio" name="english-lang-cert" value="A2">A2
+                        <input type="radio" name="english-lang-cert" value="B1">B1
+                        <input type="radio" name="english-lang-cert" value="B2">B2
+                        <input type="radio" name="english-lang-cert" value="C1">C1
+                        <input type="radio" name="english-lang-cert" value="C2">C2 <br>
+                        Γνώση επιπλέον ξένων γλωσσών:<br>
+                        <input type="radio" name="extra-lang" value="yes">ΝΑΙ
+                        <input type="radio" name="extra-lang" value="no" checked>ΟΧΙ
+                        <br><br> Πανεπιστήμιο - 1η επιλογή:&nbsp;
+                        <select name="first-choice">
+                            <option value="Michigan">University of Michigan</option>
+                            <option value="Harvard">University of Harvard</option>
+                            <option value="MIT">Massachusetts Institute of Technology</option>
+                            <option value="Oxford">Oxford University</option>
+                            <option value="Cambridge">Cambridge University</option>
+                            <option value="Stanford">Stanford University</option>
+                        </select>
+                        <br> Πανεπιστήμιο - 2η επιλογή:&nbsp;
+                        <select name="first-choice">
+                            <option value="Michigan">University of Michigan</option>
+                            <option value="Harvard">University of Harvard</option>
+                            <option value="MIT">Massachusetts Institute of Technology</option>
+                            <option value="Oxford">Oxford University</option>
+                            <option value="Cambridge">Cambridge University</option>
+                            <option value="Stanford">Stanford University</option>
+                        </select>
+                        <br> Πανεπιστήμιο - 3η επιλογή:&nbsp;
+                        <select name="first-choice">
+                            <option value="Michigan">University of Michigan</option>
+                            <option value="Harvard">University of Harvard</option>
+                            <option value="MIT">Massachusetts Institute of Technology</option>
+                            <option value="Oxford">Oxford University</option>
+                            <option value="Cambridge">Cambridge University</option>
+                            <option value="Stanford">Stanford University</option>
+                        </select>
+                        <br> <br>Αναλυτική βαθμολογία: <input type="file" name="marks"><br>
+                        <input type="submit" value="Υποβολή αρχείου"> 
+                        <br>Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert"><br>
+                        <input type="submit" value="Υποβολή αρχείου"> 
+                        <br>Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" multiple><br>
+                        <input type="submit" value="Υποβολή αρχείου"> 
+                        <br> <br>
+                        Αποδοχή των όρων:
+                        <input type="checkbox" name="accept-terms">
+                    </div>
+                </form>
+            </div>
+            <div class="col-l-12 image row">
+                <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
+            </div>
+        </div>
     </body>
 </html>
