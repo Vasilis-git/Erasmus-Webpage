@@ -59,13 +59,12 @@ form div {
     padding: 5px;
 }
 /* Select the input elements inside the form and set their width and border */
-form input[type="text"],input[type="password"] {
+form input[type="text"],input[type="password"], input[type="number"], input[type="tel"], input[type="email"] {
     background-color: white;
     border-radius: 10px;
     padding:5px 5px;
     text-align: center;
     text-decoration: none;
-    
     font-size: 16px;
 }
 

@@ -1,32 +1,45 @@
 <!DOCTYPE html>
 
-<html>
+<html style="background-color: rgb(173, 173, 173);">
     <head>
         <meta charset="UTF-8">
-        <!-- <link rel="stylesheet" href="styles/stylefile.css"/> -->
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
     </head>
     <body>
-        <a href="index.html" style="text-decoration: none;">Πίσω στην Αρχική...</a> <BR>
-        <form>
-            Όνομα: 
-            <input type="text" name="fname"> <br>
-            Επίθετο:
-            <input type="text" name="lname"> <br>
-            Αριθμός μητρώου:
-            <input type="number" name="AM"> <br>
-            Τηλέφωνο:
-            <input type="tel" name="phone-number"> <br>
-            email:
-            <input type="email" name="mail"> <br>
-            Όνομα χρήστη: 
-            <input type="text" name="s-username"> <br>
-            Κωδικός πρόσβασης:<br>
-            <input type="password" name ="s-password"><br>
-            Επιβεβαίωση κωδικού:<br>
-            <input type="password" name ="s-password-confirm"><br>
-            <input type="button" name="s-submit" value="Υποβολή"> <br>
-            <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
-        </form>
+        <div class="container">
+            <div class="header row">
+                <div class="col-s-6 col-m-7 col-l-10">
+                    <h1>Πρόγραμμα Erasmus Πανεπιστήμιο Πελλοπονήσου</h1>       
+                    <h2>Εγγραφή χρήστη</h2>  
+                </div>
+                <div class="col-s-6 col-m-5 col-l-2 image">
+                    <div class="image">
+                        <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <form>
+                    <a href="index.html" style="text-decoration: none;">Πίσω στην Αρχική...</a> <BR>
+                    <div> 
+                        <input type="text" name="fname" placeholder="Όνομα"> <br>
+                        <input type="text" name="lname" placeholder="Επίθετο"> <br>
+                        <input type="number" name="AM" placeholder="AM"> <br>
+                        <input type="tel" name="phone-number" placeholder="Τηλέφωνο"> <br>
+                        <input type="email" name="mail" placeholder="email"> <br>
+                        <input type="text" name="s-username" placeholder="Διάλεξε ένα όνομα χρήστη..."> <br>
+                        <input type="password" name ="s-password" placeholder="Κωδικός πρόσβασης"><br>
+                        <input type="password" name ="s-password-confirm" placeholder="Επιβεβαίωση κωδικού"><br>
+                        <input type="button" name="s-submit" value="Υποβολή"> <br>
+                        <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
+                    </div>
+                </form>
+            </div>
+            <div class="col-l-12 image row">
+                <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
+            </div>
+        </div>
     </body>
 </html>
