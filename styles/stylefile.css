@@ -22,11 +22,6 @@ a:hover{
 input[type="button"]:hover{
     background-color: rgb(83, 83, 253);
 }
-.content{
-    background-color: rgb(196, 196, 196);
-    font-family: Arial, Helvetica, sans-serif;
-    border-radius: 10px;
-}
 form {
     width:fit-content;
     margin-top: 10px;
