@@ -22,31 +22,6 @@ a:hover{
 input[type="button"]:hover{
     background-color: rgb(83, 83, 253);
 }
-form {
-    width:fit-content;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size: x-large;
-    border: 2px solid #868686;
-    border-radius: 20px;
-}
-/* Select the div elements inside the form and set their display and padding */
-form div {
-    display:flow-root;
-    align-items: center;
-    padding: 5px;
-}
-/* Select the input elements inside the form and set their width and border */
-form input[type="text"],input[type="password"], input[type="number"], input[type="tel"], input[type="email"]{
-    background-color: white;
-    border-radius: 10px;
-    padding:5px 5px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-}
 table{
     border-radius: 10px;
     border-style: groove;
@@ -59,7 +34,7 @@ h1{
 }
 select{
     border-radius: 10px;
-    font-size: 20px;
+    font-size: large;
 }
 
 
@@ -107,19 +82,33 @@ select{
     margin-top: 3vw;
     grid-area: fi;
 }
-
-
 .form-credentials{
     grid-area:fc;
 
 }
 .form-buttons{
+    margin-top: 1vw;
     grid-area: fb;
 }
-
-.footer-image{
-    display: none;
+.decor-image{
+    margin-top: 1vw;
+    grid-area: di;
 }
 form{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
     margin-left: 40vw; margin-right: auto;
+    border-style:solid;
+    border-color: rgb(37, 131, 255);
+    border-radius: 1vw;
+    margin-top: 1vw;
+    padding:2vw;
+    grid-area: f;
+}
+input{
+    border-radius: 1vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    padding: 0.1em;
+    margin-top: 1vw;
 }
