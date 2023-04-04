@@ -6,35 +6,91 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
+        <style>
+             @media screen and (min-width: 760px) {/*for desktop*/
+                .container{
+                        display: grid;
+                        grid-template-columns: repeat(8, 1fr);
+                        grid-auto-rows: minmax(1vw, auto);
+                        margin: 0 auto;
+                        grid-template-areas: 
+                        "h  h  h  h  h  h  h  hi"
+                        "ht ht ht ht ht ht ht hi"
+                        "m  m  m  m  m  m  m  m"
+                        "fc fc fc fc fc fc fc fc"
+                        "fd fd fd fd fd fd fd fd"
+                        ;
+                }
+            }
+            @media screen and (max-width: 759px) {/*for phones and tablets*/
+                .container{
+                    display: grid;
+                    grid-template-columns: repeat(1, 1fr);
+                    margin: 0 auto;
+                    grid-template-areas: 
+                                    "h"
+                                    "ht"
+                                    "m"
+                                    "fc"
+                                    "fc"
+                                    "fd";
+                }
+                .heading{
+                    border-top-right-radius: 1vw;
+                }
+                .heading-title{
+                    border-bottom-right-radius: 1vw;
+                }
+                .footer-image{
+                    display: none;
+                }
+                .heading-image{
+                    display: none;
+                }
+                .menu{
+                    margin-bottom: 2vw;
+                }
+                form{
+                    margin:auto;
+                }
+            }  
+        </style>
     </head>
     <body>
         <div class="container">
-            <div class="header row">
-                <div class="col-s-6 col-m-7 col-l-10">
+                <div class="heading">
                     <h1>Πρόγραμμα Erasmus Πανεπιστήμιο Πελλοπονήσου</h1>       
-                    <h2>Σύνδεση χρήστη</h2>  
                 </div>
-                <div class="col-s-6 col-m-5 col-l-2 image">
-                    <div class="image">
-                        <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
-                    </div>
+                <div class="heading-image">
+                    <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
+                </div>   
+                <div class="heading-title">
+                    <h1>Σύνδεση χρήστη</h1>
                 </div>
-            </div>
-            <div class="row">
+
+                <div class="menu">
+                    <a href="index.html">Αρχική</a>
+                    <a href="more.html">Περισόττερα</a>
+                    <a href="reqs.html">Ελάχιστες απαιτήσεις</a>
+                    <a href="application.html">Αίτηση</a>
+                </div>
+ 
+ 
                 <form>
-                    <a href="index.html" style="text-decoration: none;">Πίσω στην Αρχική...</a>
-                    <a href="sign-up.html" style="text-decoration: none;">Νέος χρήστης;</a>
                     <br>
-                    <div>
+                    <div class="form-credentials">
                         <input type="text" name ="l-username" maxlength="10" placeholder="Όνομα χρήστη"><br>
                         <input type="password" name ="l-password" maxlength="15" placeholder="Κωδικός πρόσβασης"><br>
+                    </div>
+                    <div class="form-buttons">
                         <input type="button" name="l-submit" value="Υποβολή">
                         <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
+                        <input type="button" name="new-user" value="Νέος χρήστης;">
                     </div>
                 </form>
-            </div>
-            </div>
-            <div class="col-l-12 image row">
+
+            
+            <div class="footer-image">
                 <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
             </div>
         </div>
