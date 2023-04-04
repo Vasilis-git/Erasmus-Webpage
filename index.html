@@ -8,34 +8,34 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <style>
             
-            @media screen and (min-width: 760px) {
+            @media screen and (min-width: 760px) {/*for desktop*/
                 .container{
                         display: grid;
-                        grid-template-columns: repeat(9, 1fr);
+                        grid-template-columns: repeat(8, 1fr);
                         grid-auto-rows: minmax(1vw, auto);
                         margin: 0 auto;
                         grid-template-areas: 
-                                            "h  h  h  h  h  h  h  hi hi"
-                                            "ht ht ht ht ht ht ht hi hi"
-                                            "m  m  m  m  m  m  m  m  m"
-                                            "c  c  c  c  c  c  c  c  c"
-                                            "c  c  c  c  c  c  c  c  c"
-                                            "c  c  c  c  c  c  c  c  c"
-                                            "fi fi fi fi fi fi fi fi fi";
+                                            "h  h  h  h  h  h  h  hi"
+                                            "ht ht ht ht ht ht ht hi"
+                                            "m  m  m  m  m  m  m  m"
+                                            "c  c  c  c  c  c  c  c"
+                                            "c  c  c  c  c  c  c  c"
+                                            "c  c  c  c  c  c  c  c"
+                                            "fi fi fi fi fi fi fi fi";
                 }
             }
-            @media screen and (max-width: 600px) {
+            @media screen and (max-width: 600px) {/*for phones*/
                 .container{
                     display: grid;
-                    grid-template-columns: repeat(9, 1fr);
+                    grid-template-columns: repeat(1, 1fr);
                     margin: 0 auto;
                     grid-template-areas: 
-                                    "h  h  h  h  h  h  h  h  h"
-                                    "ht ht ht ht ht ht ht ht ht"
-                                    "m  m  m  m  m  m  m  m  m"
-                                    "c  c  c  c  c  c  c  c  c"
-                                    "c  c  c  c  c  c  c  c  c"
-                                    "c  c  c  c  c  c  c  c  c";
+                                    "h "
+                                    "ht"
+                                    "m"
+                                    "c"
+                                    "c"
+                                    "c ";
                 }
                 .heading{
                     border-top-right-radius: 1vw;
@@ -50,6 +50,31 @@
                     display: none;
                 }
             }  
+            @media screen and (min-width: 601px) and (max-width: 759px){
+                .container{/*for tablets*/
+                    display: grid;
+                    grid-template-columns: repeat(7, 1fr);
+                    grid-auto-rows: minmax(1vw, auto);
+                    margin: 0 auto;
+                    grid-template-areas: 
+                                        "h  h  h  h  h  h  h"
+                                        "ht ht ht ht ht ht ht"
+                                        "m  m  m  m  m  m  m"
+                                        "c  c  c  c  c  c  c"
+                                        "c  c  c  c  c  c  c"
+                                        "c  c  c  c  c  c  c"
+                                        "fi fi fi fi fi fi fi";
+                }
+                .heading{
+                    border-top-right-radius: 1vw;
+                }
+                .heading-title{
+                    border-bottom-right-radius: 1vw;
+                }
+                .heading-image{
+                    display: none;
+                }
+            }
         </style>
     </head>
     <body>

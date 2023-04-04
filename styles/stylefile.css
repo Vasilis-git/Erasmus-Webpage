@@ -102,5 +102,6 @@ select{
     grid-area: c;
 }
 .footer-image{
+    margin-top: 3vw;
     grid-area: fi;
 }
