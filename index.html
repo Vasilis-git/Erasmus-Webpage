@@ -3,28 +3,55 @@
 <html style="background-color: rgb(173, 173, 173);">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="styles/stylefile.css"/> 
+        <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <style>
+            .container{
+                display:grid;
+                grid-template-columns: 9;
+                grid-template-rows: repeat(7, minmax(150px, auto));
+                margin: 0 auto;
+            }
+            .heading{
+                grid-column: 1/8;
+                grid-row: 1;
+            }
+            .heading-image{
+                grid-column: 8/10;
+                grid-row: 1;
+            }
+            .heading-title{
+                grid-column: 1/10;
+                grid-row: 2;
+            }
+            [class*="heading"]{
+                background-color: blue;
+                font-family: Arial, Helvetica, sans-serif;
+                color:white;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
-            <div class="header row">
-                <div class="col-s-6 col-m-7 col-l-10">
+
+                <div class="heading" style="border-top-left-radius: 10px;">
                     <h1>Πρόγραμμα Erasmus Πανεπιστήμιο Πελλοπονήσου</h1>
-                    <h2>Αρχική</h2>      
-                </div>
-                <div class="col-s-6 col-m-5 col-l-2 image">
+                </div>       
+                <div class="heading-image image" style="border-top-right-radius: 10px;">
                     <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
+                </div>   
+                <div class="heading-title" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                    <h2>Αρχική</h2>
                 </div>
-            </div>
-            <div class="col-s-12 col-m-12 col-l-12 row">
+
+            <div class="menu">
                 <a href="login.html">Σύνδεση χρήστη</a>
                 <a href="more.html">Περισόττερα</a>
                 <a href="reqs.html">Ελάχιστες απαιτήσεις</a>
                 <a href="application.html">Αίτηση</a>
             </div>
-            <div class="content row col-s-12 col-m-12 col-l-12">
+            <div class="content">
                 <p> 
                     Καλωσήρθατε στην ιστοσελίδα του Πανεπιστημίου Πελλοπονήσου που αφορά το πρόγραμμα Erasmus.<br>
                     Το Erasmus+ είναι το πρόγραμμα της ΕΕ για τη στήριξη της εκπαίδευσης, της κατάρτισης, της νεολαίας και του αθλητισμού στην Ευρώπη.
@@ -39,7 +66,7 @@
                     </ul>
                 </p>
             </div>
-            <div class="col-l-12 image row">
+            <div class="image">
                 <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
             </div>
         </div>
