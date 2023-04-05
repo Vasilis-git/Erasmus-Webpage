@@ -14,15 +14,13 @@
                         grid-auto-rows: minmax(1vw, auto);
                         margin: 0 auto;
                         grid-template-areas: 
-                                            "h   h   h   h   h   h  h  hi"
-                                            "ht  ht  ht  ht  ht  ht ht hi"
-                                            "m   m   m   m   m   m  m  m"
-                                            "fl  fl  di  di  di  di di di"
-                                            "t   t   t   t   t   t  t  t"
-                                            "t   t   t   t   t   t  t  t"
-                                            "f  f    f   f   f   f   f  f"
-                                            "f  f    f   f   f   f   f  f"
-                                            "fi  fi  fi  fi  fi fi fi fi";
+                                            "h  h  h  h  h  h  h  hi"
+                                            "ht ht ht ht ht ht ht hi"
+                                            "m  m  m  m  m  m  m  m"
+                                            "fl fl fl fl fl fl fl fl"
+                                            "t  t  t   c  c  c  di di"
+                                            "t  t  t   c  c  c  c  c"
+                                            "fi fi fi fi fi fi fi fi";
                 }
             }
             .file{
@@ -81,10 +79,10 @@
 
 
             <form>
-                <div>
-                    <h2>Φόρμα αυτόματου ελέγχου πληρότητας των ελάχιστων απαιτήσεων</h2> 
-                </div>
-                <div class="content">
+                <div class="content"></div>
+                    <div>
+                        <h2>Φόρμα αυτόματου ελέγχου πληρότητας των ελάχιστων απαιτήσεων</h2> 
+                    </div>
                     Έτος σπουδών:&nbsp;
                     <select name="year">
                         <option selected value="1o">1o</option>
