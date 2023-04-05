@@ -17,20 +17,13 @@
                                             "h  h  h  h  h  h  h  hi"
                                             "ht ht ht ht ht ht ht hi"
                                             "m  m  m  m  m  m  m  m"
-                                            "fd fd fd fl .  . di  di"
-                                            ".  .  .  .  .  .  . ."
+                                            "d  d  d  l  .  .  .  ."
+                                            ".  .  t  t  t  t  .  ."
+                                            ".  .  f  f  f  f  .  ."
+                                            ".  .  .  .  .  .  .  ."
+                                            "fi fi .  .  .  .  di di"
                                             ;
                                            
-                }
-                form{
-                    display:none;
-                }
-                table{
-                    display:none;
-                }
-
-                .footer-image{
-                    display:none;
                 }
             }
            
@@ -61,11 +54,12 @@
                 <div style="font-family: Arial, Helvetica, sans-serif;
                     margin-top: 2vw;
                     padding-left: 1vw;
-                    grid-area: fd;">
+                    font-size: 1em;
+                    grid-area: d;">
                     Ενημερωτικό φυλλάδιο προγράμματος Erasmus 2023
                 </div>
 
-                <div class="file" style="margin-right: 21vw;">
+                <div style="margin-right: 20vw;grid-area:l;">
                     <a href="https://www.iky.gr/el/iky-rss/item/download/6919_43e80877fd9f6744d134b790f4e3f4b4" >εδώ</a>
                 </div>
 
@@ -74,7 +68,7 @@
                 </div>
           
             
-            <table border="3" cellpadding="4">
+            <table border="3" cellpadding="4" style="margin-top: 1vw;">
                 <tr><th>Ελάχιστες απαιτήσεις συμμετοχής</th></tr>
                 <tr><td>Τρέχον έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 2ου έτους)</td></tr>
                 <tr><td>Ποσοστό «περασμένων» μαθημάτων έως το προηγούμενο έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 70% του συνόλου των μαθημάτων)</td></tr>
@@ -97,7 +91,7 @@
                         <option value="older">μεγαλύτερο</option>
                     </select> <br>
                     Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-                    <input type="number" name="passed_perc" min="0" max="100" value="50">%<br>
+                    <input type="number" name="passed_perc" min="0" max="100" value="50" style="margin-bottom: 1vw;">%<br>
                     Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
                     <input type="number" name="average" min="0" max="10" value="5" step="0.01" style="margin-bottom: 1vw;"><br>
                     Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
