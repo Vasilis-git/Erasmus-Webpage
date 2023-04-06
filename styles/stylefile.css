@@ -38,6 +38,9 @@ select{
     border-radius: 1vw;
     font-size: large;
 }
+input[type="submit"]{
+    margin-bottom: 1vw;
+}
 
 
 .heading{
