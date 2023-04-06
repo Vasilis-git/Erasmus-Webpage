@@ -6,38 +6,89 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
+        <style>
+            @media screen and (min-width: 760px) {/*for desktop*/
+                .container{
+                        display: grid;
+                        grid-template-columns: repeat(8, 1fr);
+                        grid-auto-rows: minmax(1vw, auto);
+                        
+                        grid-template-areas: 
+                        "h  h  h  h  h  h  h  hi"
+                        "ht ht ht ht ht ht ht hi"
+                        "m  m  m  m  m  m  m  m"
+                        ".  .  f  f  f  f  .  ."
+                        "fi fi fi fi fi fi fi fi"
+                        ;
+                }
+            }
+            @media screen and (max-width: 759px) {/*for tablets and phones*/
+                .container{
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        grid-auto-rows: minmax(1vw, auto);
+                        
+                        grid-template-areas: 
+                        "h  h"
+                        "ht ht"
+                        "m  m"
+                        "f  f"
+                        ;
+                }
+                .heading{
+                    border-top-right-radius: 1vw;
+                }
+                .heading-title{
+                    border-bottom-right-radius: 1vw;
+                }
+                .footer-image{
+                    display:none;
+                }
+                .heading-image{
+                    display:none;
+                }
+            }
+        </style>
     </head>
     <body>
         <div class="container">
-            <div class="header row">
-                <div class="col-s-6 col-m-7 col-l-10">
-                    <h1>Πρόγραμμα Erasmus Πανεπιστήμιο Πελλοπονήσου</h1>       
-                    <h2>Εγγραφή χρήστη</h2>  
-                </div>
-                <div class="col-s-6 col-m-5 col-l-2 image">
-                    <div class="image">
-                        <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
-                    </div>
-                </div>
+
+            <div class="heading">
+                <h1>Πρόγραμμα Erasmus Πανεπιστήμιο Πελλοπονήσου</h1>       
             </div>
-            <div class="row">
-                <form>
-                    <a href="index.html" style="text-decoration: none;">Πίσω στην Αρχική...</a> <BR>
-                    <div> 
-                        <input type="text" name="fname" placeholder="Όνομα"> <br>
-                        <input type="text" name="lname" placeholder="Επίθετο"> <br>
-                        <input type="number" name="AM" placeholder="AM"> <br>
-                        <input type="tel" name="phone-number" placeholder="Τηλέφωνο"> <br>
-                        <input type="email" name="mail" placeholder="email"> <br>
-                        <input type="text" name="s-username" placeholder="Διάλεξε ένα όνομα χρήστη..."> <br>
-                        <input type="password" name ="s-password" placeholder="Κωδικός πρόσβασης"><br>
-                        <input type="password" name ="s-password-confirm" placeholder="Επιβεβαίωση κωδικού"><br>
-                        <input type="button" name="s-submit" value="Υποβολή"> <br>
-                        <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
-                    </div>
-                </form>
+            <div class="heading-image">
+                <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
+            </div>   
+            <div class="heading-title">
+                <h1>Εγγραφή χρήστη</h1>
             </div>
-            <div class="col-l-12 image row">
+
+            <div class="menu">
+                <a href="index.html">Αρχική</a>
+                <a href="login.html">Σύνδεση χρήστη</a>
+                <a href="more.html">Περισόττερα</a>
+                <a href="reqs.html">Ελάχιστες απαιτήσεις</a>
+                <a href="application.html">Αίτηση</a>
+            </div>
+
+            <form >
+                <div class="form-credentials" style="margin:auto;"> 
+                    <input type="text" name="fname" placeholder="Όνομα"> <br>
+                    <input type="text" name="lname" placeholder="Επίθετο"> <br>
+                    <input type="number" name="AM" placeholder="AM"> <br>
+                    <input type="tel" name="phone-number" placeholder="Τηλέφωνο"> <br>
+                    <input type="email" name="mail" placeholder="email"> <br>
+                    <input type="text" name="s-username" placeholder="Διάλεξε ένα όνομα χρήστη..."> <br>
+                    <input type="password" name ="s-password" placeholder="Κωδικός πρόσβασης"><br>
+                    <input type="password" name ="s-password-confirm" placeholder="Επιβεβαίωση κωδικού"><br>
+                </div>
+                <div class="form-buttons">
+                    <input type="button" name="s-submit" value="Υποβολή">
+                    <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
+                </div>
+            </form>
+
+            <div class="footer-image">
                 <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
             </div>
         </div>

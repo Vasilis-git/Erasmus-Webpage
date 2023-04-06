@@ -86,7 +86,6 @@ select{
 }
 .form-credentials{
     grid-area:fc;
-
 }
 .form-buttons{
     margin-top: 1vw;
