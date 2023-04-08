@@ -101,7 +101,9 @@ form{
     border-color: rgb(37, 131, 255);
     border-radius: 1vw;
     margin-top: 1vw;
+    margin: 0 auto;
     padding:2vw;
+    text-align: center;
     grid-area: f;
 }
 .decor-image{
