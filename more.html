@@ -10,6 +10,10 @@
                 border-radius: 1vw;
                 margin-left: 1vw;
             }
+            audio{
+                margin-top: 3vw;
+                grid-area: au;
+            }
             @media screen and (min-width: 760px) {/*for desktop*/
                 .container{
                         display: grid;
@@ -23,7 +27,7 @@
                                             "c  c  c  c  c  rv rv rv"
                                             "bc bc bc bc bc rv rv rv"
                                             "cu cu cu cu cu rv rv rv"
-                                            "fi fi fi fi fi fi fi fi";
+                                            "fi fi fi fi au au au au";
                 }
             }
             @media screen and (max-width: 600px) {/*for phones*/
@@ -38,7 +42,8 @@
                                     "c"
                                     "c"
                                     "bc"
-                                    "cu";
+                                    "cu"
+                                    "au";
                 }
                 .heading{
                     border-top-right-radius: 1vw;
@@ -73,7 +78,7 @@
                                         "cu cu cu cu cu cu cu cu"
                                         "rv rv rv rv rv rv rv rv"
                                         "rv rv rv rv rv rv rv rv"
-                                        "di di di di di di di di"
+                                        "di di di di di au au au"
                                        ;
                 }
                 .heading{
@@ -174,6 +179,10 @@
                 </video> 
             </div>
             
+            <audio controls>
+                <source src="media/audio/song.mp3" type="audio/mp3">
+            </audio>
+
             <div class="footer-image">
                 <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
             </div>
