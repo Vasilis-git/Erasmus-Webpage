@@ -21,9 +21,8 @@
                                             "ht ht ht ht ht ht ht hi"
                                             "m  m  m  m  m  m  di di"
                                             "c  c  c  c  c  rv rv rv"
-                                            "c  c  c  c  c  rv rv rv"
                                             "bc bc bc bc bc rv rv rv"
-                                            "bc bc bc bc bc rv rv rv"
+                                            "cu cu cu cu cu rv rv rv"
                                             "fi fi fi fi fi fi fi fi";
                 }
             }
@@ -38,7 +37,8 @@
                                     "m"
                                     "c"
                                     "c"
-                                    "bc";
+                                    "bc"
+                                    "cu";
                 }
                 .heading{
                     border-top-right-radius: 1vw;
@@ -62,17 +62,18 @@
             @media screen and (min-width: 601px) and (max-width: 759px){
                 .container{/*for tablets*/
                     display: grid;
-                    grid-template-columns: repeat(6, 1fr);
+                    grid-template-columns: repeat(8, 1fr);
                     grid-auto-rows: minmax(1vw, auto);
                     margin: 0 auto;
                     grid-template-areas: 
                                         "h  h  h  h  h  h  h  h"
                                         "ht ht ht ht ht ht ht ht"
                                         "m  m  m  m  m  m  m  m"
-                                        "rv rv rv rv c  c  c  c"
-                                        "rv rv rv rv c  c  c  c"
-                                        "rv rv rv rv bc bc bc bc"
-                                        "di di di di bc bc bc bc"
+                                        "c  c  c  c  bc bc bc bc"
+                                        "cu cu cu cu cu cu cu cu"
+                                        "rv rv rv rv rv rv rv rv"
+                                        "rv rv rv rv rv rv rv rv"
+                                        "di di di di di di di di"
                                        ;
                 }
                 .heading{
@@ -91,6 +92,9 @@
                     margin:auto;
                     margin-bottom: 5vw;
                 }
+                video{
+                    margin-top: 1vw;
+                }
             }
             .related-videos{
                 margin-left:6vw;
@@ -99,6 +103,9 @@
             }
             .below{
                 grid-area: bc;
+            }
+            .coop-unis{
+                grid-area: cu;
             }
         </style>
     </head>
@@ -138,6 +145,17 @@
                 περιέχονται στον παρακάτω σύνδεσμο:<br>
                 <a href="https://erasmus-plus.ec.europa.eu/el/programme-guide/erasmus-programme-guide?">Λεπτομέρειες</a>
             </div>
+
+            <div class="coop-unis content">
+                <h1>Συνεργαζόμενα πανεπιστήμια:</h1>
+                <a href="https://umich.edu/">University of Michigan</a>
+                <a href="https://www.harvard.edu/">Harvard University</a>    
+                <a href="https://www.mit.edu/education">M.I.T.</a>
+                <a href="https://www.ox.ac.uk">Oxford University</a>
+                <a href="https://www.cam.ac.uk">Cambridge University</a>
+                <a href="https://www.stanford.edu">Stanford University</a>
+            </div>
+
             <div class="below content">
                 <h1>Αποτελέσματα</h1>
                 Τα αποτελέσματα του Erasmus+ είναι διαθέσιμα σε εκθέσεις και συλλογές στατιστικών, 
@@ -158,9 +176,6 @@
             
             <div class="footer-image">
                 <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
-                Συνεργαζόμενα πανεπιστήμια:
-
-                Και ένα τραγούδι!:
             </div>
         </div>
     </body>
