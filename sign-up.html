@@ -73,14 +73,27 @@
 
             <form >
                 <div class="form-credentials" style="margin:auto;"> 
-                    <input type="text" name="fname" placeholder="Όνομα"> <br>
-                    <input type="text" name="lname" placeholder="Επίθετο"> <br>
-                    <input type="number" name="AM" placeholder="AM"> <br>
-                    <input type="tel" name="phone-number" placeholder="Τηλέφωνο"> <br>
-                    <input type="email" name="mail" placeholder="email"> <br>
+                    <p id="errfn" style="color: red;font-size: small;" hidden>Το όνομα δεν μπορεί να περιέχει αριθμούς.</p>
+                    <input type="text" name="fname" id="fname" placeholder="Όνομα" onchange="checkName('fname', 'errfn');"> <br>
+
+                    <p id="errln" style="color: red;font-size: small;" hidden>Το επώνυμο δεν μπορεί να περιέχει αριθμούς.</p>
+                    <input type="text" name="lname" id="lname" placeholder="Επίθετο" onchange="checkName('lname', 'errln');"> <br>
+
+                    <p id="errAM" style="color: red;font-size: small;" hidden>Μη έγκυρος Αριθμός Μητρώου.</p>
+                    <input type="number" name="AM" id="AM" placeholder="AM" onchange="checkAM();"> <br>
+
+                    <p id="errTel" style="color: red;font-size: small;" hidden>Μη έγκυρο τηλέφωνο.</p>
+                    <input type="tel" name="phone-number" id="pn" placeholder="Τηλέφωνο" onchange="checkTel();"> <br>
+
+                    <p id="errMail" style="color: red;font-size: small;" hidden>Μη έγκυρο e-mail.</p>
+                    <input type="email" name="mail" id="mail" placeholder="email" onchange="checkEmail();"> <br>
+
                     <input type="text" name="s-username" placeholder="Διάλεξε ένα όνομα χρήστη..."> <br>
-                    <input type="password" name ="s-password" placeholder="Κωδικός πρόσβασης"><br>
-                    <input type="password" name ="s-password-confirm" placeholder="Επιβεβαίωση κωδικού"><br>
+
+                    <p id="errpsw" style="color: red;font-size: small;" hidden>Ο κωδικός πρέπει να αποτελέιται απο τουλάχιστον 5 χαρακτήρες και να περιέχει ένα χαρακτήρα σύμβολο (!,@,#,$,%,^,&).</p>
+                    <input type="password" name ="s-password" id="pw" placeholder="Κωδικός πρόσβασης" onchange="checkPwd();"><br>
+                    <p id="errpsw-cf" style="color: red;font-size: small;" hidden>Οι κωδικοί δεν ταιριάζουν.</p>
+                    <input type="password" name ="s-password-confirm" id="pwd-cf" placeholder="Επιβεβαίωση κωδικού" onchange="confirmPwd();"><br>
                 </div>
                 <div class="form-buttons">
                     <input type="button" name="s-submit" value="Υποβολή">
@@ -93,4 +106,118 @@
             </div>
         </div>
     </body>
+    <script>
+        function checkName(nameField, errorField){
+            var element = document.getElementById(nameField);
+            var f = false;
+            for(i=0;i<10;i++){
+                if(element.value.indexOf(i.toString()) != -1){
+                    var error = document.getElementById(errorField);
+                    error.removeAttribute('hidden');
+                    f = true;
+                    break;
+                }
+            }
+            if(!f){
+                var error = document.getElementById(errorField);
+                error.setAttribute('hidden','');
+            }
+        }
+        function checkAM(){
+            var input = document.getElementById('AM');
+            var errmsg = document.getElementById('errAM');
+            var f = true;
+            if(input.value.toString().length != 13){
+                errmsg.removeAttribute('hidden');
+                f = false;
+            }
+            var year = input.value.toString().substring(0, 4);
+            if(year != '2022' && year != '2024' && year != '2025'){
+                errmsg.removeAttribute('hidden');
+                f = false;
+            }
+            if(f || input.value==''){
+                errmsg.setAttribute('hidden', '');
+            }
+        }
+        function checkTel(){
+            var tel = document.getElementById('pn');
+            var error = document.getElementById('errTel');
+
+            if(tel.value != '' && tel.value.length != 10){
+                error.removeAttribute('hidden');
+                return;
+            }
+            for(i = 0; i < tel.value.length; i++){
+                if(tel.value.charAt(i)< '0' || tel.value.charAt(i) > '9'){
+                    error.removeAttribute('hidden');
+                    return;
+                }
+            }
+            error.setAttribute('hidden', '');
+        }
+        function checkEmail(){
+            var email = document.getElementById('mail');
+            var err = document.getElementById('errMail');
+            var pattern = /^[a-zA-Z]+[0-9a-zA-Z]*@[a-zA-Z]+(\.[a-zA-Z]+){1,2}$/; //^: start of string and $: end of string
+
+            if(email.value==''){
+                err.setAttribute('hidden', '');
+                return;
+            }
+            if(pattern.test(email.value)){
+                err.setAttribute('hidden', '');
+            }
+            else{
+                err.removeAttribute('hidden');
+            }
+        }
+        function checkPwd(){
+            var pwd = document.getElementById('pw');
+            var error = document.getElementById('errpsw');
+
+            if(pwd.value ==''){
+                error.setAttribute('hidden', '');
+                return;
+            }
+            if(pwd.value.length < 5){
+                error.removeAttribute('hidden');
+                return;
+            }
+            // (!,@,#,$,%,^,&)
+            var str = pwd.value;
+            if (
+                str.indexOf("!") !== -1 ||
+                str.indexOf("@") !== -1 ||
+                str.indexOf("#") !== -1 ||
+                str.indexOf("$") !== -1 ||
+                str.indexOf("%") !== -1 ||
+                str.indexOf("^") !== -1 ||
+                str.indexOf("&") !== -1
+            ) {   
+                error.setAttribute('hidden', '');
+                return;
+            }
+            else
+                error.removeAttribute('hidden');
+
+        }
+        function confirmPwd(){
+            var pw = document.getElementById('pw');
+            var pwd_cf = document.getElementById('pwd-cf');
+            var error = document.getElementById('errpsw-cf');
+
+            if(pwd_cf.value==''){
+                error.setAttribute('hidden', '');
+                return;
+            }
+
+            if(pw.value === pwd_cf.value){
+                error.setAttribute('hidden', '');
+            }
+            else{
+                error.removeAttribute('hidden');
+            }
+        }
+   </script>
 </html>
