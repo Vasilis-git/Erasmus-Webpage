@@ -68,27 +68,28 @@
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
             </div>
 
-            <form>
+            <form id="ApplicationForm" method="POST" action="scripts/application_form.php" onsubmit="return checkNec();">
                 <div class="form-credentials">
-                    <input type="text" name="fname" placeholder="Όνομα"> <br>
-                    <input type="text" name="lname" placeholder="Επίθετο"> <br>
-                    <input type="number" name="AM" placeholder="AM"> <br>
+                    <input type="text" name="fname" placeholder="Όνομα" readonly> <br>
+                    <input type="text" name="lname" placeholder="Επίθετο" readonly> <br>
+                    <input type="number" name="AM" placeholder="AM" readonly> <br>
                     <br>
                     Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-                    <input type="number" name="passed_perc" min="0" max="100" value="50" style="margin-top: 0vw;"><br>
+                    <input type="number" name="passed_perc" id="passed_perc" min="0" max="100" value="50" style="margin-top: 0vw;"><br>
                     <br>
                     Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-                    <input type="number" name="average" min="0" max="10" value="5" step="0.01" style="margin-top: 0vw;"><br><br>
+                    <input type="number" name="average" id ="average" min="0" max="10" value="5" step="0.01" style="margin-top: 0vw;"><br><br>
                     Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
-                    <input type="radio" name="english-lang-cert" value="A1" checked>A1
-                    <input type="radio" name="english-lang-cert" value="A2">A2
-                    <input type="radio" name="english-lang-cert" value="B1">B1
-                    <input type="radio" name="english-lang-cert" value="B2">B2
-                    <input type="radio" name="english-lang-cert" value="C1">C1
-                    <input type="radio" name="english-lang-cert" value="C2">C2 <br>
+                    <input type="radio" name="english-lang-cert" id="none" value="Κανένα" checked>Κανένα
+                    <input type="radio" name="english-lang-cert" id="A1" value="A1">A1
+                    <input type="radio" name="english-lang-cert" id="A2" value="A2">A2
+                    <input type="radio" name="english-lang-cert" id="B1" value="B1">B1
+                    <input type="radio" name="english-lang-cert" id="B2" value="B2">B2
+                    <input type="radio" name="english-lang-cert" id="C1" value="C1">C1
+                    <input type="radio" name="english-lang-cert" id="C2" value="C2">C2 <br>
                     <br>Γνώση επιπλέον ξένων γλωσσών:<br>
-                    <input type="radio" name="extra-lang" value="yes">ΝΑΙ
-                    <input type="radio" name="extra-lang" value="no" checked>ΟΧΙ
+                    <input type="radio" name="extra-lang-cert" id="yes" value="yes">ΝΑΙ
+                    <input type="radio" name="extra-lang-cert" id="no" value="no" checked>ΟΧΙ
                     <br>
                     <div style="margin-bottom: 0.1vw;">
                         <br> Πανεπιστήμιο - 1η επιλογή:&nbsp;
@@ -146,15 +147,17 @@
                             ?>
                         </select>
                     </div>
-                    <br> <br>Αναλυτική βαθμολογία: <input type="file" name="marks"><br>
+                    <br> <br>Αναλυτική βαθμολογία: <input type="file" name="marks" id="marks"><br>
                     <input type="submit" value="Υποβολή αρχείου" style="margin-top: 0vw";> 
-                    <br>Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert"><br>
+                    <br>Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert-paper" id="elcp"><br>
                     <input type="submit" value="Υποβολή αρχείου" style="margin-top: 0vw";><br>
-                    <br>Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" multiple style="margin-top: 0vw";>
+                    <br>Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" id="olcp" multiple style="margin-top: 0vw";>
                     <input type="submit" value="Υποβολή αρχείων"> 
                     <br> <br>
                     Αποδοχή των όρων:
-                    <input type="checkbox" name="accept-terms">
+                    <input type="checkbox" name="accept-terms" id="terms"><br>
+                    <p id="error_msg" style="color: red;font-size: small;" hidden></p>
+                    <input type="submit" value="Υποβολή φόρμας" style="margin-top: 1vw;">
                 </div>
             </form>
 
@@ -163,4 +166,52 @@
             </div>
         </div>
     </body>
+        <script>
+            function checkNec(){
+                /*
+                    Τα πεδία Όνομα, Επίθετο και Αριθμός Μητρώου θα είναι προ-συμπληρωμένα, δεν χρειάζονται έλεχγο
+                    Επίσης η πρώτη επιλογή πανεπιστημίου δεν έχει κενό πεδίο, δεν χρειάζεται έλεχγο
+                */
+                var pass_perc = document.getElementById('passed_perc');
+                var average = document.getElementById('average');
+                var english_lang_cert = document.getElementsByName("english-lang-cert");
+                var marks = document.getElementById("marks");
+                var english_cert_paper = document.getElementById("elcp");
+                var terms = document.getElementById("terms");
+                var error = document.getElementById("error_msg");
+                error.setAttribute('hidden', '');
+
+                if(pass_perc.value==''){
+                    error.innerHTML = "Το πεδίο 'Ποσοστό περασμένων μαθημάτων' είναι υποχρεωτικό.";
+                    error.removeAttribute('hidden');
+                    return false;
+                }
+                if(average.value==''){
+                    error.innerHTML = "Το πεδίο 'Μέσος όρος περασμένων μαθημάτων' είναι υποχρεωτικό.";
+                    error.removeAttribute('hidden');
+                    return false;
+                }
+                if(english_lang_cert[0].checked){
+                    error.innerHTML = "Απαιτείται πιστοποιητικό αγγλικών τουλάχιστον Α1 για υποβολή της αίτησης.";
+                    error.removeAttribute('hidden');
+                    return false;
+                }
+                if(marks.files.length == 0){
+                    error.innerHTML = "Απαιτείται αρχείο αναλυτικής βαθμολογίας.";
+                    error.removeAttribute('hidden');
+                    return false;
+                }
+                if(english_cert_paper.files.length == 0){
+                    error.innerHTML = "Απαιτείται αρχείο πιστοποιητικού αγγλικών.";
+                    error.removeAttribute('hidden');
+                    return false;
+                }
+                if(!terms.checked){
+                    error.innerHTML = "Απαιτείται αποδοχή των όρων.";
+                    error.removeAttribute('hidden');
+                    return false;
+                }
+                return true;
+            }
+        </script>
 </html>
