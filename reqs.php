@@ -76,7 +76,7 @@
             </div>
             
             <div class="menu">
-                <a href="index.php">Αρχική</a>
+                <a href="index.html">Αρχική</a>
                 <a href="reqs.php">Σύνδεση χρήστη</a>
                 <a href="more.html">Περισόττερα</a>
                 <a href="application.php">Αίτηση</a>

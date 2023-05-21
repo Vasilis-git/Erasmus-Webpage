@@ -64,7 +64,7 @@
             </div>
 
             <div class="menu">
-                <a href="index.php">Αρχική</a>
+                <a href="index.html">Αρχική</a>
                 <a href="login.php">Σύνδεση χρήστη</a>
                 <a href="more.html">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
@@ -88,15 +88,15 @@
                     <p id="errMail" style="color: red;font-size: small;" hidden>Μη έγκυρο e-mail.</p>
                     <input type="email" name="mail" id="mail" placeholder="email" onchange="checkEmail();"> <br>
 
-                    <p id="errusrn" style="color: red;font-size: small;" hidden>Το username υπάρχει ήδη στον server.</p>
-                    <input type="text" name="s-username" id="username" placeholder="Διάλεξε ένα όνομα χρήστη..."> <br>
+                    <p id="errusrn" style="color: red;font-size: small;" hidden>Το username υπάρχει ήδη.</p>
+                    <input type="text" name="username" id="username" placeholder="Διάλεξε ένα όνομα χρήστη..."> <br>
 
                     <p id="errpsw" style="color: red;font-size: small;" hidden>Ο κωδικός πρέπει να αποτελέιται απο τουλάχιστον 5 χαρακτήρες και να περιέχει ένα χαρακτήρα σύμβολο (!,@,#,$,%,^,&).</p>
-                    <input type="password" name ="s-password" id="pw" placeholder="Κωδικός πρόσβασης" onchange="checkPwd();"><br>
+                    <input type="password" name ="password" id="pw" placeholder="Κωδικός πρόσβασης" onchange="checkPwd();"><br>
                     <p id="errpsw-cf" style="color: red;font-size: small;" hidden>Οι κωδικοί δεν ταιριάζουν.</p>
                     <input type="password" name ="s-password-confirm" id="pwd-cf" placeholder="Επιβεβαίωση κωδικού" onchange="confirmPwd();"><br>
                     <p id="cs" style="color: blue;font-size: small;" hidden>Επιτυχής εγγραφή!</p>
-                    <input type="submit" name="submit" value="Υποβολή" disabled>
+                    <input type="submit" name="submit" value="Υποβολή">
                     <input type="button" name="clear-form" value="Καθαρισμός φόρμας" onclick="clearForm();">
                 </div>
             </form>
@@ -107,11 +107,6 @@
         </div>
     </body>
     <script>
-        var submit = document.getElementById("submit");
-        if(checkName(fname, errfn) && checkName(lname, errln) && checkAM() && checkTel() && checkEmail() && checkPwd() && confirmPwd()){
-            submit.removeAttribute(disabled);
-        }
-
         function clearForm(){
             var form = document.getElementById('SignUpForm');
 
@@ -137,18 +132,22 @@
         function checkName(nameField, errorField){
             var element = document.getElementById(nameField);
             var error = document.getElementById(errorField);
-            error.setAttribute('hidden','');
+            error.setAttribute('hidden', '');
 
             for(i=0;i<10;i++){
                 if(element.value.indexOf(i.toString()) != -1){
                     error.removeAttribute('hidden');
+                    error.innerHTML ='Το παρακάτω πεδίο δεν μπορεί να περιέχει αριθμούς.';
                     return false;
                 }
             }
-            if(element.value.length != 0){
+            
+            if(element.value != ''){
                 return true;
             }
             else{
+                error.removeAttribute('hidden');
+                error.innerHTML = 'Το παρακάτω πεδίο δεν μπορεί να είναι κενό.';
                 return false;
             }
         }
@@ -173,15 +172,22 @@
             var error = document.getElementById('errTel');
             error.setAttribute('hidden', '');
 
-            if(tel.value != '' && tel.value.length != 10){
-                error.removeAttribute('hidden');
-                return false;
-            }
             for(i = 0; i < tel.value.length; i++){
                 if(tel.value.charAt(i)< '0' || tel.value.charAt(i) > '9'){
                     error.removeAttribute('hidden');
+                    error.innerHTML = 'Το τηλέφωνο πρέπει να περιέχει μόνο ψηφία';
                     return false;
                 }
+            }
+            if(tel.value != '' && tel.value.length != 10){
+                error.removeAttribute('hidden');
+                error.innerHTML = 'Το τηλέφωνο πρέπει να έχει 10 ψηφία';
+                return false;
+            }
+            if(tel.value ==''){
+                error.removeAttribute('hidden');
+                error.innerHTML = 'Το τηλέφωνο δεν μπορεί να είναι κενό';
+                return false;
             }
             return true;
         }
@@ -204,8 +210,7 @@
             var error = document.getElementById('errpsw');
             error.setAttribute('hidden', '');
 
-
-            if(pwd.value.length < 5){
+            if(pwd.value =='' || pwd.value.length < 5){
                 error.removeAttribute('hidden');
                 return false;
             }
@@ -234,8 +239,12 @@
             var error = document.getElementById('errpsw-cf');
             error.setAttribute('hidden', '');
 
+            if(pwd_cf.value==''){
+                error.removeAttribute('hidden');
+                return false;
+            }
             if(pw.value === pwd_cf.value){
-               return true;
+                return true;
             }
             else{
                 error.removeAttribute('hidden');
@@ -243,39 +252,39 @@
             }
         }
         function checkAll(){
-            var username = document.getElementById("username");
-            var error_usrn = document.getElementById("errusrn");
-            error_usrn.setAttribute('hidden', true);
+            var username = document.getElementById('username');
+            var error = document.getElementById('errusrn');
+            error.setAttribute('hidden', '');
 
+            if(username.value ==''){
+                error.removeAttribute('hidden');
+                error.innerHTML = 'Το username δεν μπορεί να είναι κενό.';
+                return false;
+            }
 
-            // Create an AJAX request
+           // Create an AJAX request
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'scripts/check_username.php', true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            
+
             // Send the username to the PHP script
-            xhr.send('username=' + username);
-            // Handle the response from the PHP script
             xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
                     var response = xhr.responseText;
-                    if(response == "username exists"){
-                        error_usrn.removeAttribute('hidden');
+                    if (response === 'username exists') {
+                        error.removeAttribute('hidden');
+                        error.innerHTML = 'Το username υπάρχει ήδη.';
                         return false;
                     }
+                    } else {
+                    // Handle other status codes if needed
+                    }
                 }
-            }
-            var fname = document.getElementById('fname');
-            var errfn = document.getElementById('errfn');
-            var lname = document.getElementById('lname');
-            var errln = document.getElementById('errln');
+            };
 
-           /* if(checkName(fname, errfn) && checkName(lname, errln) && checkAM() && checkTel() && checkEmail && checkPwd && confirmPwd()){
-                var submit = document.getElementById("submit");
-                submit.removeAttribute(disabled);
-                return true;
-            }*/
-            return true;
-        }
+            xhr.send('username=' + encodeURIComponent(username));
+            return (checkName('fname', 'errfn') && checkName('lname', 'errln') && checkAM() && checkTel() && checkEmail() && checkPwd() && confirmPwd());
+    }
    </script>
 </html>
