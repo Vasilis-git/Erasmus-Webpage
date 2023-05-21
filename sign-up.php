@@ -262,28 +262,6 @@
                 return false;
             }
 
-           // Create an AJAX request
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'scripts/check_username.php', true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-            // Send the username to the PHP script
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                    var response = xhr.responseText;
-                    if (response === 'username exists') {
-                        error.removeAttribute('hidden');
-                        error.innerHTML = 'Το username υπάρχει ήδη.';
-                        return false;
-                    }
-                    } else {
-                    // Handle other status codes if needed
-                    }
-                }
-            };
-
-            xhr.send('username=' + encodeURIComponent(username));
             return (checkName('fname', 'errfn') && checkName('lname', 'errln') && checkAM() && checkTel() && checkEmail() && checkPwd() && confirmPwd());
     }
    </script>
