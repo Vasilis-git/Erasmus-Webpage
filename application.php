@@ -62,10 +62,10 @@
             </div>
 
             <div class="menu">
-                <a href="index.html">Αρχική</a>
-                <a href="login.html">Σύνδεση χρήστη</a>
+                <a href="index.php">Αρχική</a>
+                <a href="login.php">Σύνδεση χρήστη</a>
                 <a href="more.html">Περισόττερα</a>
-                <a href="application.html">Αίτηση</a>
+                <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
             </div>
 
             <form>
@@ -92,35 +92,58 @@
                     <br>
                     <div style="margin-bottom: 0.1vw;">
                         <br> Πανεπιστήμιο - 1η επιλογή:&nbsp;
-                        <select name="first-choice" >
-                            <option value="Michigan">University of Michigan</option>
-                            <option value="Harvard">University of Harvard</option>
-                            <option value="MIT">Massachusetts Institute of Technology</option>
-                            <option value="Oxford">Oxford University</option>
-                            <option value="Cambridge">Cambridge University</option>
-                            <option value="Stanford">Stanford University</option>
+                        <select name="first-choice">
+                            <?php
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                                if (!$con) {
+                                    echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
+                                } else {
+                                    $result = mysqli_query($con, "SELECT uni_name FROM Universities");
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $uni_name = $row['uni_name'];
+                                        echo "<option value=\"$uni_name\">$uni_name</option>";
+                                    }
+                                    mysqli_close($con);
+                                }   
+                            ?>
                         </select>
                     </div>
                     <div style="margin-bottom: 0.1vw;"></div>
                         <br> Πανεπιστήμιο - 2η επιλογή:&nbsp;
                         <select name="second-choice" style="margin-bottom: 0.2vw;">
-                            <option value="Michigan">University of Michigan</option>
-                            <option value="Harvard">University of Harvard</option>
-                            <option value="MIT">Massachusetts Institute of Technology</option>
-                            <option value="Oxford">Oxford University</option>
-                            <option value="Cambridge">Cambridge University</option>
-                            <option value="Stanford">Stanford University</option>
+                            <option value="">-</option>
+                            <?php
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                                if (!$con) {
+                                    echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
+                                } else {
+                                    $result = mysqli_query($con, "SELECT uni_name FROM Universities");
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $uni_name = $row['uni_name'];
+                                        echo "<option value=\"$uni_name\">$uni_name</option>";
+                                    }
+                                    mysqli_close($con);
+                                }   
+                            ?>
                         </select>
                     </div>
                     <div style="margin-bottom: 0.1vw;">
                         <br> Πανεπιστήμιο - 3η επιλογή:&nbsp;
                         <select name="third-choice">
-                            <option value="Michigan">University of Michigan</option>
-                            <option value="Harvard">University of Harvard</option>
-                            <option value="MIT">Massachusetts Institute of Technology</option>
-                            <option value="Oxford">Oxford University</option>
-                            <option value="Cambridge">Cambridge University</option>
-                            <option value="Stanford">Stanford University</option>
+                            <option value="">-</option>
+                            <?php
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                                if (!$con) {
+                                    echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
+                                } else {
+                                    $result = mysqli_query($con, "SELECT uni_name FROM Universities");
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $uni_name = $row['uni_name'];
+                                        echo "<option value=\"$uni_name\">$uni_name</option>";
+                                    }
+                                    mysqli_close($con);
+                                }   
+                            ?>
                         </select>
                     </div>
                     <br> <br>Αναλυτική βαθμολογία: <input type="file" name="marks"><br>

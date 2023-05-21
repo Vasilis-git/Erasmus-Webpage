@@ -64,11 +64,11 @@
             </div>
 
             <div class="menu">
-                <a href="index.html">Αρχική</a>
-                <a href="login.html">Σύνδεση χρήστη</a>
+                <a href="index.php">Αρχική</a>
+                <a href="login.php">Σύνδεση χρήστη</a>
                 <a href="more.html">Περισόττερα</a>
-                <a href="reqs.html">Ελάχιστες απαιτήσεις</a>
-                <a href="application.html">Αίτηση</a>
+                <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
+                <a href="application.php">Αίτηση</a>
             </div>
 
             <form >

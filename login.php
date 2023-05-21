@@ -70,10 +70,10 @@
                 </div>
 
                 <div class="menu">
-                    <a href="index.html">Αρχική</a>
+                    <a href="index.php">Αρχική</a>
                     <a href="more.html">Περισόττερα</a>
-                    <a href="reqs.html">Ελάχιστες απαιτήσεις</a>
-                    <a href="application.html">Αίτηση</a>
+                    <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
+                    <a href="application.php">Αίτηση</a>
                 </div>
  
  
@@ -86,7 +86,7 @@
                     <div class="form-buttons" style="text-align: center;">
                         <input type="button" name="l-submit" value="Υποβολή">
                         <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
-                        <a href="sign-up.html" style="text-decoration: none;font-size: small;">Νέος χρήστης;</a>
+                        <a href="sign-up.php" style="text-decoration: none;font-size: small;">Νέος χρήστης;</a>
                     </div>
                 </form>
 
