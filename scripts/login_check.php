@@ -35,6 +35,7 @@
                 echo "<p>Επιτυχής σύνδεση! <a href=\"../index.php\">Πίσω στην αρχική</a></p>";
                 $_SESSION['username'] = $username;
                 $_SESSION['user-type'] = $user_type;
+                $_SESSION['password'] = $pass;
                 
                 $stmnt = mysqli_prepare($con, "SELECT fname, lname, a_m, tel, email FROM users WHERE username = ?");
                 mysqli_stmt_bind_param($stmnt, "s", $username);
@@ -44,10 +45,12 @@
                 mysqli_stmt_close($stmnt);
 
 
+                $_SESSION['username'] = $username;
+                $_SESSION['pass'] = $password;
                 $_SESSION['fname'] = $fname;
                 $_SESSION['lname'] = $lname;
-                $_SESSION['a_m']   = $AM;
-                $_SESSION['tel']   = $phone_number;
+                $_SESSION['a_m'] = $AM;
+                $_SESSION['tel'] = $phone_number;
                 $_SESSION['email'] = $email;
             }
             else{

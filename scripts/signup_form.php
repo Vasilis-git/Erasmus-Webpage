@@ -62,6 +62,7 @@
                 $_SESSION['lname'] = $lname;
                 $_SESSION['a_m'] = $AM;
                 $_SESSION['tel'] = $phone_number;
+                $_SESSION['email'] = $email;
             }
         }
     ?>
