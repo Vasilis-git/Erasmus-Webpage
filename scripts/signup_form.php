@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 
+<?php 
+    session_start();
+?>
+
 <html style="background-color: rgb(173, 173, 173);">
 
 <head>
@@ -51,6 +55,13 @@
                 mysqli_close($con);
 
                 echo "<p>Επιτυχής εγγραφή! <a href=\"../index.html\">Πίσω στην αρχική</a></p>";
+                $_SESSION['username'] = $username;
+                $_SESSION['user-type'] = $user_type;
+                $_SESSION['pass'] = $password;
+                $_SESSION['fname'] = $fname;
+                $_SESSION['lname'] = $lname;
+                $_SESSION['a_m'] = $AM;
+                $_SESSION['tel'] = $phone_number;
             }
         }
     ?>

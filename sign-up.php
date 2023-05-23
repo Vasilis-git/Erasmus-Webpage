@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 
+<?php 
+    session_start();
+?>
+
 <html style="background-color: rgb(173, 173, 173);">
     <head>
         <meta charset="UTF-8">
@@ -68,8 +72,9 @@
                 <a href="login.php">Σύνδεση χρήστη</a>
                 <a href="more.html">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
-                <a href="application.php">Αίτηση</a>
+                <a href="app.php">Αίτηση</a>
             </div>
+
 
             <form id="SignUpForm" method="POST" action="scripts/signup_form.php" onsubmit="return checkAll();">
                 <div class="form-credentials" style="margin:auto;"> 
@@ -263,6 +268,6 @@
             }
 
             return (checkName('fname', 'errfn') && checkName('lname', 'errln') && checkAM() && checkTel() && checkEmail() && checkPwd() && confirmPwd());
-    }
+        }
    </script>
 </html>

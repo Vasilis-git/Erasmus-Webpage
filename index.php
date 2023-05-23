@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-
+<?php 
+    session_start();
+?>
 <html style="background-color: rgb(173, 173, 173);">
     <head>
         <meta charset="UTF-8">
@@ -90,10 +92,19 @@
                 </div>
 
             <div class="menu">
-                <a href="login.php">Σύνδεση χρήστη</a>
+                <?php
+                    if(!isset($_SESSION['username'])){
+                        echo "<a href=\"login.php\">Σύνδεση χρήστη</a>";
+                    }
+                ?>
                 <a href="more.html">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
-                <a href="application.php">Αίτηση</a>
+                <a href="app.php">Αίτηση</a>
+                <?php
+                    if(isset($_SESSION['username'])){
+                        echo "<a href=\"usr_prof.php\">Προφίλ χρήστη</a>";
+                    }
+                ?>
             </div>
             <div class="content">
                 <p> 

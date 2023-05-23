@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 
+<?php 
+    session_start();
+?>
+
 <html style="background-color: rgb(173, 173, 173);">
     <head>
         <meta charset="UTF-8">
@@ -58,21 +62,20 @@
                 <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
             </div>   
             <div class="heading-title">
-                <h1>Ελάχιστες απαιτήσεις</h1>
+                <h1>Αίτηση</h1>
             </div>
 
             <div class="menu">
-                <a href="index.html">Αρχική</a>
+                <a href="index.php">Αρχική</a>
                 <a href="login.php">Σύνδεση χρήστη</a>
                 <a href="more.html">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
             </div>
-
             <form id="ApplicationForm" method="POST" action="scripts/application_form.php" onsubmit="return checkNec();">
                 <div class="form-credentials">
-                    <input type="text" name="fname" placeholder="Όνομα" readonly> <br>
-                    <input type="text" name="lname" placeholder="Επίθετο" readonly> <br>
-                    <input type="number" name="AM" placeholder="AM" readonly> <br>
+                    <input type="text" name="fname" placeholder="Όνομα" readonly value="<?php echo $_SESSION['fname']; ?>"> <br>
+                    <input type="text" name="lname" placeholder="Επίθετο" readonly value="<?php echo $_SESSION['lname']; ?>"> <br>
+                    <input type="number" name="AM" placeholder="AM" readonly value="<?php echo $_SESSION['a_m']; ?>"> <br>
                     <br>
                     Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
                     <input type="number" name="passed_perc" id="passed_perc" min="0" max="100" value="50" style="margin-top: 0vw;"><br>
@@ -159,14 +162,15 @@
                     <p id="error_msg" style="color: red;font-size: small;" hidden></p>
                     <input type="submit" value="Υποβολή φόρμας" style="margin-top: 1vw;">
                 </div>
-            </form>
+            </form> 
 
             <div class="footer-image">
                 <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
             </div>
+        
         </div>
     </body>
-        <script>
+    <script>
             function checkNec(){
                 /*
                     Τα πεδία Όνομα, Επίθετο και Αριθμός Μητρώου θα είναι προ-συμπληρωμένα, δεν χρειάζονται έλεχγο
@@ -214,4 +218,4 @@
                 return true;
             }
         </script>
-</html>
+</html
