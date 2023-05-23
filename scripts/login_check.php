@@ -35,16 +35,25 @@
                 echo "<p>Επιτυχής σύνδεση! <a href=\"../index.php\">Πίσω στην αρχική</a></p>";
                 $_SESSION['username'] = $username;
                 $_SESSION['user-type'] = $user_type;
-                //fill the below with sql query
-                $_SESSION['pass'] = '';
-                $_SESSION['fname'] = '';
-                $_SESSION['lname'] = '';
-                $_SESSION['a_m'] = '';
-                $_SESSION['tel'] = '';
+                
+                $stmnt = mysqli_prepare($con, "SELECT fname, lname, a_m, tel, email FROM users WHERE username = ?");
+                mysqli_stmt_bind_param($stmnt, "s", $username);
+                mysqli_stmt_execute($stmnt);
+                mysqli_stmt_bind_result($stmnt, $fname, $lname, $AM, $phone_number, $email);
+                mysqli_stmt_fetch($stmnt);
+                mysqli_stmt_close($stmnt);
+
+
+                $_SESSION['fname'] = $fname;
+                $_SESSION['lname'] = $lname;
+                $_SESSION['a_m']   = $AM;
+                $_SESSION['tel']   = $phone_number;
+                $_SESSION['email'] = $email;
             }
             else{
                 echo "<p>Τα στοιχεία που έδωσες δεν ήταν σωστά. <a href=\"../login.php\">Προσπάθησε ξανά</a></p>";
             }
+            mysqli_close($con);
         }
     ?>
 </body>
