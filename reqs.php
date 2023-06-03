@@ -117,13 +117,15 @@
             </table>
 
 
-            <form>
+            <form id="ReqsForm">
                 <div class="content">
                     <div>
                         <h2>Φόρμα αυτόματου ελέγχου πληρότητας των ελάχιστων απαιτήσεων</h2> 
                     </div>
+                    <p id = "success_msg" style="color:green; font-size:small;" hidden>Πληρείς τις προυποθέσεις!</p>
+                    <p id = "fail_msg" style="color:red; font-size:small;" hidden>Δεν πληρείς τις προυποθέσεις.</p>
                     Έτος σπουδών:&nbsp;
-                    <select name="year">
+                    <select id="year" onchange="">
                         <option selected value="1o">1o</option>
                         <option value="2o">2o</option>
                         <option value="3o">3o</option>
@@ -131,9 +133,9 @@
                         <option value="older">μεγαλύτερο</option>
                     </select> <br>
                     Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-                    <input type="number" name="passed_perc" min="0" max="100" value="50" style="margin-bottom: 1vw;">%<br>
+                    <input type="number" id="passed_perc" min="0" max="100" value="50" style="margin-bottom: 1vw;">%<br>
                     Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-                    <input type="number" name="average" min="0" max="10" value="5" step="0.01" style="margin-bottom: 1vw;"><br>
+                    <input type="number" id="average" min="0" max="10" value="5" step="0.01" style="margin-bottom: 1vw;"><br>
                     Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
                     <input type="radio" name="english-lang-cert" id="none" value="Κανένα" checked>Κανένα
                     <input type="radio" name="english-lang-cert" value="A1">A1
@@ -143,8 +145,8 @@
                     <input type="radio" name="english-lang-cert" value="C1">C1
                     <input type="radio" name="english-lang-cert" value="C2">C2 <br>
                     <div class="form-buttons">
-                        <input type="button" name="r-submit" value="Υποβολή">
-                        <input type="button" name="clear-form" value="Καθαρισμός φόρμας">
+                        <input type="button" name="r-submit" value="Έλεγχος" onclick="checkForm();">
+                        <input type="button" name="clear-form" value="Καθαρισμός φόρμας" onclick="clearForm();">
                     </div>
                 </div>
             </form>
@@ -154,4 +156,40 @@
             </div>
         </div>
     </body>
+    <script>
+        function clearForm(){
+            var form = document.getElementById('ReqsForm');
+
+            // Reset the form by setting each input element's value to an empty string
+            var inputs = form.getElementsByTagName('input');
+            for (var i = 0; i < inputs.length; i++) {
+                if(inputs[i].type != "button" && inputs[i].type != "submit"){
+                    inputs[i].value = '';
+                }
+            }
+            
+
+            var errormessages = form.getElementsByTagName('p');
+            for(var i=0; i < errormessages.length; i++){
+                errormessages[i].setAttribute('hidden', '');
+            }
+        }
+        function checkForm(){
+            var passed_perc = document.getElementById('passed_perc');
+            var avg = document.getElementById("average");
+            var english_lang_cert = document.getElementsByName("english-lang-cert");
+            var year = document.getElementById('year');
+            var success = document.getElementById('success_msg');
+            var fail = document.getElementById('fail_msg');
+            success.setAttribute('hidden', '');
+            fail.setAttribute('hidden', '');
+
+            if(year.value != "1ο" && avg.value >= 6.5 && passed_perc.value >= 70 && (english_lang_cert[4].checked || english_lang_cert[5].checked || english_lang_cert[6].checked)){
+                success.removeAttribute('hidden');
+            }
+            else{
+                fail.removeAttribute('hidden');
+            }
+        }
+    </script>
 </html>
