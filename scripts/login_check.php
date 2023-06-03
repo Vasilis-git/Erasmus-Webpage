@@ -46,7 +46,7 @@
 
 
                 $_SESSION['username'] = $username;
-                $_SESSION['pass'] = $password;
+                $_SESSION['pass'] = $pass;
                 $_SESSION['fname'] = $fname;
                 $_SESSION['lname'] = $lname;
                 $_SESSION['a_m'] = $AM;
