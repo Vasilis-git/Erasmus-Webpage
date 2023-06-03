@@ -135,7 +135,8 @@
                     Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
                     <input type="number" name="average" min="0" max="10" value="5" step="0.01" style="margin-bottom: 1vw;"><br>
                     Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
-                    <input type="radio" name="english-lang-cert" value="A1" checked>A1
+                    <input type="radio" name="english-lang-cert" id="none" value="Κανένα" checked>Κανένα
+                    <input type="radio" name="english-lang-cert" value="A1">A1
                     <input type="radio" name="english-lang-cert" value="A2">A2
                     <input type="radio" name="english-lang-cert" value="B1">B1
                     <input type="radio" name="english-lang-cert" value="B2">B2

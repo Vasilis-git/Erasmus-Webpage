@@ -54,10 +54,10 @@
                 mysqli_stmt_close($stmnt);
                 mysqli_close($con);
 
-                echo "<p>Επιτυχής εγγραφή! <a href=\"../index.html\">Πίσω στην αρχική</a></p>";
+                echo "<p>Επιτυχής εγγραφή! <a href=\"../index.php\">Πίσω στην αρχική</a></p>";
                 $_SESSION['username'] = $username;
                 $_SESSION['user-type'] = $user_type;
-                $_SESSION['pass'] = $password;
+                $_SESSION['password'] = $password;
                 $_SESSION['fname'] = $fname;
                 $_SESSION['lname'] = $lname;
                 $_SESSION['a_m'] = $AM;
