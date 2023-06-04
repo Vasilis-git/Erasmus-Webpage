@@ -12,13 +12,13 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
     <style>
-        uni{
+        .uni{
             grid-area: u;
         }
-        applications{
+        .applications{
             grid-area: ap;
         }
-        application_date{
+        .application_date{
             grid-area: ad;
         }
         p{
@@ -88,7 +88,7 @@
                 <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
             </div>   
             <div class="heading-title">
-                <h1>Προφίλ Χρήστη</h1>
+                <h1>Προφίλ Διαχειριστή</h1>
             </div>
 
             <div class="menu">
