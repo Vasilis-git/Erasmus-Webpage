@@ -80,7 +80,7 @@
 
             <div class="menu">
                 <a href="index.php">Αρχική</a>
-                <a href="more.html">Περισόττερα</a>
+                <a href="more.php">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
                 <a href="app.php">Αίτηση</a>
             </div>

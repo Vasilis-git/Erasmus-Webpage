@@ -68,7 +68,7 @@
             <div class="menu">
                 <a href="index.php">Αρχική</a>
                 <a href="login.php">Σύνδεση χρήστη</a>
-                <a href="more.html">Περισόττερα</a>
+                <a href="more.php">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
             </div>
             <form id="ApplicationForm" method="POST" action="scripts/application_form.php" onsubmit="return checkNec();">

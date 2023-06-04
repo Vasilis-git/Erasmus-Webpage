@@ -97,7 +97,7 @@
                         echo "<a href=\"login.php\">Σύνδεση χρήστη</a>";
                     }
                 ?>
-                <a href="more.html">Περισόττερα</a>
+                <a href="more.php">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
                 <a href="app.php">Αίτηση</a>
                 <?php

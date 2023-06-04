@@ -80,7 +80,7 @@
                         echo "<a href=\"login.php\">Σύνδεση χρήστη</a>";
                     }
                 ?>
-                <a href="more.html">Περισόττερα</a>
+                <a href="more.php">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
             </div>
 
@@ -89,7 +89,10 @@
                     header("location: usr_application.php");
                 }
                 elseif(isset($_SESSION['username']) && $_SESSION['user-type'] == 'admin'){
-                    header("location: admin_applications.php");
+                    header("location: admin_settings.php");
+                }
+                elseif(/*δεν είναι περίοδος δηλώσεων*/true){
+                    echo "<p>Δεν είναι περίοδος δηλώσεων.</p>";
                 }
             ?>
             <p>Πρέπει να εγγραφείς για να έχεις πρόσβαση σε αυτό το περιεχόμενο.</p>

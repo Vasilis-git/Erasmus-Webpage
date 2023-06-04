@@ -14,6 +14,9 @@
                 margin-top: 3vw;
                 grid-area: au;
             }
+            application{
+                grid-area: a;
+            }
             @media screen and (min-width: 760px) {/*for desktop*/
                 .container{
                         display: grid;
@@ -27,6 +30,8 @@
                                             "c  c  c  c  c  rv rv rv"
                                             "bc bc bc bc bc rv rv rv"
                                             "cu cu cu cu cu rv rv rv"
+                                            "a  a  a  a  a  rv rv rv"
+                                            "a  a  a  a  a  .  .  . "
                                             "fi fi fi fi au au au au";
                 }
             }
@@ -43,6 +48,7 @@
                                     "c"
                                     "bc"
                                     "cu"
+                                    "a"
                                     "au";
                 }
                 .heading{
@@ -76,6 +82,8 @@
                                         "m  m  m  m  m  m  m  m"
                                         "c  c  c  c  bc bc bc bc"
                                         "cu cu cu cu cu cu cu cu"
+                                        "a  a  a  a  a  a  a  a"
+                                        "a  a  a  a  a  a  a  a"
                                         "rv rv rv rv rv rv rv rv"
                                         "rv rv rv rv rv rv rv rv"
                                         "di di di di di au au au"
@@ -175,6 +183,10 @@
                 <video width="180" height="320" controls>
                     <source src="media/videos/The_EU's_Erasmus_Programme_Explained.mp4" type="video/mp4">
                 </video> 
+            </div>
+
+            <div class="application content">
+                <!-- Άν έχει λήξει η περίοδος αιτήσεων, εμφάνιση των δεκτών εδώ, αφού κάποιος διαχειριστής πάτησε "Ανακοίνωση" στο admin_settings.php-->
             </div>
             
             <audio controls>
