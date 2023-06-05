@@ -1,0 +1,164 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 05, 2023 at 04:02 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `erasmus_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `universities`
+--
+
+CREATE TABLE `universities` (
+  `uni_id` bigint(20) UNSIGNED NOT NULL,
+  `uni_name` varchar(40) NOT NULL,
+  `country` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `universities`
+--
+
+INSERT INTO `universities` (`uni_id`, `uni_name`, `country`) VALUES
+(1, 'University of Michigan', 'USA'),
+(2, 'University of Harvard', 'USA'),
+(3, 'Massachusetts Institute of Technology', 'USA'),
+(4, 'Oxford University', 'England'),
+(5, 'Cambridge University', 'England'),
+(6, 'Stanford University', 'USA');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `fname` varchar(20) NOT NULL,
+  `lname` varchar(20) NOT NULL,
+  `a_m` varchar(13) NOT NULL,
+  `tel` varchar(10) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `pass` varchar(15) NOT NULL,
+  `user_type_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `fname`, `lname`, `a_m`, `tel`, `email`, `username`, `pass`, `user_type_id`) VALUES
+(1, 'Vasilis', 'Koulouris', '2022202000101', '6981386632', 'dit20101@go.uop.gr', 'kouvas', 'kouvas$', 2),
+(4, 'A', 'B', '2022202000945', '6987451234', 'A@B.AB', 'AB', 'BASILOPOULOS!', 2),
+(6, 'gdrkurhuego', 'ehthe', '2022202000690', '6918229822', 'a@ksubf.gr', 'lol', '!lol123', 2),
+(7, 'default_admin', '-', '2022999999999', '--', 'admin@mail.gr', 'default_admin', 'def_admin_p!', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_types`
+--
+
+CREATE TABLE `user_types` (
+  `user_type_id` bigint(20) UNSIGNED NOT NULL,
+  `user_type` varchar(13) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_types`
+--
+
+INSERT INTO `user_types` (`user_type_id`, `user_type`) VALUES
+(1, 'guest'),
+(2, 'registered'),
+(3, 'administrator');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usr_aplications`
+--
+
+CREATE TABLE `usr_aplications` (
+  `fn` varchar(15) NOT NULL,
+  `ln` varchar(15) NOT NULL,
+  `am` varchar(13) NOT NULL,
+  `pass_perc` varchar(20) NOT NULL,
+  `avrg` int(11) NOT NULL,
+  `eng_lan_certif` int(11) NOT NULL,
+  `f_choice` int(11) NOT NULL,
+  `s_choice` int(11) NOT NULL,
+  `t_choice` int(11) NOT NULL,
+  `mo` blob DEFAULT NULL,
+  `eng_lan_certif_file` blob DEFAULT NULL,
+  `xtr_lang_cert_file` blob DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `universities`
+--
+ALTER TABLE `universities`
+  ADD UNIQUE KEY `uni_id` (`uni_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `user_types`
+--
+ALTER TABLE `user_types`
+  ADD UNIQUE KEY `user_type_id` (`user_type_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `universities`
+--
+ALTER TABLE `universities`
+  MODIFY `uni_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `user_types`
+--
+ALTER TABLE `user_types`
+  MODIFY `user_type_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

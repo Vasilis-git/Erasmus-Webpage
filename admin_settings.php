@@ -88,7 +88,7 @@
                 <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
             </div>   
             <div class="heading-title">
-                <h1>Προφίλ Διαχειριστή</h1>
+                <h1>Ρυθμίσεις Διαχειριστή</h1>
             </div>
 
             <div class="menu">

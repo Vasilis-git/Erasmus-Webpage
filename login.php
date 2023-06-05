@@ -90,7 +90,7 @@
                     <br>
                     <div class="form-credentials">
                         <p id="error" style="color:red; font-size:small;" hidden>Το username δεν μπορεί να είναι κενό!</p>
-                        <input type="text" id="username" name ="username" maxlength="10" placeholder="Όνομα χρήστη"><br>
+                        <input type="text" id="username" name ="username" maxlength="15" placeholder="Όνομα χρήστη"><br>
                         <p id="errpsw" style="color: red;font-size: small;" hidden>Ο κωδικός πρέπει να αποτελέιται απο τουλάχιστον 5 χαρακτήρες και να περιέχει ένα χαρακτήρα σύμβολο (!,@,#,$,%,^,&).</p>
                         <input type="password" name ="password" id="pw" maxlength="15" placeholder="Κωδικός πρόσβασης" onchange="checkPwd();"><br>
                     </div>

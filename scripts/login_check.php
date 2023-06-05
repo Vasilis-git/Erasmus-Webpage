@@ -34,7 +34,7 @@
             if($count == 1){
                 echo "<p>Επιτυχής σύνδεση! <a href=\"../index.php\">Πίσω στην αρχική</a></p>";
                 $_SESSION['username'] = $username;
-                $_SESSION['user-type'] = $user_type;
+                $_SESSION['user_type'] = $user_type;
                 $_SESSION['password'] = $pass;
                 
                 $stmnt = mysqli_prepare($con, "SELECT fname, lname, a_m, tel, email FROM users WHERE username = ?");
@@ -44,8 +44,14 @@
                 mysqli_stmt_fetch($stmnt);
                 mysqli_stmt_close($stmnt);
 
+                //check if user is admin
+                if($AM == '2022999999999'){
+                    $user_type = "admin";
+                } 
+
 
                 $_SESSION['username'] = $username;
+                $_SESSION['user_type'] = $user_type;
                 $_SESSION['password'] = $pass;
                 $_SESSION['fname'] = $fname;
                 $_SESSION['lname'] = $lname;

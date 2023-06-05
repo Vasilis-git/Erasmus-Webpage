@@ -85,10 +85,10 @@
             </div>
 
             <?php
-                if(isset($_SESSION['username']) && $_SESSION['user-type'] == 'registered'){
+                if(isset($_SESSION['username']) && $_SESSION['user_type'] == 'registered'){
                     header("location: usr_application.php");
                 }
-                elseif(isset($_SESSION['username']) && $_SESSION['user-type'] == 'admin'){
+                elseif(isset($_SESSION['username']) && $_SESSION['user_type'] == 'admin'){
                     header("location: admin_settings.php");
                 }
                 elseif(/*δεν είναι περίοδος δηλώσεων*/true){
