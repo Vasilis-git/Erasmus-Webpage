@@ -39,9 +39,9 @@
                         "h  h  h  h  h  h  h  hi"
                         "ht ht ht ht ht ht ht hi"
                         "m  m  m  m  m  m  m  m"
-                        ".  .  .  ad ad .  .  ."
-                        ".  .  .  ap ap .  .  ."
-                        ".  .  .  u  u  .  .  ."
+                        ".  .  ad ad ad ad .  ."
+                        ".  .  ap ap ap ap .  ."
+                        ".  .  u  u  u  u  .  ."
                         "fi fi fi fi fi fi fi fi"
                         ;
                 }
@@ -103,11 +103,13 @@
                     Μπορεί να είναι κενό, πρέπει να αποθηκεύεται μάλλον στη βάση σε δικό του
                     πίνακα, για να μπορώ να βρώ αν είναι περίοδος δηλώσεων στο app.php
                 -->
-                <form>
+                <form id="dateForm" method="GET" action="scripts/application_date_set.php">
                     <p>Από:</p>
-                    <input type="date" id="start_date" min="2023-06-06">
+                    <input type="date" id="start_date" name="start_date" min="2023-06-06">
                     <p>Έως:</p>
-                    <input type="date" id="end_date" min="2023-06-13" max="2023-08-13">
+                    <input type="date" id="end_date" name="end_date" min="2023-06-13" max="2023-08-13"><br>
+                    <input type ="submit" name="date_submit" value="Αποθήκευση">
+                    <input type ="button" name="clear_date" value="Καθαρισμός" onclick="clearDates();">
                 </form>
             </div>
 
@@ -228,6 +230,10 @@
                 yyyy = yyyy.toString();
                 mm = mm.toString();
                 dd = dd.toString();
+            }
+            function clearDates(){
+                document.getElementById('start_date').value = "";
+                document.getElementById('end_date').value = "";
             }
         </script>
     </body>
