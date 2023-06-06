@@ -103,6 +103,12 @@
                     Μπορεί να είναι κενό, πρέπει να αποθηκεύεται μάλλον στη βάση σε δικό του
                     πίνακα, για να μπορώ να βρώ αν είναι περίοδος δηλώσεων στο app.php
                 -->
+                <form>
+                    <p>Από:</p>
+                    <input type="date" id="start_date" min="2023-06-06">
+                    <p>Έως:</p>
+                    <input type="date" id="end_date" min="2023-06-13" max="2023-08-13">
+                </form>
             </div>
 
             <div class = "applications content">
@@ -139,5 +145,90 @@
             </div>
 
         </div>
+        <script>
+            //set today's date as min
+            var d = new Date();
+            var dd = d.getDay();
+            var mm = d.getMonth() + 1;
+            var yyyy = d.getFullYear();
+
+            addZeros();        
+            d = yyyy + '-' + mm + '-' + dd;
+            var today_date = document.getElementById('start_date');
+            today_date.setAttribute('min', d);
+            //set end date min to one week later
+            var end_date = document.getElementById('end_date');
+            toInt();
+            dd += 7;
+            if(dd > 28){
+                if(mm == 2){
+                    if(yyyy % 400 == 0 || (yyyy % 4 == 0 && yyyy % 100 != 0)){//leap
+                        if(dd > 29){
+                            mm += 1;
+                            dd = dd - 29;
+                        }
+                    }
+                    else{
+                        mm += 1;
+                        dd = dd - 28;
+                    }
+                }
+                else if((mm % 2 == 1 && mm < 8) || (mm % 2 == 0 && mm >= 8)){//months with 31 days
+                    if(dd > 31){
+                        mm += 1;
+                        dd = dd - 31;
+                        if(mm == 13){
+                            mm = 1;
+                            yyyy += 1;
+                        }
+                    }
+                }
+                else{
+                    if(dd > 30){
+                        mm += 1;
+                        dd = dd - 30;
+                    }
+                }
+            }
+            toStr();
+            addZeros();
+            d = yyyy + '-' + mm + '-' + dd;
+            end_date.setAttribute('min', d);
+            //set max date 2 months later
+            var min_date = today_date.getAttribute('min').Date();
+            dd = min_date.getDay();
+            mm = min_date.getMonth();
+            yyyy = min_date.getFullYear();
+
+            toInt();
+            mm += 2;
+            if(mm > 12){
+                mm -= 12;
+                yyyy +=1;
+            }
+            toStr();
+            addZeros();
+            d = yyyy + '-' + mm + '-' + dd;
+            end_date.setAttribute('max', d);
+
+            function addZeros(){
+                if(dd < 10){
+                    dd = '0'+dd;
+                }
+                if(mm < 10){
+                    mm = '0'+mm;
+                }
+            }
+            function toInt(){
+                dd = parseInt(dd, 10);
+                yyyy = parseInt(yyyy);
+                mm = parseInt(mm, 10);
+            }
+            function toStr(){
+                yyyy = yyyy.toString();
+                mm = mm.toString();
+                dd = dd.toString();
+            }
+        </script>
     </body>
 </html>
