@@ -103,7 +103,7 @@
                     Μπορεί να είναι κενό, πρέπει να αποθηκεύεται μάλλον στη βάση σε δικό του
                     πίνακα, για να μπορώ να βρώ αν είναι περίοδος δηλώσεων στο app.php
                 -->
-                <form id="dateForm" method="GET" action="scripts/application_date_set.php">
+                <form id="dateForm" method="GET" action="scripts/application_date_set.php" style="displaye:block;">
                     <p>Από:</p>
                     <input type="date" id="start_date" name="start_date" min="2023-06-06">
                     <p>Έως:</p>

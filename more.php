@@ -6,6 +6,9 @@
         <title> Erasmus UoP</title>
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <style>
+            a, input[type="button"] {
+                margin-bottom: 0vw;
+            }
             video{
                 border-radius: 1vw;
                 margin-left: 1vw;
@@ -14,7 +17,7 @@
                 margin-top: 3vw;
                 grid-area: au;
             }
-            application{
+            .application{
                 grid-area: a;
             }
             @media screen and (min-width: 760px) {/*for desktop*/
@@ -31,7 +34,6 @@
                                             "bc bc bc bc bc rv rv rv"
                                             "cu cu cu cu cu rv rv rv"
                                             "a  a  a  a  a  rv rv rv"
-                                            "a  a  a  a  a  .  .  . "
                                             "fi fi fi fi au au au au";
                 }
             }
@@ -141,20 +143,21 @@
                 <div class="decor-image">
                     <img src="media/images/eramsus-logo.png" width="293" height="60">
                 </div>
-            <div class="content">  
+
+            <div class="content">
                 <h1>Ευκαιρίες</h1>
-                    Το Erasmus+ προσφέρει ευκαιρίες κινητικότητας και συνεργασίας όσον αφορά τα εξής:
-                    <ul>
-                    <li>Το Erasmus+ προσφέρει ευκαιρίες κινητικότητας και συνεργασίας όσον αφορά τα εξής:</li>
-                    <li>επαγγελματική εκπαίδευση και κατάρτιση</li>
-                    <li>σχολική εκπαίδευση (συμπεριλαμβανομένης της προσχολικής αγωγής και μέριμνας)</li>
-                    <li>εκπαίδευση ενηλίκων</li>
-                    <li>νεολαία και </li>
-                    <li>αθλητισμός</li>
-                </ul>
-                Λεπτομέρειες πληροφορίες γι’ αυτές τις δυνατότητες, συμπεριλαμβανομένων των κριτηρίων επιλεξιμότητας,
-                περιέχονται στον παρακάτω σύνδεσμο:<br>
-                <a href="https://erasmus-plus.ec.europa.eu/el/programme-guide/erasmus-programme-guide?">Λεπτομέρειες</a>
+                        Το Erasmus+ προσφέρει ευκαιρίες κινητικότητας και συνεργασίας όσον αφορά τα εξής:
+                        <ul>
+                        <li>Το Erasmus+ προσφέρει ευκαιρίες κινητικότητας και συνεργασίας όσον αφορά τα εξής:</li>
+                        <li>επαγγελματική εκπαίδευση και κατάρτιση</li>
+                        <li>σχολική εκπαίδευση (συμπεριλαμβανομένης της προσχολικής αγωγής και μέριμνας)</li>
+                        <li>εκπαίδευση ενηλίκων</li>
+                        <li>νεολαία και </li>
+                        <li>αθλητισμός</li>
+                    </ul>
+                    Λεπτομέρειες πληροφορίες γι’ αυτές τις δυνατότητες, συμπεριλαμβανομένων των κριτηρίων επιλεξιμότητας,
+                    περιέχονται στον παρακάτω σύνδεσμο:<br>
+                    <a href="https://erasmus-plus.ec.europa.eu/el/programme-guide/erasmus-programme-guide?">Λεπτομέρειες</a>
             </div>
 
             <div class="coop-unis content">
@@ -186,6 +189,7 @@
             </div>
 
             <div class="application content">
+                <h1>Δεκτές αιτήσεις προγράμματος</h1>
                 <!-- Άν έχει λήξει η περίοδος αιτήσεων, εμφάνιση των δεκτών εδώ, αφού κάποιος διαχειριστής πάτησε "Ανακοίνωση" στο admin_settings.php-->
             </div>
             

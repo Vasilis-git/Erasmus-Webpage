@@ -5,22 +5,29 @@
 }
 
 a, input[type="button"], input[type="submit"] {
+    padding-left: auto;
+    padding-right: auto;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-top: 0.5vw;
+    float: left;
+
+    text-decoration: none;
     background-color: rgb(36, 36, 255);
     color:white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
     border-radius: 0.5vw;
     padding: 0.5em;
-    margin: 1vw 0.1em 1vw 1vw;
-    text-decoration:none;
-    float: left;
-    text-align: center;
     box-shadow: 4px 4px 3px rgb(82, 82, 82);
 }
-a:hover{
+input[type="submit"]:hover{
     background-color: rgb(83, 83, 253);
 }
 input[type="button"]:hover{
+    background-color: rgb(83, 83, 253);
+}
+a:hover{
     background-color: rgb(83, 83, 253);
 }
 table{
@@ -66,6 +73,7 @@ select{
 }
 .menu{
     margin-top: 1vw;
+    margin-bottom: 2vw;
     grid-area: m;
     margin-left:auto;
     margin-right:auto;
@@ -74,9 +82,10 @@ select{
     background-color: rgb(196, 196, 196);
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 1vw;
-    margin-top: 2vw;
     padding-left: 1vw;
     padding-right: 1vw;
+    padding-bottom: 2vw;
+    margin-top: 0.5vw;
     grid-area: c;
 }
 .footer-image{
@@ -96,7 +105,7 @@ form{
     border-style:solid;
     border-color: rgb(37, 131, 255);
     border-radius: 1vw;
-    margin-top: 1vw;
+    margin-top: 2vw;
     margin: 0 auto;
     padding:2vw;
     text-align: center;

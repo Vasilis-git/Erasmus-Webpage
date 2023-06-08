@@ -11,11 +11,13 @@
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
         <style>
-            input[type="button"]{
-                all: revert;
-                font-size: medium;
+            p{
+                margin-bottom: 0;
+                margin-top: 3vw;
             }
-
+            input[type="button"]{
+                float:none;
+            }
             @media screen and (min-width: 760px) {/*for desktop*/
                 .container{
                         display: grid;
@@ -155,15 +157,14 @@
                             ?>
                         </select>
                     </div>
-                    <br> <br>Αναλυτική βαθμολογία: <input type="file" name="marks" id="marks"><br>
-                    <input type="button" value="Υποβολή αρχείου" style="margin-top: 0vw;";> <br>
-                    <br>Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert-paper" id="elcp"><br>
-                    <input type="button" value="Υποβολή αρχείου" style="margin-top: 0vw";><br>
-                    <br>Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" id="olcp" multiple style="margin-top: 0vw";><br>
-                    <br> <input type="button" value="Υποβολή αρχείων"> 
-                    <br> <br>
-                    Αποδοχή των όρων:
-                    <input type="checkbox" name="accept-terms" id="terms"><br>
+                    <p>Αναλυτική βαθμολογία:</p><input type="file" name="marks" id="marks"> <br>
+                    <input type="button" value="Υποβολή αρχείου" style="margin-top: 0.5vw;">
+                    <p>Πτυχίο αγγλικής γλώσσας:</p> <input type="file" name="english-lang-cert-paper" id="elcp"> <br>
+                    <input type="button" value="Υποβολή αρχείου" style="margin-top: 0.5vw">
+                    <p>Πτυχία άλλων ξένων γλωσσών:</p> <input type="file" name="other-lang-cert" id="olcp" multiple style="margin-top: 0vw";> <br>
+                    <input type="button" value="Υποβολή αρχείων" style="margin-top: 0.5vw"> <br>
+                    <p> Αποδοχή των όρων:
+                    <input type="checkbox" name="accept-terms" id="terms"></p>
                     <p id="error_msg" style="color: red;font-size: small;" hidden></p>
                     <input type="submit" value="Υποβολή φόρμας" style="margin-top: 1vw;">
                 </div>

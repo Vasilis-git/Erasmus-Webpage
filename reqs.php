@@ -11,6 +11,10 @@
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
         <style>
+            .brochure{
+                grid-area: br;
+                margin-bottom: 2vw;
+            }
             @media screen and (min-width: 760px) {/*for desktop*/
                 .container{
                         display: grid;
@@ -21,15 +25,17 @@
                                             "h  h  h  h  h  h  h  hi"
                                             "ht ht ht ht ht ht ht hi"
                                             "m  m  m  m  m  m  m  m"
-                                            "d  d  d  l  .  .  .  ."
-                                            ".  .  t  t  t  t  .  ."
+                                            ".  .  br br br br .  ."
                                             ".  .  f  f  f  f  .  ."
                                             ".  .  .  .  .  .  .  ."
                                             "fi fi .  .  .  .  di di"
                                             ;
-                                           
+                }
+                #brochure-button{
+                    float:none;
                 }
             }
+
             @media screen and (max-width: 759px) {/*for phones and tablets*/
                 .container{
                         display: grid;
@@ -40,9 +46,7 @@
                                             "h"
                                             "ht"
                                             "m"
-                                            "d"
-                                            "l"
-                                            "t"
+                                            "br"
                                             "f"
                                             ;
                                            
@@ -89,33 +93,21 @@
                 <a href="more.php">Περισόττερα</a>
                 <a href="app.php">Αίτηση</a>
             </div>
-
-           
-                <div style="font-family: Arial, Helvetica, sans-serif;
-                    margin-top: 2vw;
-                    padding-left: 1vw;
-                    font-size: 1em;
-                    grid-area: d;">
-                    Ενημερωτικό φυλλάδιο προγράμματος Erasmus 2023
-                </div>
-
-                <div style="margin-right: 20vw;grid-area:l;">
-                    <a href="https://www.iky.gr/el/iky-rss/item/download/6919_43e80877fd9f6744d134b790f4e3f4b4" >εδώ</a>
+                <div class="brochure content">
+                    <p>Ενημερωτικό φυλλάδιο προγράμματος Erasmus 2023:
+                    <a id="brochure-button" href="https://www.iky.gr/el/iky-rss/item/download/6919_43e80877fd9f6744d134b790f4e3f4b4">εδώ</a></p>
+                    <table border="3" cellpadding="4" style="margin: 1vw 0vw 1vw 0vw;">
+                        <tr><th>Ελάχιστες απαιτήσεις συμμετοχής</th></tr>
+                        <tr><td>Τρέχον έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 2ου έτους)</td></tr>
+                        <tr><td>Ποσοστό «περασμένων» μαθημάτων έως το προηγούμενο έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 70% του συνόλου των μαθημάτων)</td></tr>
+                        <tr><td>Μέσος όρος των «περασμένων» μαθημάτων έως το προηγούμενο έτος σπουδών (απαίτηση: μεγαλύτερος ή ίσος του 6.50) </td></tr>
+                        <tr><td>Πιστοποιητικό γνώσης της αγγλικής γλώσσας (απαίτηση: κατ’ ελάχιστον «καλή γνώση της αγγλικής γλώσσας», που αντιστοιχεί σε επίπεδο B2 ή ανώτερο)</td></tr>
+                    </table>
                 </div>
 
                 <div class="decor-image">
                     <img src="media/images/EU-logo.png" alt="European Union Logo" width="294" height="82" style="border-radius: 10px;">
                 </div>
-          
-            
-            <table border="3" cellpadding="4" style="margin-top: 1vw;">
-                <tr><th>Ελάχιστες απαιτήσεις συμμετοχής</th></tr>
-                <tr><td>Τρέχον έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 2ου έτους)</td></tr>
-                <tr><td>Ποσοστό «περασμένων» μαθημάτων έως το προηγούμενο έτος σπουδών (απαίτηση: μεγαλύτερο ή ίσο του 70% του συνόλου των μαθημάτων)</td></tr>
-                <tr><td>Μέσος όρος των «περασμένων» μαθημάτων έως το προηγούμενο έτος σπουδών (απαίτηση: μεγαλύτερος ή ίσος του 6.50) </td></tr>
-                <tr><td>Πιστοποιητικό γνώσης της αγγλικής γλώσσας (απαίτηση: κατ’ ελάχιστον «καλή γνώση της αγγλικής γλώσσας», που αντιστοιχεί σε επίπεδο B2 ή ανώτερο)</td></tr>
-            </table>
-
 
             <form id="ReqsForm">
                 <div class="content">
@@ -144,10 +136,9 @@
                     <input type="radio" name="english-lang-cert" value="B2">B2
                     <input type="radio" name="english-lang-cert" value="C1">C1
                     <input type="radio" name="english-lang-cert" value="C2">C2 <br>
-                    <div class="form-buttons">
-                        <input type="button" name="r-submit" value="Έλεγχος" onclick="checkForm();">
-                        <input type="button" name="clear-form" value="Καθαρισμός φόρμας" onclick="clearForm();">
-                    </div>
+                    <input type="button" name="r-submit" value="Έλεγχος" onclick="checkForm();">
+                    <input type="button" name="clear-form" value="Καθαρισμός φόρμας" onclick="clearForm();">
+
                 </div>
             </form>
 
