@@ -11,6 +11,11 @@
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
         <style>
+            input[type="button"]{
+                all: revert;
+                font-size: medium;
+            }
+
             @media screen and (min-width: 760px) {/*for desktop*/
                 .container{
                         display: grid;
@@ -71,7 +76,7 @@
                 <a href="more.php">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
             </div>
-            <form id="ApplicationForm" method="POST" action="scripts/application_form.php" onsubmit="return checkNec();">
+            <form id="ApplicationForm" method="POST" action="scripts/application_form.php" onsubmit="return checkNec();" style="">
                 <div class="form-credentials">
                     <input type="text" name="fname" placeholder="Όνομα" readonly value="<?php echo $_SESSION['fname']; ?>"> <br>
                     <input type="text" name="lname" placeholder="Επίθετο" readonly value="<?php echo $_SESSION['lname']; ?>"> <br>
@@ -151,11 +156,11 @@
                         </select>
                     </div>
                     <br> <br>Αναλυτική βαθμολογία: <input type="file" name="marks" id="marks"><br>
-                    <input type="submit" value="Υποβολή αρχείου" style="margin-top: 0vw";> 
+                    <input type="button" value="Υποβολή αρχείου" style="margin-top: 0vw;";> <br>
                     <br>Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert-paper" id="elcp"><br>
-                    <input type="submit" value="Υποβολή αρχείου" style="margin-top: 0vw";><br>
-                    <br>Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" id="olcp" multiple style="margin-top: 0vw";>
-                    <input type="submit" value="Υποβολή αρχείων"> 
+                    <input type="button" value="Υποβολή αρχείου" style="margin-top: 0vw";><br>
+                    <br>Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" id="olcp" multiple style="margin-top: 0vw";><br>
+                    <br> <input type="button" value="Υποβολή αρχείων"> 
                     <br> <br>
                     Αποδοχή των όρων:
                     <input type="checkbox" name="accept-terms" id="terms"><br>
