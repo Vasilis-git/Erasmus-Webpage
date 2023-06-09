@@ -12,6 +12,37 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
     <style>
+        table{
+            width:100%;
+            border: 1px solid gray;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        
+        tr:nth-child(even) {
+            border-bottom: 1px solid gray;
+        }
+        th:hover {
+            background-color: #777777;
+        }
+        th, td {
+            padding: 4px;
+            text-align: center;
+            border: 1px solid gray;
+            vertical-align: middle;
+        }
+        input[type="checkbox"] {
+            margin: 0 auto;
+            display: block;
+        }
+        td,th input[type="button"]{
+            all: revert;
+        }
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            border-radius: 1px;
+        }
         .uni{
             grid-area: u;
         }
@@ -20,6 +51,9 @@
         }
         .application_date{
             grid-area: ad;
+        }
+        .admin{
+            grid-area: a;
         }
         p{
             background-color: rgb(196, 196, 196);
@@ -39,9 +73,10 @@
                         "h  h  h  h  h  h  h  hi"
                         "ht ht ht ht ht ht ht hi"
                         "m  m  m  m  m  m  m  m"
-                        ".  .  ad ad ad ad .  ."
-                        ".  .  ap ap ap ap .  ."
-                        ".  .  u  u  u  u  .  ."
+                        ".  . ad ad ad ad  .  ."
+                        "ap ap ap ap ap ap ap ap"
+                        "u  u  u  u  u  u  u  u"
+                        "a  a  a  a  a  a  a  a"
                         "fi fi fi fi fi fi fi fi"
                         ;
                 }
@@ -57,7 +92,8 @@
                                     "m"
                                     "ad"
                                     "ap"
-                                    "u";
+                                    "u"
+                                    "a";
                 }
                 .heading{
                     border-top-right-radius: 1vw;
@@ -99,15 +135,11 @@
 
             <div class = "application_date content">
                 <h1>Περίοδος αιτήσεων:</h1>
-                <!-- Προσθήκη πεδίων ημερομηνίας εδώ, με κουμπί αποθήκευση, καθαρισμός
-                    Μπορεί να είναι κενό, πρέπει να αποθηκεύεται μάλλον στη βάση σε δικό του
-                    πίνακα, για να μπορώ να βρώ αν είναι περίοδος δηλώσεων στο app.php
-                -->
-                <form id="dateForm" method="GET" action="scripts/application_date_set.php" style="displaye:block;">
-                    <p>Από:</p>
+                <form id="dateForm" method="GET" action="scripts/application_date_set.php" style="border:none; padding-top:0vw;">
+                    <p>Από:
                     <input type="date" id="start_date" name="start_date" min="2023-06-06">
-                    <p>Έως:</p>
-                    <input type="date" id="end_date" name="end_date" min="2023-06-13" max="2023-08-13"><br>
+                    Έως:
+                    <input type="date" id="end_date" name="end_date" min="2023-06-13" max="2023-08-13"><br></p>
                     <input type ="submit" name="date_submit" value="Αποθήκευση">
                     <input type ="button" name="clear_date" value="Καθαρισμός" onclick="clearDates();">
                 </form>
@@ -124,13 +156,72 @@
                     η 1η στήλη του πίνακα: ένα checkbox σε κάθε γραμμή, για επιλογή αιτήσεων.
                     κάτω κάτω κουμπί "δεκτές", για να θέτει τις επιλεγμένες αιτήσεις δεκτές
                 -->
-            </div>
+                <table>
+                    <tr>
+                        <th rowspan="2">Επιλογή</th>
+                        <th rowspan="2">Όνομα</th>
+                        <th rowspan="2">Επίθετο</th>
+                        <th rowspan="2">ΑΜ</th>
+                        <th rowspan="2">
+                            Ποσοστό περασμένων μαθημάτων
+                            <input type="text" id="min_success" name="min_success" style="font-size:small;" placeholder="Ελάχιστο ποσοστό επιτυχίας...">
+                        </th>
+                        <th rowspan="2">
+                            Μέσος όρος περασμένων
+                            <input type="button" id="dec" name="dec" value="Φθίνουσα σειρά">
+                        </th>
+                        <th rowspan="2">Πιστοποιητικό αγγλικής γλώσσας</th>
+                        <th rowspan="2">Γνώση επιπλέων ξένων γλωσσών</th>
+                        <th rowspan="1" colspan="3" style="border-bottom: 1px solid gray;">
+                            Πανεπιστήμιο
+                            <select name="specific_uni" id="specific_uni" style="font-size: small;">
+                            <?php
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                                if (!$con) {
+                                    echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
+                                } else {
+                                    $result = mysqli_query($con, "SELECT uni_name FROM Universities");
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $uni_name = $row['uni_name'];
+                                        echo "<option value=\"$uni_name\">$uni_name</option>";
+                                    }
+                                    mysqli_close($con);
+                                }   
+                            ?>
+                        </select>
+                        </th>
+                        <th rowspan="2">Αναλυτική βαθμολογία</th>
+                        <th rowspan="2">Πτυχίο αγγλικής γλώσσας</th>
+                        <th rowspan="2">Πτυχία άλλων ξένων γλωσσών</th>
+                    </tr>
+                    <tr>
+                        <th>1η επιλογή</th>
+                        <th>2η επιλογή</th>
+                        <th>3η επιλογή</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid gray;"> <input type="checkbox"> </td>
+                        <td style="border: 1px solid gray;"><p>FName</p></td>
+                        <td style="border: 1px solid gray;"><p>LName</p></td>
+                        <td style="border: 1px solid gray;"><p>AM</p></td>
+                        <td style="border: 1px solid gray;"><p>percent</p></td>
+                        <td style="border: 1px solid gray;"><p>average</p></td>
+                        <td style="border: 1px solid gray;"><p>English cert</p></td>
+                        <td style="border: 1px solid gray;"><p>YES/NO</p></td>
+                        <td style="border: 1px solid gray;"><p>1st</p></td>
+                        <td style="border: 1px solid gray;"><p>2nd</p></td>
+                        <td style="border: 1px solid gray;"><p>3d</p></td>
+                        <td style="border: 1px solid gray;"><p>file</p></td>
+                        <td style="border: 1px solid gray;"><p>file</p></td>
+                        <td style="border: 1px solid gray;"><p>file</p></td>
+                    </tr>
+                </table>
 
-            <div class = "applications content">
                 <h1>Δεκτές Αιτήσεις</h1>
                 <!-- Κουμπί "εμφάνιση δεκτών αιτήσεων", να τις τυπώνει όπως πάνω αλλά χωρίς δυνατότητα επεξεργασίας
                     κάτω κάτω κουμπί 'ανακοίνωση των αποτελεσμάτων', θα μεταφέρει τις δεκτές στο more.php
                 -->
+                
             </div>
 
             <div class = "uni content">
@@ -141,6 +232,7 @@
             </div>
 
             <div class="admin content">
+                <h1>Διαχειριστές</h1>
                 <!-- κουμπί 'Διαχειριστές', θα προβάλει όλους τους διαχειριστές τις σελίδας και θα έχει κουμπί προσθήκη
                 μετά φόρμα παρόμοια με το sign_up, αλλά με αριθμό μητρώου 2022999999999 και δημιουργία τυχαίου κωδικού 10 χαρακτήρων    
             -->
