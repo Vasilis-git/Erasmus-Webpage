@@ -78,7 +78,7 @@
                 <a href="more.php">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
             </div>
-            <form id="ApplicationForm" method="POST" action="scripts/application_form.php" onsubmit="return checkNec();" style="">
+            <form id="ApplicationForm" method="POST" action="scripts/application_form.php" onsubmit="return checkNec();">
                 <div class="form-credentials">
                     <input type="text" name="fname" placeholder="Όνομα" readonly value="<?php echo $_SESSION['fname']; ?>"> <br>
                     <input type="text" name="lname" placeholder="Επίθετο" readonly value="<?php echo $_SESSION['lname']; ?>"> <br>
@@ -90,8 +90,7 @@
                     Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
                     <input type="number" name="average" id ="average" min="0" max="10" value="5" step="0.01" style="margin-top: 0vw;"><br><br>
                     Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
-                    <input type="radio" name="english-lang-cert" id="none" value="Κανένα" checked>Κανένα
-                    <input type="radio" name="english-lang-cert" id="A1" value="A1">A1
+                    <input type="radio" name="english-lang-cert" id="A1" value="A1" checked>A1
                     <input type="radio" name="english-lang-cert" id="A2" value="A2">A2
                     <input type="radio" name="english-lang-cert" id="B1" value="B1">B1
                     <input type="radio" name="english-lang-cert" id="B2" value="B2">B2
@@ -184,7 +183,6 @@
                 */
                 var pass_perc = document.getElementById('passed_perc');
                 var average = document.getElementById('average');
-                var english_lang_cert = document.getElementsByName("english-lang-cert");
                 var marks = document.getElementById("marks");
                 var english_cert_paper = document.getElementById("elcp");
                 var terms = document.getElementById("terms");
@@ -198,11 +196,6 @@
                 }
                 if(average.value==''){
                     error.innerHTML = "Το πεδίο 'Μέσος όρος περασμένων μαθημάτων' είναι υποχρεωτικό.";
-                    error.removeAttribute('hidden');
-                    return false;
-                }
-                if(english_lang_cert[0].checked){
-                    error.innerHTML = "Απαιτείται πιστοποιητικό αγγλικών τουλάχιστον Α1 για υποβολή της αίτησης.";
                     error.removeAttribute('hidden');
                     return false;
                 }

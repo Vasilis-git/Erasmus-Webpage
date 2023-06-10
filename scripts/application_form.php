@@ -1,5 +1,3 @@
 <?php
-    echo $_POST['fname'];
-    echo $_POST['lname'];
-    echo $_POST['AM'];
+    //use $_FILE for the files, store at website/uploads
 ?>

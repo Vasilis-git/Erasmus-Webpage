@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2023 at 04:02 PM
+-- Generation Time: Jun 10, 2023 at 04:41 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `applications_date`
+--
+
+CREATE TABLE `applications_date` (
+  `start_d` date DEFAULT NULL,
+  `end_d` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `applications_date`
+--
+
+INSERT INTO `applications_date` (`start_d`, `end_d`) VALUES
+('0000-00-00', '0000-00-00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `universities`
 --
 
@@ -40,7 +58,7 @@ CREATE TABLE `universities` (
 INSERT INTO `universities` (`uni_id`, `uni_name`, `country`) VALUES
 (1, 'University of Michigan', 'USA'),
 (2, 'University of Harvard', 'USA'),
-(3, 'Massachusetts Institute of Technology', 'USA'),
+(3, 'M.I.T.', 'USA'),
 (4, 'Oxford University', 'England'),
 (5, 'Cambridge University', 'England'),
 (6, 'Stanford University', 'USA');
@@ -100,17 +118,18 @@ INSERT INTO `user_types` (`user_type_id`, `user_type`) VALUES
 --
 
 CREATE TABLE `usr_aplications` (
-  `fn` varchar(15) NOT NULL,
-  `ln` varchar(15) NOT NULL,
-  `am` varchar(13) NOT NULL,
-  `pass_perc` varchar(20) NOT NULL,
-  `avrg` int(11) NOT NULL,
-  `eng_lan_certif` int(11) NOT NULL,
-  `f_choice` int(11) NOT NULL,
-  `s_choice` int(11) NOT NULL,
-  `t_choice` int(11) NOT NULL,
-  `mo` blob DEFAULT NULL,
-  `eng_lan_certif_file` blob DEFAULT NULL,
+  `fname` varchar(20) NOT NULL,
+  `lname` varchar(20) NOT NULL,
+  `a_m` varchar(13) NOT NULL,
+  `pass_perc` float NOT NULL,
+  `avrg` float NOT NULL,
+  `eng_lan_certif` varchar(2) NOT NULL,
+  `xtr_lang_cert` varchar(3) DEFAULT NULL,
+  `f_choice` varchar(40) NOT NULL,
+  `s_choice` varchar(40) DEFAULT NULL,
+  `t_choice` varchar(40) DEFAULT NULL,
+  `marks` blob NOT NULL,
+  `eng_lan_certif_file` blob NOT NULL,
   `xtr_lang_cert_file` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -150,7 +169,7 @@ ALTER TABLE `universities`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_types`

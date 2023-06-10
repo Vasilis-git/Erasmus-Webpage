@@ -16,7 +16,14 @@
             width:100%;
             border: 1px solid gray;
             border-collapse: collapse;
-            margin: 0 auto;
+
+            align-items: center;
+            justify-content: center;
+        }
+        form{
+            all:revert;
+            width: 100%;
+            display: inline-block;
         }
         
         tr:nth-child(even) {
@@ -25,17 +32,25 @@
         th:hover {
             background-color: #777777;
         }
+        td:hover {
+            background-color: #777777;
+        }
         th, td {
-            padding: 4px;
+            padding: 1px;
             text-align: center;
             border: 1px solid gray;
             vertical-align: middle;
+        }
+        td{
+            border: 1px solid gray;
+            padding: 5px;
+            text-align: center;
         }
         input[type="checkbox"] {
             margin: 0 auto;
             display: block;
         }
-        td,th input[type="button"]{
+        th input[type="button"], td a{
             all: revert;
         }
         input[type="checkbox"] {
@@ -156,66 +171,84 @@
                     η 1η στήλη του πίνακα: ένα checkbox σε κάθε γραμμή, για επιλογή αιτήσεων.
                     κάτω κάτω κουμπί "δεκτές", για να θέτει τις επιλεγμένες αιτήσεις δεκτές
                 -->
-                <table>
-                    <tr>
-                        <th rowspan="2">Επιλογή</th>
-                        <th rowspan="2">Όνομα</th>
-                        <th rowspan="2">Επίθετο</th>
-                        <th rowspan="2">ΑΜ</th>
-                        <th rowspan="2">
-                            Ποσοστό περασμένων μαθημάτων
-                            <input type="text" id="min_success" name="min_success" style="font-size:small;" placeholder="Ελάχιστο ποσοστό επιτυχίας...">
-                        </th>
-                        <th rowspan="2">
-                            Μέσος όρος περασμένων
-                            <input type="button" id="dec" name="dec" value="Φθίνουσα σειρά">
-                        </th>
-                        <th rowspan="2">Πιστοποιητικό αγγλικής γλώσσας</th>
-                        <th rowspan="2">Γνώση επιπλέων ξένων γλωσσών</th>
-                        <th rowspan="1" colspan="3" style="border-bottom: 1px solid gray;">
-                            Πανεπιστήμιο
-                            <select name="specific_uni" id="specific_uni" style="font-size: small;">
-                            <?php
-                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
-                                if (!$con) {
-                                    echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
-                                } else {
-                                    $result = mysqli_query($con, "SELECT uni_name FROM Universities");
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        $uni_name = $row['uni_name'];
-                                        echo "<option value=\"$uni_name\">$uni_name</option>";
-                                    }
-                                    mysqli_close($con);
-                                }   
-                            ?>
-                        </select>
-                        </th>
-                        <th rowspan="2">Αναλυτική βαθμολογία</th>
-                        <th rowspan="2">Πτυχίο αγγλικής γλώσσας</th>
-                        <th rowspan="2">Πτυχία άλλων ξένων γλωσσών</th>
-                    </tr>
-                    <tr>
-                        <th>1η επιλογή</th>
-                        <th>2η επιλογή</th>
-                        <th>3η επιλογή</th>
-                    </tr>
-                    <tr>
-                        <td style="border: 1px solid gray;"> <input type="checkbox"> </td>
-                        <td style="border: 1px solid gray;"><p>FName</p></td>
-                        <td style="border: 1px solid gray;"><p>LName</p></td>
-                        <td style="border: 1px solid gray;"><p>AM</p></td>
-                        <td style="border: 1px solid gray;"><p>percent</p></td>
-                        <td style="border: 1px solid gray;"><p>average</p></td>
-                        <td style="border: 1px solid gray;"><p>English cert</p></td>
-                        <td style="border: 1px solid gray;"><p>YES/NO</p></td>
-                        <td style="border: 1px solid gray;"><p>1st</p></td>
-                        <td style="border: 1px solid gray;"><p>2nd</p></td>
-                        <td style="border: 1px solid gray;"><p>3d</p></td>
-                        <td style="border: 1px solid gray;"><p>file</p></td>
-                        <td style="border: 1px solid gray;"><p>file</p></td>
-                        <td style="border: 1px solid gray;"><p>file</p></td>
-                    </tr>
-                </table>
+                <form action="submit_approved.php" method="GET">
+                    <table>
+                        <tr>
+                            <th rowspan="2"></th>
+                            <th rowspan="2">Όνομα</th>
+                            <th rowspan="2">Επίθετο</th>
+                            <th rowspan="2">ΑΜ</th>
+                            <th rowspan="2">
+                                % περασμένων
+                                <input type="text" id="min_success" name="min_success" style="font-size:small;" placeholder="Ελάχιστο ποσοστό επιτυχίας...">
+                            </th>
+                            <th rowspan="2">
+                                Μ.Ο.
+                                <input type="button" id="dec" name="dec" value="Φθίνουσα σειρά">
+                            </th>
+                            <th rowspan="2">Πιστοποιητικό αγγλικής γλώσσας</th>
+                            <th rowspan="2">επιπλέων ξένες γλώσσες</th>
+                            <th rowspan="1" colspan="3" style="border-bottom: 1px solid gray;">
+                                Πανεπιστήμιο
+                                <select name="specific_uni" id="specific_uni" style="font-size: small;">
+                                <?php
+                                    $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                                    if (!$con) {
+                                        echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
+                                    } else {
+                                        $result = mysqli_query($con, "SELECT uni_name FROM Universities");
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $uni_name = $row['uni_name'];
+                                            echo "<option value=\"$uni_name\">$uni_name</option>";
+                                        }
+                                        mysqli_close($con);
+                                    }   
+                                ?>
+                            </select>
+                            </th>
+                            <th rowspan="2">Αναλυτική βαθμολογία</th>
+                            <th rowspan="2">Πτυχίο αγγλικώνς</th>
+                            <th rowspan="2">Πτυχία άλλων ξένων γλωσσών</th>
+                        </tr>
+                        <tr>
+                            <th>1η επιλογή</th>
+                            <th>2η επιλογή</th>
+                            <th>3η επιλογή</th>
+                        </tr>
+
+                        <?php 
+                            $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                            if (!$con) {
+                                echo "Problem in the connection";
+                            }
+                            else{
+                                $result = mysqli_query($con, "SELECT * FROM usr_applications");
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>";
+                                    echo "<td> <input type=\"checkbox\"> </td>";
+                                    echo "<td>".$row["fname"]."</td>";   
+                                    echo "<td>".$row["lname"]."</td>";
+                                    echo "<td>".$row["a_m"]."</td>";         
+                                    echo "<td>".$row["pass_perc"]."</td>";
+                                    echo "<td>".$row["avrg"]."</td>";
+                                    echo "<td>".$row["eng_lan_certif"]."</td>";
+                                    echo "<td>".$row["xtr_lang_cert"]."</td>";
+                                    echo "<td>".$row["f_choice"]."</td>";
+                                    echo "<td>".$row["s_choice"]."</td>";
+                                    echo "<td>".$row["t_choice"]."</td>";
+                                    echo "<td> <a href="."must build file functionality".">Αρχική</a> /td>";
+                                    echo "<td> <a href="."must build file functionality".">Αρχική</a> /td>";
+                                    echo "<td> <a href="."must build file functionality".">Αρχική</a> /td>";
+                                    echo "</tr>";
+                                }
+                            }
+                            mysqli_close($con);
+                        ?>
+
+                    </table>
+                    <input type="button" value="Κατάργηση επιλογής">
+                    <input type="submit" value="Έγκριση επιλεγμένων">
+                </form>
 
                 <h1>Δεκτές Αιτήσεις</h1>
                 <!-- Κουμπί "εμφάνιση δεκτών αιτήσεων", να τις τυπώνει όπως πάνω αλλά χωρίς δυνατότητα επεξεργασίας
