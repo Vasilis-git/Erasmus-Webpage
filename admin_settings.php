@@ -16,7 +16,7 @@
             width:100%;
             border: 1px solid gray;
             border-collapse: collapse;
-
+            float: left;
             align-items: center;
             justify-content: center;
         }
@@ -41,10 +41,9 @@
             border: 1px solid gray;
             vertical-align: middle;
         }
-        td{
-            border: 1px solid gray;
-            padding: 5px;
-            text-align: center;
+        td img{
+            max-width: 100%
+            height: auto;
         }
         input[type="checkbox"] {
             margin: 0 auto;
@@ -222,23 +221,39 @@
                                 echo "Problem in the connection";
                             }
                             else{
-                                $result = mysqli_query($con, "SELECT * FROM usr_applications");
+                                $result = mysqli_query($con, "SELECT * FROM usr_aplications");
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo "<tr>";
-                                    echo "<td> <input type=\"checkbox\"> </td>";
-                                    echo "<td>".$row["fname"]."</td>";   
-                                    echo "<td>".$row["lname"]."</td>";
-                                    echo "<td>".$row["a_m"]."</td>";         
-                                    echo "<td>".$row["pass_perc"]."</td>";
-                                    echo "<td>".$row["avrg"]."</td>";
-                                    echo "<td>".$row["eng_lan_certif"]."</td>";
-                                    echo "<td>".$row["xtr_lang_cert"]."</td>";
-                                    echo "<td>".$row["f_choice"]."</td>";
-                                    echo "<td>".$row["s_choice"]."</td>";
-                                    echo "<td>".$row["t_choice"]."</td>";
-                                    echo "<td> <a href="."must build file functionality".">Αρχική</a> /td>";
-                                    echo "<td> <a href="."must build file functionality".">Αρχική</a> /td>";
-                                    echo "<td> <a href="."must build file functionality".">Αρχική</a> /td>";
+                                        echo "<td> <input type=\"checkbox\"> </td>";
+                                        echo "<td>".$row["fname"]."</td>";   
+                                        echo "<td>".$row["lname"]."</td>";
+                                        echo "<td>".$row["a_m"]."</td>";         
+                                        echo "<td>".$row["pass_perc"]."</td>";
+                                        echo "<td>".$row["avrg"]."</td>";
+                                        echo "<td>".$row["eng_lan_certif"]."</td>";
+                                        if($row["xtr_lang_cert"] == null){
+                                            echo "<td> NO </td>";
+                                        }else{
+                                            echo "<td> YES </td>";
+                                        }
+                                        echo "<td>".$row["f_choice"]."</td>";
+                                        if($row["s_choice"] == null){
+                                            echo "<td> NONE </td>";
+                                        }else{
+                                            echo "<td>".$row["s_choice"]."</td>";
+                                        }
+                                        if($row["t_choice"] == null){
+                                            echo "<td> NONE </td>";
+                                        }else{
+                                            echo "<td>".$row["t_choice"]."</td>";
+                                        }
+                                        echo '<td> <a href="uploads/'.$row["marks"].'" target="_blank"> View </a> </td>';
+                                        echo '<td> <a href="uploads/'.$row["eng_lan_certif_file"].'" target="_blank"> View </a> </td>';
+                                        if($row["xtr_lang_cert_file"] == null){
+                                            echo "<td> NONE </td>";
+                                        }else{
+                                            echo '<td> <a href="uploads/'.$row["xtr_lang_cert_file"].'" target="_blank"> View </a> </td>';
+                                        }
                                     echo "</tr>";
                                 }
                             }
