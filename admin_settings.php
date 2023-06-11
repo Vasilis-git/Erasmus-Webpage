@@ -48,6 +48,10 @@
         th input[type="button"], td a{
             all: revert;
         }
+        td a:hover{
+            all:revert;
+            color:aliceblue;
+        }
         input[type="checkbox"] {
             width: 20px;
             height: 20px;
