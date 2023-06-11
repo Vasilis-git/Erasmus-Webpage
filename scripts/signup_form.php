@@ -22,7 +22,7 @@
         $email = $_POST['mail'];
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+        $con = mysqli_connect("localhost", "root", "", "erasmus_db.sql");
         $user_type = "registered";
         if (!$con) {
             echo "connection problem ".mysqli_error($con);

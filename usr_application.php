@@ -98,13 +98,13 @@
                     <input type="radio" name="english-lang-cert" id="C2" value="C2">C2 <br>
                     <br>Γνώση επιπλέον ξένων γλωσσών:<br>
                     <input type="radio" name="extra-lang-cert" id="yes" value="yes">ΝΑΙ
-                    <input type="radio" name="extra-lang-cert" id="no" value="no" checked>ΟΧΙ
+                    <input type="radio" name="extra-lang-cert" id="no" value="no" checked>ΟΧΙ<br>
                     <br>
                     <div style="margin-bottom: 0.1vw;">
                         <br> Πανεπιστήμιο - 1η επιλογή:&nbsp;
                         <select name="first-choice">
                             <?php
-                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db.sql");
                                 if (!$con) {
                                     echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
                                 } else {
@@ -123,7 +123,7 @@
                         <select name="second-choice" style="margin-bottom: 0.2vw;">
                             <option value="">-</option>
                             <?php
-                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db.sql");
                                 if (!$con) {
                                     echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
                                 } else {
@@ -142,7 +142,7 @@
                         <select name="third-choice">
                             <option value="">-</option>
                             <?php
-                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db.sql");
                                 if (!$con) {
                                     echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
                                 } else {
