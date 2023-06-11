@@ -1,5 +1,6 @@
 <?php
     //use $_FILE for the files, store at website/uploads
+<<<<<<< HEAD
     $f = $_POST['fname'];
     $l = $_POST['lname'];
     $am = $_POST['AM'];
@@ -28,4 +29,7 @@
 
     header("location.index.php");
     die;
+=======
+    //στη βάση αποθηκεύεται το όνομα του αρχείου στο server μαζί με τη κατάληξη
+>>>>>>> 421a1069ddefe28498ce2f551058c896d6647422
 ?>

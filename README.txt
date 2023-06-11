@@ -8,3 +8,4 @@ access the website with: http://localhost/webpage/index.php
 
 Τα κουμπιά στις φόρμες θέλουν φτιάξιμο
 
+innodb_lock_wait_timeout=600 στο my.ini
