@@ -3,18 +3,18 @@
     $f = $_POST['fname'];
     $l = $_POST['lname'];
     $am = $_POST['AM'];
-    $p_n = $_POST['phone-number'];
-    $em = $_POST['mail'];
+    //$p_n = $_POST['phone-number'];
+    //$em = $_POST['mail'];
     $p_p = $_POST['passed_perc'];
     $m_o = $_POST['average'];
     $e_c = $_POST['english-lang-cert'];
     $xtr_c = $_POST['other-lang-cert'];
-   /*$f_choice = $_POST[''];
-    $s_choice = $_POST[''];
-    $t_choice = $_POST[''];*/
-    $m_o_file = $_FILE['marks'];
-    $e_c_file = $_FILE['english-lang-cert-paper'];
-    $xtr_c_file = $_FILE['other-lang-cert'];
+    $f_choice = $_POST['first-choice'];
+    $s_choice = $_POST['second-choice'];
+    $t_choice = $_POST['third-choice'];
+    $m_o_file = $_FILES['marks'];
+    $e_c_file = $_FILES['english-lang-cert-paper'];
+    $xtr_c_file = $_FILES['other-lang-cert'];
 
 
     $con=mysqli_connect("localhost","root","","erasmus_db.sql");
