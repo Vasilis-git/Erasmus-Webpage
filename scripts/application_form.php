@@ -1,6 +1,5 @@
 <?php
     //use $_FILE for the files, store at website/uploads
-<<<<<<< HEAD
     $f = $_POST['fname'];
     $l = $_POST['lname'];
     $am = $_POST['AM'];
@@ -23,13 +22,10 @@
         echo("Problem Connecting".mysqli_error($con));
     }
     mysqli_select_db($con,"");
-    mysqli_select_db($con,"erasmus_db");//see with or without the Dot sql
+    mysqli_select_db($con,"erasmus_db");
     mysqli_query($con,"INSERT INTO  usr_aplications(fname , lname , a_mb , pass_perc , avrg , eng_lan_certif , xtr_lang_cert , f_choice , s_choice , t_choice , marks , eng_lan_certif_file , xtr_lang_cert_file) 
     VALUES(\"$f\" , \"$l\" , \"$am\" , \"$p_p\" , \"$m_o\" , \"$e_c\" , \"$xtr_c\" ,\"$f_choice\", \"$s_choice\" , \"$t_choice\", \"$m_o_file\" , \"$e_c_file\" , \"$xtr_c_file\")");// \"$\" ,
 
     header("location.index.php");
     die;
-=======
-    //στη βάση αποθηκεύεται το όνομα του αρχείου στο server μαζί με τη κατάληξη
->>>>>>> 421a1069ddefe28498ce2f551058c896d6647422
 ?>
