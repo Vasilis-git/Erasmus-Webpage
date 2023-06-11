@@ -41,10 +41,6 @@
             border: 1px solid gray;
             vertical-align: middle;
         }
-        td img{
-            max-width: 100%
-            height: auto;
-        }
         input[type="checkbox"] {
             margin: 0 auto;
             display: block;
