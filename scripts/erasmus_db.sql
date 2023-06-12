@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2023 at 04:41 PM
+-- Generation Time: Jun 12, 2023 at 09:57 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -118,6 +118,7 @@ INSERT INTO `user_types` (`user_type_id`, `user_type`) VALUES
 --
 
 CREATE TABLE `usr_aplications` (
+  `application_id` bigint(20) UNSIGNED NOT NULL,
   `fname` varchar(20) NOT NULL,
   `lname` varchar(20) NOT NULL,
   `a_m` varchar(13) NOT NULL,
@@ -128,10 +129,17 @@ CREATE TABLE `usr_aplications` (
   `f_choice` varchar(40) NOT NULL,
   `s_choice` varchar(40) DEFAULT NULL,
   `t_choice` varchar(40) DEFAULT NULL,
-  `marks` blob NOT NULL,
-  `eng_lan_certif_file` blob NOT NULL,
-  `xtr_lang_cert_file` blob DEFAULT NULL
+  `marks` varchar(40) NOT NULL,
+  `eng_lan_certif_file` varchar(40) NOT NULL,
+  `xtr_lang_cert_file` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `usr_aplications`
+--
+
+INSERT INTO `usr_aplications` (`application_id`, `fname`, `lname`, `a_m`, `pass_perc`, `avrg`, `eng_lan_certif`, `xtr_lang_cert`, `f_choice`, `s_choice`, `t_choice`, `marks`, `eng_lan_certif_file`, `xtr_lang_cert_file`) VALUES
+(4, 'Vasilis', 'Koulouris', '2022202000101', 70, 8.3, 'C1', NULL, 'M.I.T.', NULL, NULL, 'Internet_11.pdf', 'download_button.png', NULL);
 
 --
 -- Indexes for dumped tables
@@ -156,6 +164,12 @@ ALTER TABLE `user_types`
   ADD UNIQUE KEY `user_type_id` (`user_type_id`);
 
 --
+-- Indexes for table `usr_aplications`
+--
+ALTER TABLE `usr_aplications`
+  ADD UNIQUE KEY `application_id` (`application_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -176,6 +190,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_types`
   MODIFY `user_type_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `usr_aplications`
+--
+ALTER TABLE `usr_aplications`
+  MODIFY `application_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

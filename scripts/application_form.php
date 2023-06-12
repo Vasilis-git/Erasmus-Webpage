@@ -17,15 +17,12 @@
     $xtr_c_file = $_FILES['other-lang-cert'];
 
 
-    $con=mysqli_connect("localhost","root","","erasmus_db.sql");
+    $con=mysqli_connect("localhost","root","","erasmus_db");
     if(!$con){
         echo("Problem Connecting".mysqli_error($con));
     }
-    mysqli_select_db($con,"");
-    mysqli_select_db($con,"erasmus_db");
     mysqli_query($con,"INSERT INTO  usr_aplications(fname , lname , a_mb , pass_perc , avrg , eng_lan_certif , xtr_lang_cert , f_choice , s_choice , t_choice , marks , eng_lan_certif_file , xtr_lang_cert_file) 
     VALUES(\"$f\" , \"$l\" , \"$am\" , \"$p_p\" , \"$m_o\" , \"$e_c\" , \"$xtr_c\" ,\"$f_choice\", \"$s_choice\" , \"$t_choice\", \"$m_o_file\" , \"$e_c_file\" , \"$xtr_c_file\")");// \"$\" ,
 
-    header("location.index.php");
-    die;
+    echo 'Η αίτηση σου στάλθηκε επιτυχώς! <a href="../index.php"> Αρχική </a>';
 ?>

@@ -18,7 +18,7 @@
         $username = $_POST["username"];
         $pass = $_POST["password"];
 
-        $con = mysqli_connect("localhost", "root", "", "erasmus_db.sql");
+        $con = mysqli_connect("localhost", "root", "", "erasmus_db");
         $user_type = "registered";
         if (!$con) {
             echo "connection problem ".mysqli_error($con);
