@@ -152,9 +152,9 @@
                 <form id="dateForm" method="GET" action="scripts/application_date_set.php" style="border:none; padding-top:0vw;">
                     <p>
                         Από:
-                        <input type="date" id="start_date" name="start_date" min="2023-06-06">
+                        <input type="date" min="2023-06-06" id="start_date" name="start_date" onchange="setEndDate();">
                         Έως:
-                        <input type="date" id="end_date" name="end_date" min="2023-06-13" max="2023-08-13"><br>
+                        <input type="date" min="2023-06-13" max="2023-08-13" id="end_date" name="end_date" ><br>
                     </p>
                     <input type ="submit" name="date_submit" value="Αποθήκευση">
                     <input type ="button" name="clear_date" value="Καθαρισμός" onclick="clearDates();">
@@ -290,88 +290,82 @@
 
         </div>
         <script>
-            //set today's date as min
-            var d = new Date();
-            var dd = d.getDay();
-            var mm = d.getMonth() + 1;
-            var yyyy = d.getFullYear();
+            function setEndDate(){
+                //set end date min to one week later
+                var end_date = document.getElementById('end_date');
+                var today_date = new Date(document.getElementById('start_date').value);
+                var date = today_date.getDate();
+                var month = today_date.getMonth() + 1;
+                var year = today_date.getFullYear();
 
-            addZeros();        
-            d = yyyy + '-' + mm + '-' + dd;
-            var today_date = document.getElementById('start_date');
-            today_date.setAttribute('min', d);
-            //set end date min to one week later
-            var end_date = document.getElementById('end_date');
-            toInt();
-            dd += 7;
-            if(dd > 28){
-                if(mm == 2){
-                    if(yyyy % 400 == 0 || (yyyy % 4 == 0 && yyyy % 100 != 0)){//leap
-                        if(dd > 29){
-                            mm += 1;
-                            dd = dd - 29;
+                date += 7;
+                if(date > 28){
+                    if(month == 2){
+                        if(year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)){//leap
+                            if(date > 29){
+                                month += 1;
+                                date = date - 29;
+                            }
+                        }
+                        else{
+                            month += 1;
+                            date = date - 28;
+                        }
+                    }
+                    else if((month % 2 == 1 && month < 8) || (month % 2 == 0 && month >= 8)){//months with 31 days
+                        if(date > 31){
+                            month += 1;
+                            date = date - 31;
+                            if(month == 13){
+                                month = 1;
+                                year += 1;
+                            }
                         }
                     }
                     else{
-                        mm += 1;
-                        dd = dd - 28;
-                    }
-                }
-                else if((mm % 2 == 1 && mm < 8) || (mm % 2 == 0 && mm >= 8)){//months with 31 days
-                    if(dd > 31){
-                        mm += 1;
-                        dd = dd - 31;
-                        if(mm == 13){
-                            mm = 1;
-                            yyyy += 1;
+                        if(date > 30){
+                            month += 1;
+                            date = date - 30;
                         }
                     }
                 }
-                else{
-                    if(dd > 30){
-                        mm += 1;
-                        dd = dd - 30;
-                    }
+                var end_d = new Date(year + '-' + month + '-' + date);
+                res = addZeros(end_d);
+                d = year + '-' + res.month + '-' + res.date;
+                end_date.setAttribute('min', d);
+                //set max date 2 months later
+                var min_date = today_date.getAttribute('min').Date();
+
+                month += 2;
+                if(month > 12){
+                    month -= 12;
+                    year +=1;
                 }
+                res = addZeros(d);
+                d = year + '-' + res.month + '-' + res.date;
+                end_date.setAttribute('max', d);
             }
-            toStr();
-            addZeros();
-            d = yyyy + '-' + mm + '-' + dd;
-            end_date.setAttribute('min', d);
-            //set max date 2 months later
-            var min_date = today_date.getAttribute('min').Date();
-            dd = min_date.getDay();
-            mm = min_date.getMonth();
-            yyyy = min_date.getFullYear();
+            //set today's date as min
+            var d = new Date();
 
-            toInt();
-            mm += 2;
-            if(mm > 12){
-                mm -= 12;
-                yyyy +=1;
-            }
-            toStr();
-            addZeros();
-            d = yyyy + '-' + mm + '-' + dd;
-            end_date.setAttribute('max', d);
+            res = addZeros(d);        
+            d = d.getFullYear() + '-' + res.month + '-' + date;
+            var today_date = document.getElementById('start_date');
+            today_date.setAttribute('min', d);
+           
 
-            function addZeros(){
+            function addZeros(d){
+                var dd = d.getDate();
+                var mm = d.getMonth() + 1;
+                var yyyy = d.getFullYear();
+
                 if(dd < 10){
                     dd = '0'+dd;
                 }
                 if(mm < 10){
                     mm = '0'+mm;
                 }
-            }
-            function toInt(){
-                dd = parseInt(dd, 10);
-                yyyy = parseInt(yyyy);
-                mm = parseInt(mm, 10);
-            }
-            function toStr(){
-                yyyy = yyyy.toString();
-                mm = mm.toString();
-                dd = dd.toString();
+                return {date: dd, month: mm};
             }
             function clearDates(){
                 document.getElementById('start_date').value = "";
