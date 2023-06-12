@@ -149,13 +149,33 @@
 
             <div class = "application_date content">
                 <h1>Περίοδος αιτήσεων:</h1>
-                <form id="dateForm" method="GET" action="scripts/application_date_set.php" style="border:none; padding-top:0vw;">
-                    <p>
-                        Από:
-                        <input type="date" min="2023-06-06" id="start_date" name="start_date" onchange="setEndDate();">
-                        Έως:
-                        <input type="date" min="2023-06-13" max="2023-08-13" id="end_date" name="end_date" ><br>
-                    </p>
+                <form id="dateForm" method="GET" action="scripts/application_date_set.php" style="border:none; padding-top:0vw;">   
+                    <?php
+                        $con = mysqli_connect("localhost", "root", "", "erasmus_db") or die("connection problem");
+
+                        $sqli_res = mysqli_query($con, "SELECT start_d, end_d FROM applications_date");
+                        $res = mysqli_fetch_assoc($sqli_res);
+
+                        if($res["start_d"] != null && $res["end_d"] != null){
+                            echo '<p>
+                                    Από:
+                                    <input type="date" min="2023-06-06" id="start_date" name="start_date" onchange="setEndDate();" value="'.$res["start_d"].'">
+                                    Έως:
+                                    <input type="date" min="2023-06-13" max="2023-08-13" id="end_date" name="end_date" value="'.$res["end_d"].'"><br>
+                                </p>
+                            ';
+
+                        }else{
+                            echo '<p>
+                                    Από:
+                                    <input type="date" min="2023-06-06" id="start_date" name="start_date" onchange="setEndDate();">
+                                    Έως:
+                                    <input type="date" min="2023-06-13" max="2023-08-13" id="end_date" name="end_date" ><br>
+                                </p>
+                            ';
+                        }
+                    ?>
+                    
                     <input type ="submit" name="date_submit" value="Αποθήκευση">
                     <input type ="button" name="clear_date" value="Καθαρισμός" onclick="clearDates();">
                 </form>
