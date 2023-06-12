@@ -104,7 +104,7 @@
                         <br> Πανεπιστήμιο - 1η επιλογή:&nbsp;
                         <select name="first-choice">
                             <?php
-                                $con = mysqli_connect("localhost", "root", "", "erasmus_db.sql");
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
                                 if (!$con) {
                                     echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
                                 } else {
@@ -123,7 +123,7 @@
                         <select name="second-choice" style="margin-bottom: 0.2vw;">
                             <option value="">-</option>
                             <?php
-                                $con = mysqli_connect("localhost", "root", "", "erasmus_db.sql");
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
                                 if (!$con) {
                                     echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
                                 } else {
@@ -142,7 +142,7 @@
                         <select name="third-choice">
                             <option value="">-</option>
                             <?php
-                                $con = mysqli_connect("localhost", "root", "", "erasmus_db.sql");
+                                $con = mysqli_connect("localhost", "root", "", "erasmus_db");
                                 if (!$con) {
                                     echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
                                 } else {
@@ -156,9 +156,15 @@
                             ?>
                         </select>
                     </div>
-                    <p>Αναλυτική βαθμολογία:</p><input type="file" name="marks" id="marks"> <br>
-                    <p>Πτυχίο αγγλικής γλώσσας:</p> <input type="file" name="english-lang-cert-paper" id="elcp"> <br>
-                    <p>Πτυχία άλλων ξένων γλωσσών:</p> <input type="file" name="other-lang-cert" id="olcp" multiple style="margin-top: 0vw";> <br>
+                    <p>
+                        Αναλυτική βαθμολογία: <input type="file" name="marks" id="marks">
+                    </p>
+                    <p>
+                        Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert-paper" id="elcp">
+                    </p>
+                    <p>
+                        Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" id="olcp" multiple style="margin-top: 0vw";>
+                     </p>
                     <p> Αποδοχή των όρων:
                     <input type="checkbox" name="accept-terms" id="terms"></p>
                     <p id="error_msg" style="color: red;font-size: small;" hidden></p>
