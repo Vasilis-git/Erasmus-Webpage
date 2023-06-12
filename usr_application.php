@@ -157,11 +157,8 @@
                         </select>
                     </div>
                     <p>Αναλυτική βαθμολογία:</p><input type="file" name="marks" id="marks"> <br>
-                    <input type="button" value="Υποβολή αρχείου" style="margin-top: 0.5vw;">
                     <p>Πτυχίο αγγλικής γλώσσας:</p> <input type="file" name="english-lang-cert-paper" id="elcp"> <br>
-                    <input type="button" value="Υποβολή αρχείου" style="margin-top: 0.5vw">
                     <p>Πτυχία άλλων ξένων γλωσσών:</p> <input type="file" name="other-lang-cert" id="olcp" multiple style="margin-top: 0vw";> <br>
-                    <input type="button" value="Υποβολή αρχείων" style="margin-top: 0.5vw"> <br>
                     <p> Αποδοχή των όρων:
                     <input type="checkbox" name="accept-terms" id="terms"></p>
                     <p id="error_msg" style="color: red;font-size: small;" hidden></p>
