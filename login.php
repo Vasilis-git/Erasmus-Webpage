@@ -97,7 +97,7 @@
                     <div class="form-buttons" style="text-align: center;">
                         <input type="submit" name="submit" value="Υποβολή">
                         <input type="button" name="clear-form" value="Καθαρισμός φόρμας" onclick="clearForm();">
-                        <a href="sign-up.php" style="text-decoration: none;font-size: small;">Νέος χρήστης;</a>
+                        <a href="sign-up.php" style="text-decoration: none;">Νέος χρήστης;</a>
                     </div>
                 </form>
 

@@ -150,10 +150,12 @@
             <div class = "application_date content">
                 <h1>Περίοδος αιτήσεων:</h1>
                 <form id="dateForm" method="GET" action="scripts/application_date_set.php" style="border:none; padding-top:0vw;">
-                    <p>Από:
-                    <input type="date" id="start_date" name="start_date" min="2023-06-06">
-                    Έως:
-                    <input type="date" id="end_date" name="end_date" min="2023-06-13" max="2023-08-13"><br></p>
+                    <p>
+                        Από:
+                        <input type="date" id="start_date" name="start_date" min="2023-06-06">
+                        Έως:
+                        <input type="date" id="end_date" name="end_date" min="2023-06-13" max="2023-08-13"><br>
+                    </p>
                     <input type ="submit" name="date_submit" value="Αποθήκευση">
                     <input type ="button" name="clear_date" value="Καθαρισμός" onclick="clearDates();">
                 </form>

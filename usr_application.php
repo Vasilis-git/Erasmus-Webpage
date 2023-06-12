@@ -157,7 +157,7 @@
                         </select>
                     </div>
                     <p>
-                        Αναλυτική βαθμολογία: <input type="file" name="marks" id="marks">
+                        Αναλυτική βαθμολογία: <br> <input type="file" name="marks" id="marks">
                     </p>
                     <p>
                         Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert-paper" id="elcp">

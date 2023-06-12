@@ -75,27 +75,41 @@
 
             <div class="menu">
                 <a href="index.php">Αρχική</a>
-                <?php
-                    if(!isset($_SESSION['username'])){
-                        echo "<a href=\"login.php\">Σύνδεση χρήστη</a>";
-                    }
-                ?>
                 <a href="more.php">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
             </div>
 
             <?php
-                if(isset($_SESSION['username']) && $_SESSION['user_type'] == 'registered'){
+                $con = mysqli_connect("localhost", "root", "", "erasmus_db") or die("problem in the connection");
+                /*
+                    έλεχγος αν είναι περίοδος αιτήσεων
+                */
+                $st = mysqli_prepare($con, "SELECT start_d,end_d FROM applications_date");
+                mysqli_stmt_execute($st);
+                mysqli_stmt_bind_result($st, $res["start_d"], $res["end_d"]);
+                mysqli_stmt_fetch($st);
+                mysqli_stmt_close($st);
+                mysqli_close($con);
+
+                $currentDate = date('Y-m-d');
+                $start_d = new DateTime($res["start_d"]);
+                $end_d = new DateTime($res["end_d"]);
+                $currentDate = new DateTime($currentDate);
+                $can_proceed = ($currentDate >= $start_d && $currentDate <= $end_d);
+
+                if(isset($_SESSION['username']) && $_SESSION['user_type'] == 'registered' && $can_proceed){
                     header("location: usr_application.php");
+                }
+                elseif(!isset($_SESSION['username'])){
+                    echo "<p>Πρέπει να εγγραφείς για να έχεις πρόσβαση σε αυτό το περιεχόμενο.</p>";
                 }
                 elseif(isset($_SESSION['username']) && $_SESSION['user_type'] == 'admin'){
                     header("location: admin_settings.php");
                 }
-                elseif(/*δεν είναι περίοδος δηλώσεων*/true){
+                elseif(!$can_proceed){
                     echo "<p>Δεν είναι περίοδος δηλώσεων.</p>";
                 }
             ?>
-            <p>Πρέπει να εγγραφείς για να έχεις πρόσβαση σε αυτό το περιεχόμενο.</p>
        </div>
     </body>
 </html>
