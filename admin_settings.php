@@ -192,7 +192,7 @@
                     η 1η στήλη του πίνακα: ένα checkbox σε κάθε γραμμή, για επιλογή αιτήσεων.
                     κάτω κάτω κουμπί "δεκτές", για να θέτει τις επιλεγμένες αιτήσεις δεκτές
                 -->
-                <form action="submit_approved.php" method="GET">
+                <form action="scripts/submit_approved.php" method="GET">
                     <table>
                         <tr>
                             <th rowspan="2"></th>
@@ -201,17 +201,18 @@
                             <th rowspan="2">ΑΜ</th>
                             <th rowspan="2">
                                 % περασμένων
-                                <input type="text" id="min_success" name="min_success" style="font-size:small;" placeholder="Ελάχιστο ποσοστό επιτυχίας...">
+                                <input type="text" id="min_success" style="font-size:small;" placeholder="Ελάχιστο ποσοστό επιτυχίας...">
                             </th>
                             <th rowspan="2">
                                 Μ.Ο.
-                                <input type="button" id="dec" name="dec" value="Φθίνουσα σειρά">
+                                <input type="button" id="dec" value="Φθίνουσα σειρά">
                             </th>
                             <th rowspan="2">Πιστοποιητικό αγγλικής γλώσσας</th>
                             <th rowspan="2">επιπλέων ξένες γλώσσες</th>
                             <th rowspan="1" colspan="3" style="border-bottom: 1px solid gray;">
                                 Πανεπιστήμιο
-                                <select name="specific_uni" id="specific_uni" style="font-size: small;">
+                                <select id="specific_uni" style="font-size: small;">
+                                <option value="all">Όλα τα συνεργαζόμενα</option>
                                 <?php
                                     $con = mysqli_connect("localhost", "root", "", "erasmus_db");
                                     if (!$con) {
@@ -245,8 +246,12 @@
                             else{
                                 $result = mysqli_query($con, "SELECT * FROM usr_aplications");
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    if($row["approved"] == true){
+                                        continue;
+                                    }
+                                    $user_id = mysqli_fetch_assoc(mysqli_query($con, "SELECT user_id FROM users WHERE a_m=".$row["a_m"]));
                                     echo "<tr>";
-                                        echo "<td> <input type=\"checkbox\"> </td>";
+                                        echo "<td> <input type=\"checkbox\" name=\"".$user_id["user_id"]."\"> </td>";
                                         echo "<td>".$row["fname"]."</td>";   
                                         echo "<td>".$row["lname"]."</td>";
                                         echo "<td>".$row["a_m"]."</td>";         
@@ -291,7 +296,101 @@
                 <!-- Κουμπί "εμφάνιση δεκτών αιτήσεων", να τις τυπώνει όπως πάνω αλλά χωρίς δυνατότητα επεξεργασίας
                     κάτω κάτω κουμπί 'ανακοίνωση των αποτελεσμάτων', θα μεταφέρει τις δεκτές στο more.php
                 -->
-                
+                <form action="announce_results.php" method="GET">
+                    <table>
+                        <tr>
+                            <th rowspan="2">Όνομα</th>
+                            <th rowspan="2">Επίθετο</th>
+                            <th rowspan="2">ΑΜ</th>
+                            <th rowspan="2">
+                                % περασμένων
+                                <input type="text" id="min_success" style="font-size:small;" placeholder="Ελάχιστο ποσοστό επιτυχίας...">
+                            </th>
+                            <th rowspan="2">
+                                Μ.Ο.
+                                <input type="button" id="dec" name="dec" value="Φθίνουσα σειρά">
+                            </th>
+                            <th rowspan="2">Πιστοποιητικό αγγλικής γλώσσας</th>
+                            <th rowspan="2">επιπλέων ξένες γλώσσες</th>
+                            <th rowspan="1" colspan="3" style="border-bottom: 1px solid gray;">
+                                Πανεπιστήμιο
+                                <select name="specific_uni" id="specific_uni" style="font-size: small;">
+                                <option value="all">Όλα τα συνεργαζόμενα</option>
+                                <?php
+                                    $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                                    if (!$con) {
+                                        echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
+                                    } else {
+                                        $result = mysqli_query($con, "SELECT uni_name FROM Universities");
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $uni_name = $row['uni_name'];
+                                            echo "<option value=\"$uni_name\">$uni_name</option>";
+                                        }
+                                        mysqli_close($con);
+                                    }   
+                                ?>
+                            </select>
+                            </th>
+                            <th rowspan="2">Αναλυτική βαθμολογία</th>
+                            <th rowspan="2">Πτυχίο αγγλικώνς</th>
+                            <th rowspan="2">Πτυχία άλλων ξένων γλωσσών</th>
+                        </tr>
+                        <tr>
+                            <th>1η επιλογή</th>
+                            <th>2η επιλογή</th>
+                            <th>3η επιλογή</th>
+                        </tr>
+
+                        <?php 
+                            $con = mysqli_connect("localhost", "root", "", "erasmus_db");
+                            if (!$con) {
+                                echo "Problem in the connection";
+                            }
+                            else{
+                                $result = mysqli_query($con, "SELECT * FROM usr_aplications");
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    if($row["approved"] != true){
+                                        continue;
+                                    }
+                                    echo "<tr>";
+                                        echo "<td>".$row["fname"]."</td>";   
+                                        echo "<td>".$row["lname"]."</td>";
+                                        echo "<td>".$row["a_m"]."</td>";         
+                                        echo "<td>".$row["pass_perc"]."</td>";
+                                        echo "<td>".$row["avrg"]."</td>";
+                                        echo "<td>".$row["eng_lan_certif"]."</td>";
+                                        if($row["xtr_lang_cert"] == null){
+                                            echo "<td> NO </td>";
+                                        }else{
+                                            echo "<td> YES </td>";
+                                        }
+                                        echo "<td>".$row["f_choice"]."</td>";
+                                        if($row["s_choice"] == null){
+                                            echo "<td> NONE </td>";
+                                        }else{
+                                            echo "<td>".$row["s_choice"]."</td>";
+                                        }
+                                        if($row["t_choice"] == null){
+                                            echo "<td> NONE </td>";
+                                        }else{
+                                            echo "<td>".$row["t_choice"]."</td>";
+                                        }
+                                        echo '<td> <a href="uploads/'.$row["marks"].'" target="_blank"> View </a> </td>';
+                                        echo '<td> <a href="uploads/'.$row["eng_lan_certif_file"].'" target="_blank"> View </a> </td>';
+                                        if($row["xtr_lang_cert_file"] == null){
+                                            echo "<td> NONE </td>";
+                                        }else{
+                                            echo '<td> <a href="uploads/'.$row["xtr_lang_cert_file"].'" target="_blank"> View </a> </td>';
+                                        }
+                                    echo "</tr>";
+                                }
+                            }
+                            mysqli_close($con);
+                        ?>
+
+                    </table>
+                    <input type="submit" value="Ανακοίνωση αποτλεσμάτων">
+                </form>
             </div>
 
             <div class = "uni content">
