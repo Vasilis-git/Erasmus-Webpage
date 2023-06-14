@@ -352,7 +352,7 @@
                                     if($row["approved"] != true){
                                         continue;
                                     }
-                                    echo "<tr>";
+                                    echo "<tr>";//add name here, with value the user id, then egt all ids with a foreach loop like in submit_approved, and print the users in more.php
                                         echo "<td>".$row["fname"]."</td>";   
                                         echo "<td>".$row["lname"]."</td>";
                                         echo "<td>".$row["a_m"]."</td>";         
