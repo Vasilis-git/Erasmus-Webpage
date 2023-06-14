@@ -288,7 +288,7 @@
                         ?>
 
                     </table>
-                    <input type="button" value="Κατάργηση επιλογής">
+                    <input type="button" value="Κατάργηση επιλογής" onclick="uncheckAll();">
                     <input type="submit" value="Έγκριση επιλεγμένων">
                 </form>
 
@@ -308,13 +308,13 @@
                             </th>
                             <th rowspan="2">
                                 Μ.Ο.
-                                <input type="button" id="dec" name="dec" value="Φθίνουσα σειρά">
+                                <input type="button" id="dec" value="Φθίνουσα σειρά">
                             </th>
                             <th rowspan="2">Πιστοποιητικό αγγλικής γλώσσας</th>
                             <th rowspan="2">επιπλέων ξένες γλώσσες</th>
                             <th rowspan="1" colspan="3" style="border-bottom: 1px solid gray;">
                                 Πανεπιστήμιο
-                                <select name="specific_uni" id="specific_uni" style="font-size: small;">
+                                <select id="specific_uni" style="font-size: small;">
                                 <option value="all">Όλα τα συνεργαζόμενα</option>
                                 <?php
                                     $con = mysqli_connect("localhost", "root", "", "erasmus_db");
@@ -409,6 +409,12 @@
 
         </div>
         <script>
+            function uncheckAll(){
+                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                for(var i = 0; i < checkboxes.length; i++){
+                    checkboxes[i].checked = false;
+                }
+            }
             function setEndDate(){
                 //set end date min to one week later
                 var end_date = document.getElementById('end_date');
