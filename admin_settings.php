@@ -201,14 +201,14 @@
                             <th rowspan="2">ΑΜ</th>
                             <th rowspan="2">
                                 % περασμένων
-                                <input type="text" id="min_success" style="font-size:small;" placeholder="Ελάχιστο ποσοστό επιτυχίας...">
+                                <input type="number" min="70" max="100" id="min_success" style="font-size:small;" onchange="filterByMin();">
                             </th>
                             <th rowspan="2">
                                 Μ.Ο.
                                 <input type="button" id="dec" value="Φθίνουσα σειρά" onclick="sortTable();">
                             </th>
                             <th rowspan="2">Πιστοποιητικό αγγλικής γλώσσας</th>
-                            <th rowspan="2">επιπλέων ξένες γλώσσες</th>
+                            <th rowspan="2">Eπιπλέων ξένες γλώσσες</th>
                             <th rowspan="1" colspan="3" style="border-bottom: 1px solid gray;">
                                 Πανεπιστήμιο
                                 <select id="specific_uni" style="font-size: small;">
@@ -229,7 +229,7 @@
                             </select>
                             </th>
                             <th rowspan="2">Αναλυτική βαθμολογία</th>
-                            <th rowspan="2">Πτυχίο αγγλικώνς</th>
+                            <th rowspan="2">Πτυχίο αγγλικών</th>
                             <th rowspan="2">Πτυχία άλλων ξένων γλωσσών</th>
                         </tr>
                         <tr>
@@ -255,8 +255,8 @@
                                         echo "<td>".$row["fname"]."</td>";   
                                         echo "<td>".$row["lname"]."</td>";
                                         echo "<td>".$row["a_m"]."</td>";         
-                                        echo "<td>".$row["pass_perc"]."</td>";
-                                        echo "<td id=\"".$user_id["user_id"]."\" avr=\"".$row["avrg"]."\">".$row["avrg"]."</td>";
+                                        echo "<td pass_perc=\"".$row["pass_perc"]."\">".$row["pass_perc"]."</td>";
+                                        echo "<td avr=\"".$row["avrg"]."\">".$row["avrg"]."</td>";
                                         echo "<td>".$row["eng_lan_certif"]."</td>";
                                         if($row["xtr_lang_cert"] == null){
                                             echo "<td> NO </td>";
@@ -302,37 +302,13 @@
                             <th rowspan="2">Όνομα</th>
                             <th rowspan="2">Επίθετο</th>
                             <th rowspan="2">ΑΜ</th>
-                            <th rowspan="2">
-                                % περασμένων
-                                <input type="text" id="min_success" style="font-size:small;" placeholder="Ελάχιστο ποσοστό επιτυχίας...">
-                            </th>
-                            <th rowspan="2">
-                                Μ.Ο.
-                                <input type="button" id="dec" value="Φθίνουσα σειρά">
-                            </th>
+                            <th rowspan="2">% περασμένων</th>
+                            <th rowspan="2">Μ.Ο.</th>
                             <th rowspan="2">Πιστοποιητικό αγγλικής γλώσσας</th>
-                            <th rowspan="2">επιπλέων ξένες γλώσσες</th>
-                            <th rowspan="1" colspan="3" style="border-bottom: 1px solid gray;">
-                                Πανεπιστήμιο
-                                <select id="specific_uni" style="font-size: small;">
-                                <option value="all">Όλα τα συνεργαζόμενα</option>
-                                <?php
-                                    $con = mysqli_connect("localhost", "root", "", "erasmus_db");
-                                    if (!$con) {
-                                        echo "<option value='problem in the connection " . mysqli_error($con) . "'>connection problem</option>";
-                                    } else {
-                                        $result = mysqli_query($con, "SELECT uni_name FROM Universities");
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            $uni_name = $row['uni_name'];
-                                            echo "<option value=\"$uni_name\">$uni_name</option>";
-                                        }
-                                        mysqli_close($con);
-                                    }   
-                                ?>
-                            </select>
-                            </th>
+                            <th rowspan="2">Επιπλέων ξένες γλώσσες</th>
+                            <th rowspan="1" colspan="3">Πανεπιστήμιο</th>
                             <th rowspan="2">Αναλυτική βαθμολογία</th>
-                            <th rowspan="2">Πτυχίο αγγλικώνς</th>
+                            <th rowspan="2">Πτυχίο αγγλικών</th>
                             <th rowspan="2">Πτυχία άλλων ξένων γλωσσών</th>
                         </tr>
                         <tr>
@@ -409,14 +385,30 @@
 
         </div>
         <script>
+            function filterByMin(){
+                var minSuccess = document.getElementById('min_success').value;
+                var table = document.getElementById("ApplicationsTable");
+                var rows = table.rows;
+                var x;
+
+                if(minSuccess == ''){//show every application
+                    for(i=2; i < rows.length; i++){
+                        rows[i].removeAttribute('hidden');
+                    }
+                }
+                else{
+                    for(i=2; i < rows.length; i++){
+                        x = rows[i].getElementsByTagName("TD")[4];
+                        if(x.getAttribute('pass_perc') < minSuccess){
+                            rows[i].setAttribute('hidden', '');
+                        }
+                    }
+                }
+            }
             function sortTable(){
                 var table, rows, switching, i, x, y, shouldSwitch;
-                const tdsWithId = document.querySelectorAll('td[id]');
 
                 table = document.getElementById("ApplicationsTable");
-                /*tdsWithId.forEach((element)=>{
-                    alert(element.getAttribute('avr'));
-                });*/
                 switching=true;
                 while(switching){
                     switching=false;
