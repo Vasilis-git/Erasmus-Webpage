@@ -193,7 +193,7 @@
                     κάτω κάτω κουμπί "δεκτές", για να θέτει τις επιλεγμένες αιτήσεις δεκτές
                 -->
                 <form action="scripts/submit_approved.php" method="GET">
-                    <table>
+                    <table id="ApplicationsTable">
                         <tr>
                             <th rowspan="2"></th>
                             <th rowspan="2">Όνομα</th>
@@ -205,7 +205,7 @@
                             </th>
                             <th rowspan="2">
                                 Μ.Ο.
-                                <input type="button" id="dec" value="Φθίνουσα σειρά">
+                                <input type="button" id="dec" value="Φθίνουσα σειρά" onclick="sortTable();">
                             </th>
                             <th rowspan="2">Πιστοποιητικό αγγλικής γλώσσας</th>
                             <th rowspan="2">επιπλέων ξένες γλώσσες</th>
@@ -251,12 +251,12 @@
                                     }
                                     $user_id = mysqli_fetch_assoc(mysqli_query($con, "SELECT user_id FROM users WHERE a_m=".$row["a_m"]));
                                     echo "<tr>";
-                                        echo "<td> <input type=\"checkbox\" name=\"".$user_id["user_id"]."\"> </td>";
+                                        echo "<td> <input type=\"checkbox\" name=\"".$user_id["user_id"]."\"> </td>";//will be sent only if it's checked by default
                                         echo "<td>".$row["fname"]."</td>";   
                                         echo "<td>".$row["lname"]."</td>";
                                         echo "<td>".$row["a_m"]."</td>";         
                                         echo "<td>".$row["pass_perc"]."</td>";
-                                        echo "<td>".$row["avrg"]."</td>";
+                                        echo "<td id=\"".$user_id["user_id"]."\" avr=\"".$row["avrg"]."\">".$row["avrg"]."</td>";
                                         echo "<td>".$row["eng_lan_certif"]."</td>";
                                         if($row["xtr_lang_cert"] == null){
                                             echo "<td> NO </td>";
@@ -409,6 +409,35 @@
 
         </div>
         <script>
+            function sortTable(){
+                var table, rows, switching, i, x, y, shouldSwitch;
+                const tdsWithId = document.querySelectorAll('td[id]');
+
+                table = document.getElementById("ApplicationsTable");
+                /*tdsWithId.forEach((element)=>{
+                    alert(element.getAttribute('avr'));
+                });*/
+                switching=true;
+                while(switching){
+                    switching=false;
+                    rows = table.rows;
+                    /* Loop through all table rows (except the 2
+                    first, which contains table headers):*/
+                    for (i = 2; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[5];
+                        y = rows[i+1].getElementsByTagName("TD")[5];
+                        if(x.getAttribute('avr') < y.getAttribute('avr')){
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if(shouldSwitch){
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
             function uncheckAll(){
                 var checkboxes = document.querySelectorAll('input[type="checkbox"]');
                 for(var i = 0; i < checkboxes.length; i++){

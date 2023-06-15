@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2023 at 01:42 PM
+-- Generation Time: Jun 15, 2023 at 09:52 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -37,7 +37,7 @@ CREATE TABLE `applications_date` (
 --
 
 INSERT INTO `applications_date` (`start_d`, `end_d`) VALUES
-('2023-06-15', '2023-06-30');
+('2023-06-12', '2023-06-30');
 
 -- --------------------------------------------------------
 
@@ -140,7 +140,7 @@ CREATE TABLE `usr_aplications` (
 --
 
 INSERT INTO `usr_aplications` (`application_id`, `fname`, `lname`, `a_m`, `pass_perc`, `avrg`, `eng_lan_certif`, `xtr_lang_cert`, `f_choice`, `s_choice`, `t_choice`, `marks`, `eng_lan_certif_file`, `xtr_lang_cert_file`, `approved`) VALUES
-(4, 'Vasilis', 'Koulouris', '2022202000101', 70, 8.3, 'C1', NULL, 'M.I.T.', NULL, NULL, 'Internet_11.pdf', 'download_button.png', NULL, NULL);
+(4, 'Vasilis', 'Koulouris', '2022202000101', 70, 8.3, 'C1', NULL, 'M.I.T.', NULL, NULL, 'Internet_11.pdf', 'download_button.png', NULL, 0);
 
 --
 -- Indexes for dumped tables
