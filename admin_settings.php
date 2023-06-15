@@ -211,7 +211,7 @@
                             <th rowspan="2">Eπιπλέων ξένες γλώσσες</th>
                             <th rowspan="1" colspan="3" style="border-bottom: 1px solid gray;">
                                 Πανεπιστήμιο
-                                <select id="specific_uni" style="font-size: small;">
+                                <select id="specific_uni" style="font-size: small;" onchange="specificUni();">
                                 <option value="all">Όλα τα συνεργαζόμενα</option>
                                 <?php
                                     $con = mysqli_connect("localhost", "root", "", "erasmus_db");
@@ -263,16 +263,16 @@
                                         }else{
                                             echo "<td> YES </td>";
                                         }
-                                        echo "<td>".$row["f_choice"]."</td>";
+                                        echo "<td f=\"".$row["f_choice"]."\">".$row["f_choice"]."</td>";
                                         if($row["s_choice"] == null){
-                                            echo "<td> NONE </td>";
+                                            echo "<td s=\"NONE\"> NONE </td>";
                                         }else{
-                                            echo "<td>".$row["s_choice"]."</td>";
+                                            echo "<td s=\"".$row["s_choice"]."\">".$row["s_choice"]."</td>";
                                         }
                                         if($row["t_choice"] == null){
-                                            echo "<td> NONE </td>";
+                                            echo "<td t=\"NONE\"> NONE </td>";
                                         }else{
-                                            echo "<td>".$row["t_choice"]."</td>";
+                                            echo "<td t=\"".$row["t_choice"]."\">".$row["t_choice"]."</td>";
                                         }
                                         echo '<td> <a href="uploads/'.$row["marks"].'" target="_blank"> View </a> </td>';
                                         echo '<td> <a href="uploads/'.$row["eng_lan_certif_file"].'" target="_blank"> View </a> </td>';
@@ -385,6 +385,25 @@
 
         </div>
         <script>
+            function specificUni(){
+                var choice = document.getElementById("specific_uni").value;
+                var table = document.getElementById("ApplicationsTable");
+                var rows = table.rows;
+
+                if(choice=="all"){
+                    for(i=2; i < rows.length; i++){
+                        rows[i].removeAttribute('hidden');
+                    }
+                }
+                else{
+                    for(i=2; i < rows.length; i++){
+                        rows[i].removeAttribute('hidden');
+                        if(rows[i].getElementsByTagName("TD")[8].getAttribute('f') != choice && rows[i].getElementsByTagName("TD")[9].getAttribute('s') != choice && rows[i].getElementsByTagName("TD")[10].getAttribute('t') != choice){
+                            rows[i].setAttribute('hidden', '');
+                        }
+                    }
+                }
+            }
             function filterByMin(){
                 var minSuccess = document.getElementById('min_success').value;
                 var table = document.getElementById("ApplicationsTable");
