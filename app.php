@@ -70,7 +70,14 @@
                 <img src="media/images/uoplogo.png" alt="University of the Pelloponese Logo">
             </div>   
             <div class="heading-title">
-                <h1>Αίτηση</h1>
+                <?php
+                    if(isset($_SESSION['username']) && $_SESSION['user_type'] == 'admin'){
+                        echo "<h1>Αιτήσεις</h1>";
+                    }
+                    else{
+                        echo "<h1>Αίτηση</h1>";
+                    }
+                ?>
             </div>
 
             <div class="menu">

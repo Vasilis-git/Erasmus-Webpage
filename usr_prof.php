@@ -82,7 +82,13 @@
                 <a href="index.php">Αρχική</a>
                 <a href="more.php">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
-                <a href="app.php">Αίτηση</a>
+                <?php
+                    if(isset($_SESSION['username']) && $_SESSION['user_type'] == 'admin'){
+                        echo "<a href=\"admin_settings.php\">Ρυθμίσεις Διαχειριστή</a>";
+                    } else{
+                        echo "<a href=\"app.php\">Αίτηση</a>";
+                    }
+                ?>
             </div>
            
                 <br>
