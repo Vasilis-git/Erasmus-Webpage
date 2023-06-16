@@ -4,6 +4,13 @@
     session_start();
 ?>
 
+<!-- 
+    Να φτιάξω: 
+        -Ο κάθε χρήστης να μπορεί να υποβάλει μόνο μία αίτηση στη περίοδο δηλώσεων
+        -Άν επιλέξει 'ΟΧΙ' στο 'Γνώσεις επιπλέον ξένων γλωσσών' να μήν μπορεί να επιλέξει αρχεία στο 'Πτυχία άλλων ξένων γλωσσών'
+        -Τα πολλαπλά αρχεία να φαίνονται σωστά και απο την μεριά του admin.
+-->
+
 <html style="background-color: rgb(173, 173, 173);">
     <head>
         <meta charset="UTF-8">
@@ -78,7 +85,7 @@
                 <a href="more.php">Περισόττερα</a>
                 <a href="reqs.php">Ελάχιστες απαιτήσεις</a>
             </div>
-            <form id="ApplicationForm" method="POST" action="scripts/application_form.php" onsubmit="return checkNec();">
+            <form id="ApplicationForm" method="POST" action="scripts/application_form.php" onsubmit="return checkNec();" enctype="multipart/form-data">
                 <div class="form-credentials">
                     <input type="text" name="fname" placeholder="Όνομα" readonly value="<?php echo $_SESSION['fname']; ?>"> <br>
                     <input type="text" name="lname" placeholder="Επίθετο" readonly value="<?php echo $_SESSION['lname']; ?>"> <br>
@@ -163,7 +170,7 @@
                         Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert-paper" id="elcp">
                     </p>
                     <p>
-                        Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert" id="olcp" multiple style="margin-top: 0vw";>
+                        Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert[]" id="olcp" multiple style="margin-top: 0vw";>
                      </p>
                     <p> Αποδοχή των όρων:
                     <input type="checkbox" name="accept-terms" id="terms"></p>
