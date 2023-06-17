@@ -6,8 +6,6 @@
 
 <!-- 
     Να φτιάξω: 
-        -Ο κάθε χρήστης να μπορεί να υποβάλει μόνο μία αίτηση στη περίοδο δηλώσεων
-        -Άν επιλέξει 'ΟΧΙ' στο 'Γνώσεις επιπλέον ξένων γλωσσών' να μήν μπορεί να επιλέξει αρχεία στο 'Πτυχία άλλων ξένων γλωσσών'
         -Τα πολλαπλά αρχεία να φαίνονται σωστά και απο την μεριά του admin.
 -->
 
@@ -18,8 +16,7 @@
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
         <style>
-            p{
-                margin-bottom: 0;
+            p{  margin-bottom: 0;
                 margin-top: 3vw;
             }
             input[type="button"]{
@@ -94,7 +91,7 @@
                     Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
                     <input type="number" name="passed_perc" id="passed_perc" min="0" max="100" value="50" style="margin-top: 0vw;"><br>
                     <br>
-                    Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
+                    <label for="average">Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος: </label>
                     <input type="number" name="average" id ="average" min="0" max="10" value="5" step="0.01" style="margin-top: 0vw;"><br><br>
                     Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
                     <input type="radio" name="english-lang-cert" id="A1" value="A1" checked>A1
@@ -170,12 +167,23 @@
                         Πτυχίο αγγλικής γλώσσας: <input type="file" name="english-lang-cert-paper" id="elcp">
                     </p>
                     <p>
-                        Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert[]" id="olcp" multiple style="margin-top: 0vw";>
+                        Πτυχία άλλων ξένων γλωσσών: <input type="file" name="other-lang-cert[]" id="olcp" disabled multiple style="margin-top: 0vw";>
                      </p>
                     <p> Αποδοχή των όρων:
                     <input type="checkbox" name="accept-terms" id="terms"></p>
                     <p id="error_msg" style="color: red;font-size: small;" hidden></p>
-                    <input type="submit" value="Υποβολή φόρμας" style="margin-top: 1vw;">
+                    <?php
+                       $con = mysqli_connect("localhost", "root", "", "erasmus_db") or die("connection problem");
+
+                       $count = mysqli_fetch_assoc(mysqli_query($con, "SELECT COUNT(*) FROM usr_aplications WHERE a_m = '".$_SESSION['a_m']."'"));
+                       if($count != 0){
+                            echo "<p style=\"background-color: red;font-size: small; color: white; border-radius: 2px; margin-bottom: 2px; padding: 4px; font-family: Arial, Helvetica, sans-serif;\">Έχεις ήδη υποβάλλει αίτηση.</p>";
+                            echo "<input type=\"submit\" value=\"Υποβολή φόρμας\" id=\"submit\" disabled style=\"margin-top: 1vw;\">";
+                       }
+                       else{
+                            echo "<input type=\"submit\" value=\"Υποβολή φόρμας\" style=\"margin-top: 1vw;\">";
+                       }
+                    ?>
                 </div>
             </form> 
 
@@ -186,6 +194,18 @@
         </div>
     </body>
     <script>
+            var radioButtons = document.getElementsByName('extra-lang-cert');
+            for (var i = 0; i < radioButtons.length; i++) {
+                radioButtons[i].addEventListener('change', function() {
+                    if (this.checked && this.value == "no") {
+                        document.getElementById('olcp').disabled = true;
+                    }
+                    else if(this.checked && this.value != "no"){
+                        document.getElementById('olcp').disabled = false;
+                    }
+                });
+            }
+
             function checkNec(){
                 /*
                     Τα πεδία Όνομα, Επίθετο και Αριθμός Μητρώου θα είναι προ-συμπληρωμένα, δεν χρειάζονται έλεχγο
