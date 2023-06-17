@@ -12,7 +12,9 @@
     $t_choice = $_POST['third-choice'];
     $m_o_file = $_FILES['marks']["name"];
     $e_c_file = $_FILES['english-lang-cert-paper']["name"];
-    $xtr_c_files = $_FILES['other-lang-cert']["name"];
+    if (isset($_FILES['other-lang-cert'])) {
+        $xtr_c_files = $_FILES['other-lang-cert']["name"];
+    }
 
     //store in server
     $destination = "C:\\xampp\\htdocs\\webpage\\uploads\\".$am."\\";
@@ -30,29 +32,33 @@
         move_uploaded_file($filename, $destination);
 
         $destination = "C:\\xampp\\htdocs\\webpage\\uploads\\".$am."\\";
-        $files = $_FILES['other-lang-cert'];
-        $tmp_filename = [];
-        foreach($files['tmp_name'] as $index => $tmp_name){
-           $tmp_filename[] = $tmp_name;
-        }
-        $true_filename = [];
-        foreach($files['name'] as $index => $name){
-            $true_filename[] = $name;
-        }
-        $i = 0;
-        foreach($tmp_filename as $tmp_name){
-            $destination .= $true_filename[$i];
-            $filename = $tmp_name;
-            move_uploaded_file($filename, $destination);
-            $destination = "C:\\xampp\\htdocs\\webpage\\uploads\\".$am."\\";
-            $i += 1;
+        if (isset($_FILES['other-lang-cert'])) {
+            $files = $_FILES['other-lang-cert'];
+            $tmp_filename = [];
+            foreach($files['tmp_name'] as $index => $tmp_name){
+            $tmp_filename[] = $tmp_name;
+            }
+            $true_filename = [];
+            foreach($files['name'] as $index => $name){
+                $true_filename[] = $name;
+            }
+            $i = 0;
+            foreach($tmp_filename as $tmp_name){
+                $destination .= $true_filename[$i];
+                $filename = $tmp_name;
+                move_uploaded_file($filename, $destination);
+                $destination = "C:\\xampp\\htdocs\\webpage\\uploads\\".$am."\\";
+                $i += 1;
+            }
         }
     }
     $store_format = "";
-    foreach($xtr_c_files as $filename){
-        $store_format .= $filename.",";
+    if (isset($_FILES['other-lang-cert'])) {
+        foreach($xtr_c_files as $filename){
+            $store_format .= $filename.",";
+        }
+        $store_format = substr($store_format, 0, strlen($store_format)-1);//remove last ','
     }
-    $store_format = substr($store_format, 0, strlen($store_format)-1);//remove last ','
 
     $con=mysqli_connect("localhost","root","","erasmus_db");
     if(!$con){

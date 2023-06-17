@@ -16,6 +16,12 @@
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
         <style>
+            *{text-align: center;}
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+            opacity: 1;
+            }
+
             p{  margin-bottom: 0;
                 margin-top: 3vw;
             }
@@ -86,12 +92,12 @@
                 <div class="form-credentials">
                     <input type="text" name="fname" placeholder="Όνομα" readonly value="<?php echo $_SESSION['fname']; ?>"> <br>
                     <input type="text" name="lname" placeholder="Επίθετο" readonly value="<?php echo $_SESSION['lname']; ?>"> <br>
-                    <input type="number" name="AM" placeholder="AM" readonly value="<?php echo $_SESSION['a_m']; ?>"> <br>
+                    <input type="text" name="AM" placeholder="AM" readonly value="<?php echo $_SESSION['a_m']; ?>"> <br>
                     <br>
                     Ποσοστό περασμένων μαθημάτων έως και το προηγούμενο έτος:&nbsp;
-                    <input type="number" name="passed_perc" id="passed_perc" min="0" max="100" value="50" style="margin-top: 0vw;"><br>
+                    <input type="number" name="passed_perc" id="passed_perc" min="0" max="100" value="50" step="0.1" style="margin-top: 0vw;"><br>
                     <br>
-                    <label for="average">Μέσος όρος των περασμένων μαθημάτων έως και το προηγούμενο έτος: </label>
+                    <label for="average">Μ.O. περασμένων μαθημάτων έως και το προηγούμενο έτος: </label>
                     <input type="number" name="average" id ="average" min="0" max="10" value="5" step="0.01" style="margin-top: 0vw;"><br><br>
                     Πιστοποιητικό γνώσης της αγγλικής γλώσσας:<br>
                     <input type="radio" name="english-lang-cert" id="A1" value="A1" checked>A1
@@ -174,9 +180,8 @@
                     <p id="error_msg" style="color: red;font-size: small;" hidden></p>
                     <?php
                        $con = mysqli_connect("localhost", "root", "", "erasmus_db") or die("connection problem");
-
                        $count = mysqli_fetch_assoc(mysqli_query($con, "SELECT COUNT(*) FROM usr_aplications WHERE a_m = '".$_SESSION['a_m']."'"));
-                       if($count != 0){
+                       if($count["COUNT(*)"] != 0){
                             echo "<p style=\"background-color: red;font-size: small; color: white; border-radius: 2px; margin-bottom: 2px; padding: 4px; font-family: Arial, Helvetica, sans-serif;\">Έχεις ήδη υποβάλλει αίτηση.</p>";
                             echo "<input type=\"submit\" value=\"Υποβολή φόρμας\" id=\"submit\" disabled style=\"margin-top: 1vw;\">";
                        }
