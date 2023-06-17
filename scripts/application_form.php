@@ -19,7 +19,7 @@
     //store in server
     $destination = "C:\\xampp\\htdocs\\webpage\\uploads\\".$am."\\";
     if (!file_exists($destination)) {
-        mkdir($destination, 0700, true);
+        mkdir($destination, 0777, true);
     }
     if(!empty($_FILES)){
         $destination .= $_FILES['english-lang-cert-paper']["name"];

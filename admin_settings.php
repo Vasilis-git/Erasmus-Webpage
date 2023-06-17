@@ -20,6 +20,16 @@
             align-items: center;
             justify-content: center;
         }
+        select{
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            margin: 0;
+        }
+        input[type="date"]{
+            width:50%;
+        }
+
         form{
             all:revert;
             width: 100%;
@@ -28,12 +38,6 @@
         
         tr:nth-child(even) {
             border-bottom: 1px solid gray;
-        }
-        th:hover {
-            background-color: #777777;
-        }
-        td:hover {
-            background-color: #777777;
         }
         th, td {
             padding: 1px;
@@ -65,6 +69,7 @@
         }
         .application_date{
             grid-area: ad;
+            margin: auto;
         }
         .admin{
             grid-area: a;
@@ -76,6 +81,7 @@
             font-size: large;
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
+            margin-top: 0;
         }
         @media screen and (min-width: 760px) {/*for desktop*/
                 .container{
@@ -87,12 +93,14 @@
                         "h  h  h  h  h  h  h  hi"
                         "ht ht ht ht ht ht ht hi"
                         "m  m  m  m  m  m  m  m"
-                        ".  . ad ad ad ad  .  ."
+                        "ad ad ad ad u  u  u  u"
                         "ap ap ap ap ap ap ap ap"
-                        "u  u  u  u  u  u  u  u"
                         "a  a  a  a  a  a  a  a"
                         "fi fi fi fi fi fi fi fi"
                         ;
+                }
+                .uni{
+                    margin-left: auto;
                 }
             }
             @media screen and (max-width: 759px) {/*for phones and tablets*/
@@ -101,13 +109,12 @@
                     grid-template-columns: repeat(1, 1fr);
                     margin: 0 auto;
                     grid-template-areas: 
-                                    "h"
-                                    "ht"
-                                    "m"
-                                    "ad"
-                                    "ap"
-                                    "u"
-                                    "a";
+                                    "h h"
+                                    "ht ht"
+                                    "m m"
+                                    "ad u"
+                                    "ap ap"
+                                    "a a";
                 }
                 .heading{
                     border-top-right-radius: 1vw;
@@ -157,21 +164,26 @@
                         $res = mysqli_fetch_assoc($sqli_res);
 
                         if($res["start_d"] != null && $res["end_d"] != null){
-                            echo '<p>
-                                    Από:
+                            echo '
+                                <p>
+                                    <label for="start_date">Από: </label>
                                     <input type="date" min="2023-06-06" id="start_date" name="start_date" onchange="setEndDate();" value="'.$res["start_d"].'">
-                                    Έως:
-                                    <input type="date" min="2023-06-13" max="2023-08-13" id="end_date" name="end_date" value="'.$res["end_d"].'"><br>
+                                    <br>
+                                    <label for="end_date">Έως: </label>
+                                    <input type="date" min="2023-06-13" max="2023-08-13" id="end_date" name="end_date" value="'.$res["end_d"].'">
                                 </p>
+
                             ';
 
                         }else{
-                            echo '<p>
-                                    Από:
-                                    <input type="date" min="2023-06-06" id="start_date" name="start_date" onchange="setEndDate();">
-                                    Έως:
-                                    <input type="date" min="2023-06-13" max="2023-08-13" id="end_date" name="end_date" ><br>
-                                </p>
+                            echo ' 
+                            <p>
+                                <label for="start_date">Από:</label>
+                                <input type="date" min="2023-06-06" id="start_date" name="start_date" onchange="setEndDate();"">
+                                <br>
+                                <label for="end_date">Έως:</label>
+                                <input type="date" min="2023-06-13" max="2023-08-13" id="end_date" name="end_date">
+                            </p>
                             ';
                         }
                     ?>
@@ -183,15 +195,6 @@
 
             <div class = "applications content">
                 <h1>Αιτήσεις</h1>
-                <!-- Εδώ οι αιτήσεις με όλα τα στοιχεία που ζητά η εκφώνηση σε μορφή πίνακα της html,
-                    Η πρώτη γραμμή να είναι οι επιλογές για εμφάνιση των αιτήσεων με φθίνουσα σειρά μέσου όρου (ένα κουμπί πάνω απο τη στήλη 'μέσος όρος')
-                    Πάνω απο τη στήλη ποσοστό περασμένων μαθημάτων, πεδίο κειμένο που δέχεται νούμερα απο 0-100, θα εμφανίζει μόνο τις αιτήσεις με το
-                    συγκεκριμένο νούμερο
-                    drop down list επιλογής πανεπιστημίου, που θα παίρνει τα πανεπιστήμια απο τη βάση δεδομένων, όπως στη φόρμα στο usr_application.php
-                    όταν επιλεγέι θα εμφανίζονται μόνο οι αιτήσεις που το περιλαμβάνουν
-                    η 1η στήλη του πίνακα: ένα checkbox σε κάθε γραμμή, για επιλογή αιτήσεων.
-                    κάτω κάτω κουμπί "δεκτές", για να θέτει τις επιλεγμένες αιτήσεις δεκτές
-                -->
                 <form action="scripts/submit_approved.php" method="GET">
                     <table id="ApplicationsTable">
                         <tr>
@@ -201,7 +204,7 @@
                             <th rowspan="2">ΑΜ</th>
                             <th rowspan="2">
                                 % περασμένων
-                                <input type="number" min="70" max="100" id="min_success" style="font-size:small;" onchange="filterByMin();">
+                                <input type="number" min="70" max="100" id="min_success" style="font-size:medium;" onchange="filterByMin();">
                             </th>
                             <th rowspan="2">
                                 Μ.Ο.
@@ -274,12 +277,24 @@
                                         }else{
                                             echo "<td t=\"".$row["t_choice"]."\">".$row["t_choice"]."</td>";
                                         }
-                                        echo '<td> <a href="uploads/'.$row["marks"].'" target="_blank"> View </a> </td>';
-                                        echo '<td> <a href="uploads/'.$row["eng_lan_certif_file"].'" target="_blank"> View </a> </td>';
+                                        echo '<td> <a href="uploads/'.$row["a_m"].'/'.$row["marks"].'" target="_blank"> View </a> </td>';
+                                        echo '<td> <a href="uploads/'.$row["a_m"].'/'.$row["eng_lan_certif_file"].'" target="_blank"> View </a> </td>';
+                                        
                                         if($row["xtr_lang_cert_file"] == null){
                                             echo "<td> NONE </td>";
                                         }else{
-                                            echo '<td> <a href="uploads/'.$row["xtr_lang_cert_file"].'" target="_blank"> View </a> </td>';
+                                            $filenames = [];
+                                            $token = strtok($row["xtr_lang_cert_file"], ',');
+                                            while($token != false){
+                                                $filenames[] = $token;
+                                                $token = strtok(',');
+                                            }
+                                            echo ' <td> <select name="file-links" onchange="handleSelect(this);">';
+                                            echo '<option value="count" disabled selected hidden> View '.count($filenames).'</option>';
+                                            foreach($filenames as $index => $name){
+                                                echo '<option value="uploads/'.$row["a_m"].'/'.$name.'"> file'.$index.' </option>';
+                                            }
+                                            echo '</select> </td>';
                                         }
                                     echo "</tr>";
                                 }
@@ -385,6 +400,9 @@
 
         </div>
         <script>
+            function handleSelect(option){
+                window.open(option.value, '_blank').focus;
+            }
             function specificUni(){
                 var choice = document.getElementById("specific_uni").value;
                 var table = document.getElementById("ApplicationsTable");

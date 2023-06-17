@@ -4,11 +4,6 @@
     session_start();
 ?>
 
-<!-- 
-    Να φτιάξω: 
-        -Τα πολλαπλά αρχεία να φαίνονται σωστά και απο την μεριά του admin.
--->
-
 <html style="background-color: rgb(173, 173, 173);">
     <head>
         <meta charset="UTF-8">

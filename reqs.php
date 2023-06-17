@@ -11,9 +11,8 @@
         <link rel="stylesheet" href="styles/stylefile.css"/>
         <title> Erasmus UoP</title>
         <style>
-            .brochure{
-                grid-area: br;
-                margin-bottom: 2vw;
+            #ReqsForm{
+                grid-area: rf;
             }
             @media screen and (min-width: 760px) {/*for desktop*/
                 .container{
@@ -25,9 +24,8 @@
                                             "h  h  h  h  h  h  h  hi"
                                             "ht ht ht ht ht ht ht hi"
                                             "m  m  m  m  m  m  m  m"
-                                            ".  .  br br br br .  ."
-                                            ".  .  f  f  f  f  .  ."
-                                            ".  .  .  .  .  .  .  ."
+                                            "c  c  c  c  rf rf rf rf"
+                                            "c  c  c  c  rf rf rf rf"
                                             "fi fi .  .  .  .  di di"
                                             ;
                 }
@@ -46,8 +44,8 @@
                                             "h"
                                             "ht"
                                             "m"
-                                            "br"
-                                            "f"
+                                            "c"
+                                            "rf"
                                             ;
                                            
                 }
@@ -65,6 +63,12 @@
                 }
                 .heading-title{
                     border-bottom-right-radius: 1vw;
+                }
+                #brochure-button{
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 4px;
+                    box-shadow: none;
                 }
             }
  
@@ -99,7 +103,7 @@
                     }
                 ?>
             </div>
-                <div class="brochure content">
+                <div class="content">
                     <p>Ενημερωτικό φυλλάδιο προγράμματος Erasmus 2023:
                     <a id="brochure-button" href="https://www.iky.gr/el/iky-rss/item/download/6919_43e80877fd9f6744d134b790f4e3f4b4">εδώ</a></p>
                     <table border="3" cellpadding="4" style="margin: 1vw 0vw 1vw 0vw;">
@@ -114,9 +118,7 @@
                 <div class="decor-image">
                     <img src="media/images/EU-logo.png" alt="European Union Logo" width="294" height="82" style="border-radius: 10px;">
                 </div>
-
-            <form id="ReqsForm">
-                <div class="content">
+            <form id="ReqsForm" class="content">
                     <div>
                         <h2>Φόρμα αυτόματου ελέγχου πληρότητας των ελάχιστων απαιτήσεων</h2> 
                     </div>
@@ -144,14 +146,11 @@
                     <input type="radio" name="english-lang-cert" value="C2">C2 <br>
                     <input type="button" name="r-submit" value="Έλεγχος" onclick="checkForm();">
                     <input type="button" name="clear-form" value="Καθαρισμός φόρμας" onclick="clearForm();">
-
-                </div>
-            </form>
-
+            </form>         
             <div class="footer-image">
                 <img src="media/images/erasmus.png" alt="Erasmus picture" width="186" height="57">
             </div>
-        </div>
+    </div>
     </body>
     <script>
         function clearForm(){
