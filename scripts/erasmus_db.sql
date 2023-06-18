@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2023 at 09:52 AM
+-- Generation Time: Jun 18, 2023 at 12:13 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,15 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `applications_date` (
   `start_d` date DEFAULT NULL,
-  `end_d` date DEFAULT NULL
+  `end_d` date DEFAULT NULL,
+  `announce` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `applications_date`
 --
 
-INSERT INTO `applications_date` (`start_d`, `end_d`) VALUES
-('2023-06-12', '2023-06-30');
+INSERT INTO `applications_date` (`start_d`, `end_d`, `announce`) VALUES
+('2023-06-12', '2023-06-17', 1);
 
 -- --------------------------------------------------------
 
@@ -47,7 +48,7 @@ INSERT INTO `applications_date` (`start_d`, `end_d`) VALUES
 
 CREATE TABLE `universities` (
   `uni_id` bigint(20) UNSIGNED NOT NULL,
-  `uni_name` varchar(40) NOT NULL,
+  `uni_name` varchar(20) NOT NULL,
   `country` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -56,12 +57,12 @@ CREATE TABLE `universities` (
 --
 
 INSERT INTO `universities` (`uni_id`, `uni_name`, `country`) VALUES
-(1, 'University of Michigan', 'USA'),
-(2, 'University of Harvard', 'USA'),
+(1, 'Michigan', 'USA'),
+(2, 'Harvard', 'USA'),
 (3, 'M.I.T.', 'USA'),
-(4, 'Oxford University', 'England'),
-(5, 'Cambridge University', 'England'),
-(6, 'Stanford University', 'USA');
+(4, 'Oxford', 'England'),
+(5, 'Cambridge', 'England'),
+(6, 'Stanford', 'USA');
 
 -- --------------------------------------------------------
 
@@ -131,7 +132,7 @@ CREATE TABLE `usr_aplications` (
   `t_choice` varchar(40) DEFAULT NULL,
   `marks` varchar(40) NOT NULL,
   `eng_lan_certif_file` varchar(40) NOT NULL,
-  `xtr_lang_cert_file` varchar(40) DEFAULT NULL,
+  `xtr_lang_cert_file` text DEFAULT NULL,
   `approved` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -140,7 +141,8 @@ CREATE TABLE `usr_aplications` (
 --
 
 INSERT INTO `usr_aplications` (`application_id`, `fname`, `lname`, `a_m`, `pass_perc`, `avrg`, `eng_lan_certif`, `xtr_lang_cert`, `f_choice`, `s_choice`, `t_choice`, `marks`, `eng_lan_certif_file`, `xtr_lang_cert_file`, `approved`) VALUES
-(4, 'Vasilis', 'Koulouris', '2022202000101', 70, 8.3, 'C1', NULL, 'M.I.T.', NULL, NULL, 'Internet_11.pdf', 'download_button.png', NULL, 0);
+(23, 'Vasilis', 'Koulouris', '2022202000101', 50, 5, 'A1', 'no', 'Michigan', '', '', 'eramsus-logo.png', 'EU-logo.png', 'download_button.png,eramsus-logo.png,erasmus.png', 0),
+(27, 'A', 'B', '2022202000945', 70.3, 8.4, 'B2', 'yes', 'Michigan', 'Cambridge', '', 'eramsus-logo.png', 'EU-logo.png', 'download_button.png,uoplogo.png', 0);
 
 --
 -- Indexes for dumped tables
@@ -178,7 +180,7 @@ ALTER TABLE `usr_aplications`
 -- AUTO_INCREMENT for table `universities`
 --
 ALTER TABLE `universities`
-  MODIFY `uni_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `uni_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -196,7 +198,7 @@ ALTER TABLE `user_types`
 -- AUTO_INCREMENT for table `usr_aplications`
 --
 ALTER TABLE `usr_aplications`
-  MODIFY `application_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `application_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
