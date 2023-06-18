@@ -425,15 +425,15 @@
                 <!-- κουμπί "συνεργαζόμενα πανεπιστήμια", τα εμφανίζει παίρνωντας τα απ΄τη βάση δεδομένων
                     κουμπία προσθήκης και αφαίρεσης πανεπιστημίου
                 -->
-                <form method="GET" id="unis_form">
+                <form method="GET" id="unis_form" action="scripts/removeChecked.php">
                     <?php
                         $con = mysqli_connect("localhost", "root", "", "erasmus_db") or die('connection problem');
-                        $result = mysqli_query($con, "SELECT uni_name, country FROM universities");
+                        $result = mysqli_query($con, "SELECT uni_id, uni_name, country FROM universities");
                         echo '<table>';
                         echo '<tr> <th></th> <th> Όνομα </th><th> Χώρα </th> </tr>';
                         while($row = mysqli_fetch_assoc($result)){
                             echo '<tr>';
-                            echo '<td style="width:1%;"> <input type="checkbox"> </td>';
+                            echo '<td style="width:1%;"> <input type="checkbox" name="'.$row["uni_id"].'"> </td>';
                             echo '<td>'.$row['uni_name'].'</td><td>'.$row['country'].'</td>';
                             echo '</tr>';
                         }
@@ -442,7 +442,7 @@
                         echo '<input type="button" id="addButton" style="all:revert;width:100%;font-size:medium;display:block;" value="Προσθήκη" onclick="addUni();" disabled>';
                         mysqli_close($con);
                     ?>
-                    <input type="button" value="Αφαίρεση επιλεγμένων">
+                    <input type="submit" value="Αφαίρεση επιλεγμένων">
                     <input type="button" value="Κατάργηση επιλογής" onclick="uncheckAll('unis_form');">
                 </form>
             </div>
