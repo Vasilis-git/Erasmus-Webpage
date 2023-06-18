@@ -26,9 +26,10 @@
             width:100%;
             font-size: medium;
         }
-        table input[type="text"]{
+        table input[type="text"], table input[type="password"], table input[type="tel"], table input[type="email"]{
             all:revert;
             width: 100%;
+            text-align: center;
             box-sizing: border-box;
             height: 100%;
             font-size: medium;
@@ -422,9 +423,6 @@
 
             <div class = "uni content">
                 <h1>Συνεργαζόμενα πανεπιστήμια</h1>
-                <!-- κουμπί "συνεργαζόμενα πανεπιστήμια", τα εμφανίζει παίρνωντας τα απ΄τη βάση δεδομένων
-                    κουμπία προσθήκης και αφαίρεσης πανεπιστημίου
-                -->
                 <form method="GET" id="unis_form" action="scripts/removeChecked.php">
                     <?php
                         $con = mysqli_connect("localhost", "root", "", "erasmus_db") or die('connection problem');
@@ -439,7 +437,7 @@
                         }
                         echo '<tr> <td> <input type="button" value="+" onclick="enableInput();"> </td> <td> <input id="uni_name" name="uni_name" type="text" placeholder="Όνομα..." disabled> </td> <td> <input id="country" name="country" type="text" placeholder="Χώρα..." disabled> </td> </tr>';
                         echo '</table>';
-                        echo '<input type="button" id="addButton" style="all:revert;width:100%;font-size:medium;display:block;" value="Προσθήκη" onclick="addUni();" disabled>';
+                        echo '<input type="button" id="addButton" value="Προσθήκη" style="all:revert;display:block;width:100%;font-size: medium;" onclick="addUni();" disabled>';
                         mysqli_close($con);
                     ?>
                     <input type="submit" value="Αφαίρεση επιλεγμένων">
@@ -449,13 +447,175 @@
 
             <div class="admin content">
                 <h1>Διαχειριστές</h1>
-                <!-- κουμπί 'Διαχειριστές', θα προβάλει όλους τους διαχειριστές τις σελίδας και θα έχει κουμπί προσθήκη
-                μετά φόρμα παρόμοια με το sign_up, αλλά με αριθμό μητρώου 2022999999999 και δημιουργία τυχαίου κωδικού 10 χαρακτήρων    
-            -->
+                <form method="POST" id="admins_form" action="scripts/removeAdmins.php">
+                    <?php
+                        $con = mysqli_connect("localhost", "root", "", "erasmus_db") or die('connection problem');
+                        $result = mysqli_query($con, "SELECT * FROM users WHERE user_type_id=3");
+                        mysqli_close($con);
+                        echo '<table>';
+                        echo '<tr> <th></th> <th> Όνομα </th><th> Επίθετο </th><th> Α.Μ. </th><th> Τηλέφωνο </th><th> email </th><th> Όνομα χρήστη </th><th> Κωδικός πρόσβασης </th></tr>';
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo '<tr>';
+                            echo '<td style="width:1%;"> <input type="checkbox" name="'.$row["user_id"].'"> </td>';
+                            echo '<td>'.$row['fname'].'</td><td>'.$row['lname'].'</td>';
+                            echo '<td>'.$row['a_m'].'</td><td>'.$row['tel'].'</td>';
+                            echo '<td>'.$row['email'].'</td><td>'.$row['username'].'</td>';
+                            echo '<td>'.$row['pass'].'</td>';
+                            echo '</tr>';
+                        }
+                        echo '<tr>';
+                            echo '<td> <input type="button" value="+" onclick="enableAdminInput();"> </td>';
+                            echo '<td> <input id="fname" name="fname" type="text" placeholder="Όνομα..." disabled></td>';
+                            echo '<td> <input id="lname" name="lname" type="text" placeholder="Επίθετο..." disabled></td>';
+                            echo '<td> <input type="text" name="a_m" value="2022999999999" readonly></td>';
+                            echo '<td> <input type="tel" name="phone-number" id="pn" placeholder="Τηλέφωνο" disabled onchange="checkTel();"></td>';
+                            echo '<td> <input type="email" name="mail" id="mail" placeholder="email" disabled onchange="checkEmail();"></td>';
+                            echo '<td> <input type="text" name="username" id="username" disabled placeholder="Όνομα χρήστη..."> </td>';
+                            echo '<td> <input type="password" name ="password" id="pw" placeholder="Aνατίθεται αυτόματα" readonly onchange="checkPwd();"> </td>';
+                        echo '</tr>';
+                        echo '</table>';
+                        echo '<input type="button" id="addAdm" value="Προσθήκη" style="all:revert;display:block;width:100%;font-size: medium;" onclick="addAdmin();" disabled>';
+                        echo '<p id="errTel" style="color: red;font-size: small;" hidden>Μη έγκυρο τηλέφωνο.</p>';
+                        echo '<p id="errMail" style="color: red;font-size: small;" hidden>Μη έγκυρο e-mail.</p>';
+
+                    ?>
+                    <input type="submit" value="Αφαίρεση επιλεγμένων">
+                    <input type="button" value="Κατάργηση επιλογής" onclick="uncheckAll('admins_form');">
+                </form>
             </div>
 
         </div>
         <script>
+            function addAdmin(){
+                var fname = document.getElementById('fname').value;
+                var lname = document.getElementById("lname").value;
+                var pn = document.getElementById('pn').value;
+                var mail = document.getElementById('mail').value;
+                var username = document.getElementById('username').value;
+
+
+                if(fname=='' || lname=='' || checkEmail() == false || checkTel() == false){
+                    alert('Μή έγκυρες τιμές');
+                }else if(fname.length > 20 || lname.length > 20){
+                    alert('Μέγιστο πλήθος χαρακτήρων: 20.');
+                }else{
+                    const pwd = new Array(10);
+                    const digits = new Array(10);
+                    const letters = new Array(26);
+                    digits[0] = 0;
+                    for(var i = 1; i < 10; i++){
+                        digits[i] = digits[i-1]+1;
+                    } 
+                    for(var i = 0; i < 26; i++){
+                        letters[i] = String.fromCharCode(i+97);
+                    }
+                    const symbols = ["!", "@", "#", "$", "%", "^", "&"];
+
+                    var table_num, index;
+                    var symbol_count = 0;
+                    for(var i = 0; i<10; i++){
+                        table_num = getRandomInt(1,3);
+                        if(i == 9 && symbol_count == 0){table_num=3;}
+                        if(table_num == 1){//digit
+                            index = getRandomInt(0, 9);
+                            pwd[i] = digits[index];
+                        }else if(table_num == 2){//letter
+                            var uppercase = getRandomInt(0, 1);
+                            index = getRandomInt(0, 25);
+                            if(uppercase == 1){
+                                pwd[i] = letters[index].toUpperCase();
+                            }else{
+                                pwd[i] = letters[index];}
+                        }else{//symbol, guarantee at least one
+                            index = getRandomInt(0, symbols.length-1);
+                            pwd[i] = symbols[index];
+                            symbol_count += 1;
+                        }
+                    }
+                    document.getElementById('pw').value = pwd.join("");
+                    var form = document.getElementById('admins_form');
+                    form.action = "scripts/addAdmin.php";
+                    form.requestSubmit();
+                }
+            }
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            function enableAdminInput(){
+                document.getElementById('fname').disabled=false;
+                document.getElementById('lname').disabled=false;
+                document.getElementById('pn').disabled=false;
+                document.getElementById('mail').disabled=false;
+                document.getElementById('username').disabled=false;
+                document.getElementById('addAdm').disabled=false;
+            }
+            function checkPwd(){
+                var pwd = document.getElementById('pw');
+                var error = document.getElementById('errpsw');
+                error.setAttribute('hidden', '');
+
+                if(pwd.value =='' || pwd.value.length < 5){
+                    error.removeAttribute('hidden');
+                    return false;
+                }
+                // (!,@,#,$,%,^,&)
+                var str = pwd.value;
+                if (
+                    str.indexOf("!") !== -1 ||
+                    str.indexOf("@") !== -1 ||
+                    str.indexOf("#") !== -1 ||
+                    str.indexOf("$") !== -1 ||
+                    str.indexOf("%") !== -1 ||
+                    str.indexOf("^") !== -1 ||
+                    str.indexOf("&") !== -1
+                ) {   
+                    error.setAttribute('hidden', '');
+                    return true;
+                }
+                else{
+                    error.removeAttribute('hidden');
+                    return false;
+                }
+            }
+            function checkEmail(){
+                var email = document.getElementById('mail');
+                var err = document.getElementById('errMail');
+                err.setAttribute('hidden', '');
+                var pattern = /^[a-zA-Z]+[0-9a-zA-Z]*@[a-zA-Z]+(\.[a-zA-Z]+){1,2}$/; //^: start of string and $: end of string
+
+                if(pattern.test(email.value)){
+                    return true;
+                }
+                else{
+                    err.removeAttribute('hidden');
+                    return false;
+                }
+            }
+            function checkTel(){
+                var tel = document.getElementById('pn');
+                var error = document.getElementById('errTel');
+                error.setAttribute('hidden', '');
+
+                for(i = 0; i < tel.value.length; i++){
+                    if(tel.value.charAt(i)< '0' || tel.value.charAt(i) > '9'){
+                        error.removeAttribute('hidden');
+                        error.innerHTML = 'Το τηλέφωνο πρέπει να περιέχει μόνο ψηφία';
+                        return false;
+                    }
+                }
+                if(tel.value != '' && tel.value.length != 10){
+                    error.removeAttribute('hidden');
+                    error.innerHTML = 'Το τηλέφωνο πρέπει να έχει 10 ψηφία';
+                    return false;
+                }
+                if(tel.value ==''){
+                    error.removeAttribute('hidden');
+                    error.innerHTML = 'Το τηλέφωνο δεν μπορεί να είναι κενό';
+                    return false;
+                }
+                return true;
+            }
             function addUni(){
                 var form = document.getElementById('unis_form');
                 var uni_name = document.getElementById('uni_name').value;
