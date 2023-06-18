@@ -193,7 +193,7 @@
                 </form>
             </div>
 
-            <div class = "applications content">
+            <div class = "applications content" >
                 <h1>Αιτήσεις</h1>
                 <form action="scripts/submit_approved.php" method="GET">
                     <table id="ApplicationsTable">
@@ -308,10 +308,7 @@
                 </form>
 
                 <h1>Δεκτές Αιτήσεις</h1>
-                <!-- Κουμπί "εμφάνιση δεκτών αιτήσεων", να τις τυπώνει όπως πάνω αλλά χωρίς δυνατότητα επεξεργασίας
-                    κάτω κάτω κουμπί 'ανακοίνωση των αποτελεσμάτων', θα μεταφέρει τις δεκτές στο more.php
-                -->
-                <form action="announce_results.php" method="GET">
+                <form action="scripts/announce_results.php" method="GET">
                     <table>
                         <tr>
                             <th rowspan="2">Όνομα</th>
@@ -343,7 +340,7 @@
                                     if($row["approved"] != true){
                                         continue;
                                     }
-                                    echo "<tr>";//add name here, with value the user id, then egt all ids with a foreach loop like in submit_approved, and print the users in more.php
+                                    echo "<tr>";
                                         echo "<td>".$row["fname"]."</td>";   
                                         echo "<td>".$row["lname"]."</td>";
                                         echo "<td>".$row["a_m"]."</td>";         
@@ -371,7 +368,18 @@
                                         if($row["xtr_lang_cert_file"] == null){
                                             echo "<td> NONE </td>";
                                         }else{
-                                            echo '<td> <a href="uploads/'.$row["xtr_lang_cert_file"].'" target="_blank"> View </a> </td>';
+                                            $filenames = [];
+                                            $token = strtok($row["xtr_lang_cert_file"], ',');
+                                            while($token != false){
+                                                $filenames[] = $token;
+                                                $token = strtok(',');
+                                            }
+                                            echo ' <td> <select name="file-links" onchange="handleSelect(this);">';
+                                            echo '<option value="count" disabled selected hidden> View '.count($filenames).'</option>';
+                                            foreach($filenames as $index => $name){
+                                                echo '<option value="uploads/'.$row["a_m"].'/'.$name.'"> file'.$index.' </option>';
+                                            }
+                                            echo '</select> </td>';
                                         }
                                     echo "</tr>";
                                 }
@@ -380,7 +388,22 @@
                         ?>
 
                     </table>
-                    <input type="submit" value="Ανακοίνωση αποτλεσμάτων">
+                    <?php
+                        $today = new DateTime();
+                        $today_date = $today->format('Y-m-d');
+                        $con = mysqli_connect("localhost", "root", "", "erasmus_db") or die('connection problem');
+                        $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT end_d FROM applications_date"));
+                        $end_date = new DateTime($result["end_d"]);
+
+                        if($today > $end_date){
+                            echo '<input type="submit" value="Ανακοίνωση αποτλεσμάτων">';
+                        }
+                        else{
+                            echo "<p><span style=\"display:inline-block;width:100%;background-color:red;color:white;font-size: medium; color: white; border-radius: 2px; margin-top: 10px; padding: 4px;\">Πρέπει να λήξει η περίοδος δηλώσεων για ανακοίνωση των αποτελεσμάτων.</span></p>";
+                        }
+                        mysqli_close($con);
+                    ?>
+                    
                 </form>
             </div>
 
