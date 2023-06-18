@@ -20,6 +20,19 @@
             align-items: center;
             justify-content: center;
         }
+        table input[type="button"]{
+            all:revert;
+            display:block;
+            width:100%;
+            font-size: medium;
+        }
+        table input[type="text"]{
+            all:revert;
+            width: 100%;
+            box-sizing: border-box;
+            height: 100%;
+            font-size: medium;
+        }
         select{
             width: 100%;
             height: 100%;
@@ -195,7 +208,7 @@
 
             <div class = "applications content" >
                 <h1>Αιτήσεις</h1>
-                <form action="scripts/submit_approved.php" method="GET">
+                <form action="scripts/submit_approved.php" method="GET" id="allApplications">
                     <table id="ApplicationsTable">
                         <tr>
                             <th rowspan="2"></th>
@@ -303,7 +316,7 @@
                         ?>
 
                     </table>
-                    <input type="button" value="Κατάργηση επιλογής" onclick="uncheckAll();">
+                    <input type="button" value="Κατάργηση επιλογής" onclick="uncheckAll('allApplications');">
                     <input type="submit" value="Έγκριση επιλεγμένων">
                 </form>
 
@@ -412,6 +425,26 @@
                 <!-- κουμπί "συνεργαζόμενα πανεπιστήμια", τα εμφανίζει παίρνωντας τα απ΄τη βάση δεδομένων
                     κουμπία προσθήκης και αφαίρεσης πανεπιστημίου
                 -->
+                <form method="GET" id="unis_form">
+                    <?php
+                        $con = mysqli_connect("localhost", "root", "", "erasmus_db") or die('connection problem');
+                        $result = mysqli_query($con, "SELECT uni_name, country FROM universities");
+                        echo '<table>';
+                        echo '<tr> <th></th> <th> Όνομα </th><th> Χώρα </th> </tr>';
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo '<tr>';
+                            echo '<td style="width:1%;"> <input type="checkbox"> </td>';
+                            echo '<td>'.$row['uni_name'].'</td><td>'.$row['country'].'</td>';
+                            echo '</tr>';
+                        }
+                        echo '<tr> <td> <input type="button" value="+" onclick="enableInput();"> </td> <td> <input id="uni_name" name="uni_name" type="text" placeholder="Όνομα..." disabled> </td> <td> <input id="country" name="country" type="text" placeholder="Χώρα..." disabled> </td> </tr>';
+                        echo '</table>';
+                        echo '<input type="button" id="addButton" style="all:revert;width:100%;font-size:medium;display:block;" value="Προσθήκη" onclick="addUni();" disabled>';
+                        mysqli_close($con);
+                    ?>
+                    <input type="button" value="Αφαίρεση επιλεγμένων">
+                    <input type="button" value="Κατάργηση επιλογής" onclick="uncheckAll('unis_form');">
+                </form>
             </div>
 
             <div class="admin content">
@@ -423,6 +456,29 @@
 
         </div>
         <script>
+            function addUni(){
+                var form = document.getElementById('unis_form');
+                var uni_name = document.getElementById('uni_name').value;
+                var country = document.getElementById('country').value;
+                if(uni_name == '' || country == ''){
+                    alert('Δεν μπορείς να εισάγεις κενά δεδομένα.');
+                }
+                else if(uni_name.length > 20 || country.length > 20){
+                    alert('Μέγιστο πλήθος χαρακτήρων: 20.');
+                }
+                else{
+                    form.action = "scripts/addUni.php";
+                    form.requestSubmit();
+                }
+            }
+            function enableInput(){
+                var uni_name = document.getElementById('uni_name');
+                var country = document.getElementById('country');
+                var addButton = document.getElementById('addButton');
+                uni_name.disabled = false;
+                country.disabled = false;
+                addButton.disabled = false;
+            }
             function handleSelect(option){
                 window.open(option.value, '_blank').focus;
             }
@@ -490,8 +546,8 @@
                     }
                 }
             }
-            function uncheckAll(){
-                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            function uncheckAll(formID){
+                var checkboxes = document.querySelectorAll('form[id="'+formID+'"] input[type="checkbox"]');
                 for(var i = 0; i < checkboxes.length; i++){
                     checkboxes[i].checked = false;
                 }
