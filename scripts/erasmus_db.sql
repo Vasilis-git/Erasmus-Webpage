@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2023 at 12:13 PM
+-- Generation Time: Jun 22, 2023 at 03:41 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -89,8 +89,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `fname`, `lname`, `a_m`, `tel`, `email`, `username`, `pass`, `user_type_id`) VALUES
 (1, 'Vasilis', 'Koulouris', '2022202000101', '6981386632', 'dit20101@go.uop.gr', 'kouvas', 'kouvas$', 2),
 (4, 'A', 'B', '2022202000945', '6987451234', 'A@B.AB', 'AB', 'BASILOPOULOS!', 2),
-(6, 'gdrkurhuego', 'ehthe', '2022202000690', '6918229822', 'a@ksubf.gr', 'lol', '!lol123', 2),
-(7, 'default_admin', '-', '2022999999999', '--', 'admin@mail.gr', 'default_admin', 'def_admin_p!', 3);
+(6, 'Mark', 'Kat', '2022202000690', '6918229822', 'a@g.gr', 'lol', '!lol123', 2),
+(7, 'default_admin', '-', '2022999999999', '--', 'admin@mail.gr', 'default_admin', 'def_admin_p!', 3),
+(12, 'A', 'Guy', '2022201700069', '6949642069', 'thatguy@mail.com', 'ThatGuy', '#ThatGuy', 2);
 
 -- --------------------------------------------------------
 
@@ -186,7 +187,7 @@ ALTER TABLE `universities`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_types`
