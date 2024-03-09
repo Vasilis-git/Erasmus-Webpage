@@ -267,8 +267,8 @@
                                         continue;
                                     }
                                     $user_id = mysqli_fetch_assoc(mysqli_query($con, "SELECT user_id FROM users WHERE a_m=".$row["a_m"]));
-                                    echo "<tr>";
-                                        echo "<td> <input type=\"checkbox\" name=\"".$user_id["user_id"]."\"> </td>";//will be sent only if it's checked by default
+                                    echo "<tr id=".$user_id["user_id"].">";
+                                        echo "<td> <input type=\"checkbox\" name=\"".$user_id["user_id"]."\" onchange=\"changeRowColor(".$user_id["user_id"].")\"> </td>";//will be sent only if it's checked by default
                                         echo "<td>".$row["fname"]."</td>";   
                                         echo "<td>".$row["lname"]."</td>";
                                         echo "<td>".$row["a_m"]."</td>";         
@@ -486,6 +486,16 @@
 
         </div>
         <script>
+            function changeRowColor(user_id){
+                var newColor= "darkgrey"
+                var row = document.getElementById(user_id);
+                var prevColor = row.style.backgroundColor;
+                if(prevColor != newColor){
+                    row.style.backgroundColor = newColor;
+                }else{
+                    row.style.backgroundColor = "rgb(196, 196, 196)";
+                }
+            }
             function addAdmin(){
                 var fname = document.getElementById('fname').value;
                 var lname = document.getElementById("lname").value;
@@ -710,6 +720,7 @@
                 var checkboxes = document.querySelectorAll('form[id="'+formID+'"] input[type="checkbox"]');
                 for(var i = 0; i < checkboxes.length; i++){
                     checkboxes[i].checked = false;
+                    checkboxes[i].dispatchEvent(new Event('change'));
                 }
             }
             function setEndDate(){
